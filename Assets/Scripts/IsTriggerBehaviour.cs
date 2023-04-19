@@ -11,7 +11,7 @@ public class IsTriggerBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Player"))
             print("Player hit");
-        
+            GameManager.Instance.GameOver();
         _onTriggerEnter?.Invoke();
     }
 }
