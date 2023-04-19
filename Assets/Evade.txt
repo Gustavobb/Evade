@@ -1,0 +1,27 @@
+Power ups:
+- Guardiao (morre com cooldown)
+- Inimigos evitam player (ser espalhado pelo mapa)
+- Tempo slow quando chega perto (ser ativado automatico com cooldown)
+- Vida extra
+- Diminuir bolinha
+- Slow down inimigos ou scale down inimigos
+
+Possivel ideia contratos com penalidades
+Paredes que matam inimigos e player
+Diferentes paletas quando passa um certo numero de waves
+Diferentes inimigos
+
+Braga:
+- Paredes matam e efeito
+- Adicionar mais efeitos de pp (lens distortion, chromatic aberration, ...)
+- Pesquisar efeitos pros power ups
+- Guardiao
+- Diferentes inimigos
+
+Michel:
+- Gameloop (waves, morte, timer)
+- ui power ups
+- Vida extra
+- Diminuir bolinha
+- Slow down inimigos ou scale down inimigos
+- Time slow down
