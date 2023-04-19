@@ -5,13 +5,22 @@ using UnityEngine.Events;
 
 public class IsTriggerBehaviour : MonoBehaviour
 {
-    [SerializeField] private UnityEvent _onTriggerEnter;
+    [SerializeField] private UnityEvent<Collider2D> _onTriggerEnter, _onTriggerExit;
+    private Collider2D _collider2D;
+
+    private void Awake()
+    {
+        _collider2D = GetComponent<Collider2D>();
+        _collider2D.isTrigger = true;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-            print("Player hit");
-        
-        _onTriggerEnter?.Invoke();
+        _onTriggerEnter?.Invoke(other);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        _onTriggerExit?.Invoke(other);
     }
 }

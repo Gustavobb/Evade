@@ -13,11 +13,24 @@ public class Rectangle : Shape
         ShapesManager.Instance.AddShape(this);
     }
 
-    public override Vector4 GetData()
+    public override Vector4 GetProperties()
     {
-        return new Vector4(_boxCollider.size.x / (_factor * 2)  * transform.localScale.x, 
-        _boxCollider.size.y / (_factor * 2) * transform.localScale.y,
-        -transform.rotation.eulerAngles.z, (int) _colorType);
+        Vector4 props = new Vector4(transform.position.x / _factor, transform.position.y / _factor,
+        _boxCollider.size.x / (_factor * 2)  * transform.localScale.x,
+        _boxCollider.size.y / (_factor * 2) * transform.localScale.y);
+
+        if (_accountParentScale)
+        {
+            props.z *= transform.parent.localScale.x;
+            props.w *= transform.parent.localScale.y;
+        }
+
+        return props;
+    }
+
+    public override Vector4 GetExtra()
+    {
+        return new Vector4((float) _colorType, -transform.rotation.eulerAngles.z, _hasShadow ? 1 : 0, _blendBlack);
     }
 
     private void OnDestory()

@@ -40,4 +40,16 @@ public class Player : MonoBehaviour
         if (enemy.GetToPlayer().magnitude < _closestEnemy.GetToPlayer().magnitude)
             _closestEnemy = enemy;
     }
+
+    public void Reset()
+    {
+        gameObject.SetActive(true);
+        transform.position = Vector3.zero;
+    }
+
+    public void Die()
+    {
+        gameObject.SetActive(false);
+        Cursor.visible = true;
+    }
 }

@@ -12,8 +12,10 @@ Diferentes paletas quando passa um certo numero de waves
 Diferentes inimigos
 
 Braga:
-- Paredes matam e efeito
+- Paredes matam -> done
+- Sombras -> done
 - Adicionar mais efeitos de pp (lens distortion, chromatic aberration, ...)
+- Efeito morte
 - Pesquisar efeitos pros power ups
 - Guardiao
 - Diferentes inimigos

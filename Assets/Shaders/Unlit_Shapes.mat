@@ -30,7 +30,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ColorDecay: 0.152
+    - _ChromaticAberration: 0
+    - _ColorDecay: 1
     - _FilmGrain: 0
-    m_Colors: []
+    - _GrainStrength: 32
+    - _HueShift: 0
+    - _LensDistortion: 1
+    - _LensDistortionStrength: 1
+    - _LensDistortionTightness: 0.44
+    - _LensZoom: 1
+    - _PixelSize: 4.8
+    - _Pixelate: 0
+    - _Shadow: 1
+    - _ShadowOffset: 0.02
+    - _SunRotation: 34
+    m_Colors:
+    - _Background: {r: 0.9882, g: 1, b: 0.823, a: 1}
+    - _ShadowColor: {r: 0.305, g: 0.305, b: 0.305, a: 1}
   m_BuildTextureStacks: []

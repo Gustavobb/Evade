@@ -13,9 +13,22 @@ public class Circle : Shape
         ShapesManager.Instance.AddShape(this);
     }
 
-    public override Vector4 GetData()
+    public override Vector4 GetProperties()
     {
-        return new Vector4(_circleCollider.radius / _factor * transform.localScale.x, 0, 0, (int) _colorType);
+        Vector4 props = new Vector4(transform.position.x / _factor, transform.position.y / _factor, 
+        _circleCollider.radius / _factor * transform.localScale.x, 0);
+
+        if (_accountParentScale)
+        {
+            props.z *= transform.parent.localScale.x;
+        }
+
+        return props;
+    }
+
+    public override Vector4 GetExtra()
+    {
+        return new Vector4((float) _colorType, _hasShadow ? 1 : 0, _blendBlack, 0);
     }
 
     private void OnDestory()

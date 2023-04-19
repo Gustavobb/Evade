@@ -13,9 +13,9 @@ public class ShapesManager : MonoBehaviour
     // Rectangles
     [SerializeField] private List<Rectangle> _rectangles = new List<Rectangle>();
     
-    private Vector4[] _shapesCenter = new Vector4[100];
-    private Vector4[] _shapesData = new Vector4[100];
-    private Color[] _shapesColors = new Color[100];
+    private Vector4[] _shapesProperties = new Vector4[20];
+    private Vector4[] _shapesExtra = new Vector4[20];
+    private Color[] _shapesColors = new Color[20];
 
     private static ShapesManager _instance;
     public static ShapesManager Instance
@@ -77,26 +77,29 @@ public class ShapesManager : MonoBehaviour
 
     private void UpdateShapes<T>(in List<T> shapes, string name) where T : Shape
     {
-        Vector4 shapeCenter;
-        Vector4 shapeData;
+        Vector4 shapeProperties;
+        Vector4 shapeExtra;
         Color shapeColor;
-        
+        int count = 0;
+
         for (int i = 0; i < shapes.Count; i++)
         {
-            if (!shapes[i].gameObject.activeSelf) continue;
-            shapeCenter = shapes[i].GetCenter();
-            _shapesCenter[i] = shapeCenter;
+            if (!shapes[i].gameObject.activeInHierarchy) continue;
+            shapeProperties = shapes[i].GetProperties();
+            _shapesProperties[count] = shapeProperties;
 
-            shapeData = shapes[i].GetData();
-            _shapesData[i] = shapeData;
+            shapeExtra = shapes[i].GetExtra();
+            _shapesExtra[count] = shapeExtra;
 
             shapeColor = shapes[i].GetColor();
-            _shapesColors[i] = shapeColor;
+            _shapesColors[count] = shapeColor;
+
+            count++;
         }
 
-        _shapesMaterial.SetInt($"_{name}Count", shapes.Count);
-        _shapesMaterial.SetVectorArray($"_{name}Center", _shapesCenter);
-        _shapesMaterial.SetVectorArray($"_{name}Data", _shapesData);
+        _shapesMaterial.SetInt($"_{name}Count", count);
+        _shapesMaterial.SetVectorArray($"_{name}Properties", _shapesProperties);
+        _shapesMaterial.SetVectorArray($"_{name}Extra", _shapesExtra);
         _shapesMaterial.SetColorArray($"_{name}Color", _shapesColors);
     }
 
