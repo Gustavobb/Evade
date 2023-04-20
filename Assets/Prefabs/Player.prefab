@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2044992516205146460}
   - component: {fileID: 4544061169188842698}
   - component: {fileID: 4544061169188842697}
+  - component: {fileID: 5268743475097512035}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -86,6 +87,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _factor: 10
   _color: {r: 1, g: 1, b: 1, a: 1}
+  _colorType: 0
+  _blendBlack: 1
+  _hasShadow: 0
+  _hasOutline: 0
+  _accountParentScale: 0
 --- !u!114 &4544061169188842697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,3 +104,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8230cc18bd642f1b9b1a9493b6a554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5268743475097512035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4544061169188842693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b014349aebacb4327b04ff963749dcd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onTriggerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4544061169188842697}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: HandleCollision
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []

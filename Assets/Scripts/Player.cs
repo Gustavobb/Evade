@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.Instance.OnGame) return;
+        
         Vector2 mousePos = Input.mousePosition;
         if (mousePos.x < 0 || mousePos.x > Screen.width || mousePos.y < 0 || mousePos.y > Screen.height)
         {
@@ -51,5 +53,15 @@ public class Player : MonoBehaviour
     {
         gameObject.SetActive(false);
         Cursor.visible = true;
+        GameManager.Instance.GameOver();
+    }
+
+    public void HandleCollision(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+            Die();
+        
+        if (other.CompareTag("Bounds"))
+            Die();
     }
 }

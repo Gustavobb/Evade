@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
 
     private List<Shape> _shapes = new List<Shape>();
     private List<Color> _originalColors = new List<Color>();
-    public bool IsInsideArena { get; private set; }
+    private bool _isInsideArena;
 
     private void Awake()
     {
@@ -166,7 +166,7 @@ public class Enemy : MonoBehaviour
         transform.position = position;
         _velocity = Vector3.zero;
         _rotate = false;
-        IsInsideArena = false;
+        _isInsideArena = false;
         
         for (int i = 0; i < _shapes.Count; i++)
             _shapes[i].SetBlendBlack(0);
@@ -193,12 +193,26 @@ public class Enemy : MonoBehaviour
     IEnumerator WaitToEnterArena(float time)
     {
         yield return new WaitForSeconds(time);
-        IsInsideArena = true;
+        _isInsideArena = true;
     }
 
     public void HandleCollision(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-            Player.Instance.Die();
+        if (other.CompareTag("Bounds"))
+        {
+            if (!_isInsideArena)
+                SetInsideArena();
+            
+            else if (_isInsideArena)
+            {
+                if (_behaviour == Behaviour.Bouncer)
+                {
+                    ReflectVelocity();
+                    return;
+                }
+
+                EnemyManager.Instance.KillEnemy(this);
+            }
+        }
     }
 }
