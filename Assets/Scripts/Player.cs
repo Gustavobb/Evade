@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     }
 
     private Enemy _closestEnemy;
+    public int lifes;
+    public bool isInvencible;
 
     private void Update()
     {
@@ -59,9 +61,19 @@ public class Player : MonoBehaviour
     public void HandleCollision(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
-            Die();
+            if (lifes <= 0) Die();
+            else if (!isInvencible){
+                lifes --;
+                isInvencible = true;
+                GameManager.Instance.CallSlowDown();
+            }
         
         if (other.CompareTag("Bounds"))
-            Die();
+            if (lifes <= 0) Die();
+            else if (!isInvencible){
+                lifes --;
+                isInvencible = true;
+                GameManager.Instance.CallSlowDown();
+            }
     }
 }

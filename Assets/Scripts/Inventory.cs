@@ -13,6 +13,10 @@ public class Inventory
     }
 
     public List<GenericPowerUp> powerUps;
+    public Inventory(){
+        powerUps = new List<GenericPowerUp>();
+    }
+
     public void addPowerUp(GenericPowerUp powerUp){
         GenericPowerUp existingPowerUp = powerUps.Find(p=>p.name == powerUp.name);
         if (existingPowerUp != null){

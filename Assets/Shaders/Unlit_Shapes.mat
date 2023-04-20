@@ -30,7 +30,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ChromaticAberration: 0
+    - _ChromaticAberration: 0.01
     - _ColorDecay: 1
     - _FilmGrain: 0
     - _GrainStrength: 32
