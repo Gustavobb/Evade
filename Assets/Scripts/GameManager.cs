@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField] private GameObject menuUI, pauseUI;
+    
+    [SerializeField] private Material _shaderMaterial;
     private bool onGame;
     public bool OnGame => onGame;
     
@@ -24,21 +26,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        HandlePause();
         HandleReset();
         HandleMenu();
+        HandlePause();
+
+        // Alterar condição para fim da wave
+        if (Input.GetMouseButtonDown(1)){
+            PowerUpManager.Instance.OpenChoiceMenu();
+        }
     }
 
     private void HandlePause()
     {
-        if (!onGame)
-        {
-            if (Input.GetMouseButtonDown(0))
-                pauseUI.SetActive(false);
-
-            return;
-        } 
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pauseUI.SetActive(!pauseUI.activeSelf);
@@ -50,7 +49,7 @@ public class GameManager : MonoBehaviour
     {
         if (Player.Instance == null) return;
         
-        if (!Player.Instance.gameObject.activeSelf)
+        if (!onGame && !pauseUI.activeSelf)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -70,6 +69,7 @@ public class GameManager : MonoBehaviour
     private void DestroyMenu()
     {
         menuUI.SetActive(false);
+        pauseUI.SetActive(false);
         onGame = true;
     }
 
@@ -85,5 +85,19 @@ public class GameManager : MonoBehaviour
         ActivateMenu();
         // matar inimigos
         // resetar power ups
+    }
+
+    public void CallSlowDown(){
+        StartCoroutine(SlowDown());
+    }
+    
+    public IEnumerator SlowDown(){
+        Time.timeScale = .1f;
+        _shaderMaterial.SetFloat("_ChromaticAberration", 0.01f);
+        yield return new WaitForSeconds(.1f);
+        Player.Instance.isInvencible = false;
+        yield return new WaitForSeconds(.2f);
+        _shaderMaterial.SetFloat("_ChromaticAberration", 0f);
+        Time.timeScale = 1;
     }
 }

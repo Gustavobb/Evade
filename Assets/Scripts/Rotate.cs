@@ -12,10 +12,17 @@ public class Rotate : MonoBehaviour
     [SerializeField] private float _sinusoidalAmplitude = 5f;
     [SerializeField] private float _sinusoidalOffset = 5f;
     [SerializeField] private bool _playInPause = false;
+    private Quaternion _originalRotation;
 
-    private void Start()
+    private void Awake()
     {
         Setup();
+        _originalRotation = _rotationPivot.rotation;
+    }
+
+    private void OnEnable()
+    {
+        _rotationPivot.rotation = _originalRotation;
     }
     
     private void Setup()

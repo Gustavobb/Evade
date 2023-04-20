@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     private List<Color> _originalColors = new List<Color>();
     private bool _isInsideArena;
     [SerializeField] private Rotate _rotate;
+    [SerializeField] private float _timeToEnterArena = .5f;
 
     private void Awake()
     {
@@ -119,6 +120,7 @@ public class Enemy : MonoBehaviour
     private void PlayerDirection()
     {
         _velocity += _toPlayerInitial.normalized * _speed * Time.deltaTime;
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, _toPlayerInitial);
     }
 
     private void Bouncer()
@@ -141,11 +143,11 @@ public class Enemy : MonoBehaviour
 
     public void SetInsideArena()
     {
+        StartCoroutine(WaitToEnterArena());
         _velocity = Vector2.zero;
-        if (_rotate != null) _rotate.enabled = true;
         
         for (int i = 0; i < _shapes.Count; i++)
-            _shapes[i].LerpBlendBlack(0, 1, .5f);
+            _shapes[i].LerpBlendBlack(0, 1, _timeToEnterArena);
 
         _isInsideArena = true;
     }
@@ -162,6 +164,12 @@ public class Enemy : MonoBehaviour
 
         if (Player.Instance != null)
             _toPlayerInitial = Player.Instance.transform.position - transform.position;
+    }
+
+    IEnumerator WaitToEnterArena()
+    {
+        yield return new WaitForSeconds(_timeToEnterArena);
+        if (_rotate != null) _rotate.enabled = true;
     }
 
     private void OnDisable()

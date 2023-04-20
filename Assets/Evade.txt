@@ -16,17 +16,32 @@ Braga:
 - Sombras -> done
 - Letras com sombras, evade, paused -> done
 - Bouncer melhorar -> done
-- Bug inimigo lento morre
-- Efeito morte
-- Adicionar mais efeitos de pp (lens distortion, chromatic aberration, ...)
-- Pesquisar efeitos pros power ups
-- Guardiao
+- Bug inimigo lento morre -> done
 - Diferentes inimigos
+- Jeito de fazer paletas
+- Efeito morte ***
+
+- Adicionar mais efeitos de pp (lens distortion, chromatic aberration, ...), Pesquisar efeitos pros power ups
+- Guardiao
 
 Michel:
-- Gameloop (waves, morte, timer)
-- ui power ups
+- Gameloop (waves, morte, timer) ***
+- ui power ups ***
 - Vida extra
 - Diminuir bolinha
 - Slow down inimigos ou scale down inimigos
 - Time slow down
+
+- Avoid
+- Animacoes em geral
+- Sons
+
+
+Inimigos:
+- Quadrado: lento e facil de matar, follow (8,8)
+- Retangulo: rapido impossivel de matar (7, 300)
+- Arrow: direcional (9, 20)
+- Circle: bouncer, nao morre na parede (5, 5)
+- Star: maior e mais lento e gira rapido
+- Triangulo: Igual Quadrado
+- Poligono: Igual Quadrado
