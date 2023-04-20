@@ -42,7 +42,7 @@ Material:
     - _PixelSize: 4.8
     - _Pixelate: 0
     - _Shadow: 1
-    - _ShadowOffset: 0.02
+    - _ShadowOffset: 0.01
     - _SunRotation: 34
     m_Colors:
     - _Background: {r: 0.9882, g: 1, b: 0.823, a: 1}

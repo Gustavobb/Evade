@@ -40,6 +40,8 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.Instance.OnGame) return;
+
         if (Player.Instance == null || Player.Instance.gameObject.activeSelf == false)
             return;
 

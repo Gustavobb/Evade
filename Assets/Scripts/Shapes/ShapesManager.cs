@@ -13,9 +13,9 @@ public class ShapesManager : MonoBehaviour
     // Rectangles
     [SerializeField] private List<Rectangle> _rectangles = new List<Rectangle>();
     
-    private Vector4[] _shapesProperties = new Vector4[20];
-    private Vector4[] _shapesExtra = new Vector4[20];
-    private Color[] _shapesColors = new Color[20];
+    private Vector4[] _shapesProperties = new Vector4[100];
+    private Vector4[] _shapesExtra = new Vector4[100];
+    private Color[] _shapesColors = new Color[100];
 
     private static ShapesManager _instance;
     public static ShapesManager Instance

@@ -15,8 +15,9 @@ Braga:
 - Paredes matam -> done
 - Sombras -> done
 - Letras com sombras, evade, paused
-- Adicionar mais efeitos de pp (lens distortion, chromatic aberration, ...)
+- Bouncer melhorar
 - Efeito morte
+- Adicionar mais efeitos de pp (lens distortion, chromatic aberration, ...)
 - Pesquisar efeitos pros power ups
 - Guardiao
 - Diferentes inimigos

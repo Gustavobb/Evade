@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private GameObject menuUI;
+    [SerializeField] private GameObject menuUI, pauseUI;
     private bool onGame;
     public bool OnGame => onGame;
     
@@ -31,9 +31,17 @@ public class GameManager : MonoBehaviour
 
     private void HandlePause()
     {
+        if (!onGame)
+        {
+            if (Input.GetMouseButtonDown(0))
+                pauseUI.SetActive(false);
+
+            return;
+        } 
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+            pauseUI.SetActive(!pauseUI.activeSelf);
             onGame = !onGame;
         }
     }
@@ -62,14 +70,13 @@ public class GameManager : MonoBehaviour
     private void DestroyMenu()
     {
         menuUI.SetActive(false);
-        Time.timeScale = 1;
         onGame = true;
     }
 
     protected void ActivateMenu()
     {
         menuUI.SetActive(true);
-        Time.timeScale = 0;
+        pauseUI.SetActive(false);
         onGame = false;
     }
 

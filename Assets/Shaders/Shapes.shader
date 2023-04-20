@@ -63,15 +63,15 @@ Shader "Unlit/Shapes"
 
             // Circles: x, y, radius, scale and color
             int _CirclesCount;
-            float4 _CirclesProperties[20];
-            float4 _CirclesExtra[20];
-            float4 _CirclesColor[20];
+            float4 _CirclesProperties[100];
+            float4 _CirclesExtra[100];
+            float4 _CirclesColor[100];
 
             // Rectangles: x, y, width, height and color
             int _RectanglesCount;
-            float4 _RectanglesProperties[20];
-            float4 _RectanglesExtra[20];
-            float4 _RectanglesColor[20];
+            float4 _RectanglesProperties[100];
+            float4 _RectanglesExtra[100];
+            float4 _RectanglesColor[100];
 
             v2f vert (appdata v)
             {
