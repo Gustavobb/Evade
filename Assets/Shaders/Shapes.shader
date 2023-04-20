@@ -63,15 +63,15 @@ Shader "Unlit/Shapes"
 
             // Circles: x, y, radius, scale and color
             int _CirclesCount;
-            float4 _CirclesProperties[100];
-            float4 _CirclesExtra[100];
-            float4 _CirclesColor[100];
+            float4 _CirclesProperties[50];
+            float4 _CirclesExtra[50];
+            float4 _CirclesColor[50];
 
             // Rectangles: x, y, width, height and color
             int _RectanglesCount;
-            float4 _RectanglesProperties[100];
-            float4 _RectanglesExtra[100];
-            float4 _RectanglesColor[100];
+            float4 _RectanglesProperties[50];
+            float4 _RectanglesExtra[50];
+            float4 _RectanglesColor[50];
 
             v2f vert (appdata v)
             {
@@ -141,8 +141,9 @@ Shader "Unlit/Shapes"
                         float2 shadowCenter = _CirclesProperties[k].xy + shadowDir;
                         if (IsPointInCircle(uv, shadowCenter, _CirclesProperties[k].z))
                         {
-                            HitInfo hitInfo = { _CirclesExtra[k].x ? 0 : _ShadowColor, true };
-                            return hitInfo;
+                            // HitInfo hitInfo = { _CirclesExtra[k].x ? 0 : _ShadowColor, true };
+                            hitInfo.col = _CirclesExtra[k].x ? 0 : _ShadowColor;
+                            hitInfo.hit = true;
                         }
                     }
                 }
@@ -166,8 +167,9 @@ Shader "Unlit/Shapes"
                         float2 shadowCenter = _RectanglesProperties[k].xy + shadowDir;
                         if (IsPointInRectangle(uv, shadowCenter, _RectanglesProperties[k].zw, _RectanglesExtra[k].y))
                         {
-                            HitInfo hitInfo = { _ShadowColor, true };
-                            return hitInfo;
+                            // hitInfo = { _ShadowColor, true };
+                            hitInfo.col = _ShadowColor;
+                            hitInfo.hit = true;
                         }
                     }
                 }

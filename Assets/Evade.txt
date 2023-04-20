@@ -14,8 +14,9 @@ Diferentes inimigos
 Braga:
 - Paredes matam -> done
 - Sombras -> done
-- Letras com sombras, evade, paused
-- Bouncer melhorar
+- Letras com sombras, evade, paused -> done
+- Bouncer melhorar -> done
+- Bug inimigo lento morre
 - Efeito morte
 - Adicionar mais efeitos de pp (lens distortion, chromatic aberration, ...)
 - Pesquisar efeitos pros power ups

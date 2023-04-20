@@ -67,6 +67,7 @@ public class EnemyManager : MonoBehaviour
     public void KillEnemy(Enemy enemy)
     {
         enemy.gameObject.SetActive(false);
+
         // ?
         SpawnEnemy();
     }

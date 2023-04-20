@@ -23,15 +23,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float MAX_SPEED = 5f;
     [SerializeField] private float _speed = 5f;
 
-    [Header("Visuals")]
-    [SerializeField] private bool _rotate = false;
-    private bool _originalRotate;
-    [SerializeField] private Transform _rotationPivot;
-    [SerializeField] private float _rotationSpeed = 5f;
-
     private List<Shape> _shapes = new List<Shape>();
     private List<Color> _originalColors = new List<Color>();
     private bool _isInsideArena;
+    [SerializeField] private Rotate _rotate;
 
     private void Awake()
     {
@@ -45,7 +40,6 @@ public class Enemy : MonoBehaviour
         if (Player.Instance == null || Player.Instance.gameObject.activeSelf == false)
             return;
 
-        if (_rotate) Rotate();
         HandleEnemyBehaviour();
 
         if (Player.Instance != null)
@@ -54,13 +48,10 @@ public class Enemy : MonoBehaviour
 
     private void Setup()
     {
+        _rotate = GetComponent<Rotate>();
         EnemyManager.Instance.AddEnemy(this);
         GetShapes();
-        _originalRotate = _rotate;
 
-        if (_rotationPivot == null)
-            _rotationPivot = transform;
-        
         if (_movementPivot == null)
             _movementPivot = transform;
         
@@ -135,10 +126,12 @@ public class Enemy : MonoBehaviour
         _velocity += _toPlayerInitial.normalized * _speed * Time.deltaTime;
     }
 
-    public void ReflectVelocity()
+    private void BounceToPlayer()
     {
-        _velocity *= -1;
-        _toPlayerInitial *= -1;
+        float angle = Mathf.Atan2(_toPlayer.y, _toPlayer.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        _velocity = rotation * Vector2.right * _speed;
+        _toPlayerInitial = _toPlayer;
     }
 
     public Vector3 GetToPlayer()
@@ -149,25 +142,19 @@ public class Enemy : MonoBehaviour
     public void SetInsideArena()
     {
         _velocity = Vector2.zero;
-        _rotate = _originalRotate;
+        if (_rotate != null) _rotate.enabled = true;
         
         for (int i = 0; i < _shapes.Count; i++)
             _shapes[i].LerpBlendBlack(0, 1, .5f);
-        
-        StartCoroutine(WaitToEnterArena(.5f));
-    }
 
-    private void Rotate()
-    {
-        Quaternion rotation = Quaternion.Euler(0, 0, _rotationSpeed * Time.deltaTime);
-        _rotationPivot.rotation *= rotation;
+        _isInsideArena = true;
     }
 
     public void Reset(Vector3 position)
     {
         transform.position = position;
         _velocity = Vector3.zero;
-        _rotate = false;
+        if (_rotate != null) _rotate.enabled = false;
         _isInsideArena = false;
         
         for (int i = 0; i < _shapes.Count; i++)
@@ -192,10 +179,28 @@ public class Enemy : MonoBehaviour
         EnemyManager.Instance.RemoveEnemy(this);
     }
 
-    IEnumerator WaitToEnterArena(float time)
+    private void HandleBoundsCollision(Collider2D other)
     {
-        yield return new WaitForSeconds(time);
-        _isInsideArena = true;
+        bool inside = true;
+        Vector2 normal = (Vector2.zero - (Vector2) other.transform.position).normalized;
+
+        Vector2 diff = transform.position - other.transform.position;
+        float dot = Vector2.Dot(diff, normal);
+        inside &= dot > 0;
+
+        if (transform.childCount > 0)
+        {
+            foreach (Transform child in transform)
+            {
+                diff = child.position - other.transform.position;
+                dot = Vector2.Dot(diff, normal);
+
+                inside &= dot > 0;
+            }
+        }
+
+        if (inside)
+            EnemyManager.Instance.KillEnemy(this);
     }
 
     public void HandleCollision(Collider2D other)
@@ -209,11 +214,11 @@ public class Enemy : MonoBehaviour
             {
                 if (_behaviour == Behaviour.Bouncer)
                 {
-                    ReflectVelocity();
+                    BounceToPlayer();
                     return;
                 }
 
-                EnemyManager.Instance.KillEnemy(this);
+                HandleBoundsCollision(other);
             }
         }
     }
