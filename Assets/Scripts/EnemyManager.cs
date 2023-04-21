@@ -5,10 +5,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private int MAX_ACTIVE_ENEMIES = 10;
-    
-    private List<Enemy> _enemiesPool = new List<Enemy>();
-    private List<Enemy> _inactiveEnemies = new List<Enemy>();
-
+    [SerializeField] private List<EnemyPool> _enemyPools = new List<EnemyPool>();
     [SerializeField] private List<Vector4> _spawnRects = new List<Vector4>();
 
     private static EnemyManager _instance;
@@ -23,75 +20,118 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        Reset();
+        Setup();
+        Reset(false);
     }
 
-    public void AddEnemy(Enemy enemy)
+    private void Setup()
     {
-        _enemiesPool.Add(enemy);
-
-        if (_enemiesPool.Count > MAX_ACTIVE_ENEMIES)
-            enemy.gameObject.SetActive(false);
+        foreach (EnemyPool enemyPool in _enemyPools)
+            enemyPool.Setup();
     }
 
-    public void RemoveEnemy(Enemy enemy)
+    public Enemy RequestAvailableEnemy(Enemy.EnemyType type)
     {
-        _enemiesPool.Remove(enemy);
-
-        if (_inactiveEnemies.Contains(enemy))
-            _inactiveEnemies.Remove(enemy);
-    }
-
-    public Enemy RequestAvailableEnemy()
-    {
-        if (_inactiveEnemies.Count == 0) return null;
-        
-        Enemy enemy = _inactiveEnemies[0];
-        enemy.gameObject.SetActive(true);
-        return enemy;
-    }
-
-    public IEnumerator SpawnEnemy()
-    {
-        int activeEnemies = _enemiesPool.Count - _inactiveEnemies.Count;
-        if (activeEnemies >= MAX_ACTIVE_ENEMIES) yield break;;
-
-        Enemy enemy = RequestAvailableEnemy();
-        while (enemy == null)
+        foreach (EnemyPool enemyPool in _enemyPools)
         {
-            yield return new WaitForSeconds(.1f);
-            enemy = RequestAvailableEnemy();
+            if (enemyPool._type == type)
+            {
+                if (enemyPool._inactiveEnemies.Count == 0) return null;
+                Enemy enemy = enemyPool._inactiveEnemies[0];
+                enemy.gameObject.SetActive(true);
+                return enemy;
+            }
         }
-        
+
+        return null;
+    }
+
+    public void SpawnEnemy(Enemy.EnemyType type)
+    {
+        int enemiesSum = 0;
+        int inactiveEnemiesSum = 0;
+
+        foreach (EnemyPool enemyPool in _enemyPools)
+        {
+            enemiesSum += enemyPool._enemies.Count;
+            inactiveEnemiesSum += enemyPool._inactiveEnemies.Count;
+        }
+
+        int activeEnemies = enemiesSum - inactiveEnemiesSum;
+        if (activeEnemies >= MAX_ACTIVE_ENEMIES) return;
+
+        Enemy enemy = RequestAvailableEnemy(type);
+        if (enemy == null) return;
+                
         Vector4 spawnRect = _spawnRects[Random.Range(0, _spawnRects.Count)];
         Vector3 spawnPos = new Vector3(Random.Range(spawnRect.x, spawnRect.z), Random.Range(spawnRect.y, spawnRect.w), 0f);
         enemy.Reset(spawnPos);
     }
 
-    public void EnemyDied()
+    public void ChangeMaxActiveEnemies(int amount)
     {
-        StartCoroutine(SpawnEnemy());
+        MAX_ACTIVE_ENEMIES = amount;
     }
 
-    public void Reset()
+    public void Reset(bool kill)
     {
-        foreach (Enemy enemy in _enemiesPool)
+        foreach (EnemyPool enemyPool in _enemyPools)
+            enemyPool.Reset(kill);
+    }
+    
+    public void AddInactiveEnemie(Enemy enemy, Enemy.EnemyType type)
+    {
+        foreach (EnemyPool enemyPool in _enemyPools)
         {
+            if (enemyPool._type == type)
+            {
+                enemyPool._inactiveEnemies.Add(enemy);
+                break;
+            }
+        }
+    }
+
+    public void RemoveInactiveEnemie(Enemy enemy, Enemy.EnemyType type)
+    {
+        foreach (EnemyPool enemyPool in _enemyPools)
+        {
+            if (enemyPool._type == type)
+            {
+                enemyPool._inactiveEnemies.Remove(enemy);
+                break;
+            }
+        }
+    }
+}
+
+[System.Serializable]
+public class EnemyPool
+{
+    public Enemy.EnemyType _type;
+    public GameObject _enemyParent;
+    public List<Enemy> _enemies = new List<Enemy>();
+    public List<Enemy> _inactiveEnemies = new List<Enemy>();
+
+    public void Setup()
+    {
+        _enemies.Clear();
+        _inactiveEnemies.Clear();
+
+        _enemies.AddRange(_enemyParent.GetComponentsInChildren<Enemy>());
+    }
+
+    public void Reset(bool kill)
+    {
+        foreach (Enemy enemy in _enemies)
+        {
+            if (kill && enemy.gameObject.activeSelf)
+            {
+                enemy.Die();
+                continue;
+            }
+            
             enemy.Reset(Vector3.zero);
             enemy.gameObject.SetActive(false);
         }
-        
-        for (int i = 0; i < MAX_ACTIVE_ENEMIES; i++)
-            StartCoroutine(SpawnEnemy());
-    }
-    
-    public void AddInactiveEnemie(Enemy enemy)
-    {
-        _inactiveEnemies.Add(enemy);
-    }
-
-    public void RemoveInactiveEnemie(Enemy enemy)
-    {
-        _inactiveEnemies.Remove(enemy);
     }
 }

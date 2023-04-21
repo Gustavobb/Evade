@@ -22,7 +22,7 @@ public class Pause : MonoBehaviour
 
     private void HandlePause()
     {
-        if (!GameManager.Instance.OnGame) return;
+        if (!GameManager.Instance.OnGame || PowerUpManager.Instance.OnPowerUpMenu) return;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             bool enemiesEnabled = false;

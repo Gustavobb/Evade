@@ -14,7 +14,6 @@ public class Rotate : MonoBehaviour
     [SerializeField] private float _sinusoidalOffset = 5f;
     [SerializeField] private bool _playInPause = false;
     [SerializeField] private bool _alwaysResetRotation = true;
-    [SerializeField] private bool _lerpInitialRotation = false;
     private Quaternion _originalRotation;
 
     private void Awake()
@@ -26,7 +25,11 @@ public class Rotate : MonoBehaviour
     private void OnEnable()
     {
         if (_alwaysResetRotation) _rotationPivot.rotation = _originalRotation;
-        if (_lerpInitialRotation) StartCoroutine(LerpRotationSpeed(0, _rotationSpeed));
+    }
+
+    public void LerpRotationSpeed()
+    {
+        StartCoroutine(LerpRotationSpeed(0, _rotationSpeed));
     }
 
     private IEnumerator LerpRotationSpeed(float start, float end)
@@ -49,6 +52,7 @@ public class Rotate : MonoBehaviour
 
     private void Update()
     {
+        if (PowerUpManager.Instance.OnPowerUpMenu) return;
         if ((Pause.Paused || !GameManager.Instance.OnGame) && !_playInPause) return;
         if (_circularRotation) CircularRotation();
         if (_sinusoidalRotation) SinusoidalRotation();

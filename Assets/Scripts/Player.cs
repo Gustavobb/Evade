@@ -17,6 +17,12 @@ public class Player : MonoBehaviour
     private Enemy _closestEnemy;
     public int lifes;
     public bool isInvencible;
+    private Collider2D _collider;
+
+    private void Start()
+    {
+        _collider = GetComponent<Collider2D>();
+    }
 
     private void Update()
     {
@@ -57,6 +63,11 @@ public class Player : MonoBehaviour
         GameManager.Instance.ShakeScreen(.2f);
         Cursor.visible = true;
         GameManager.Instance.GameOver();
+    }
+
+    public void EnableCollider(bool enable)
+    {
+        _collider.enabled = enable;
     }
 
     public void HandleCollision(Collider2D other)

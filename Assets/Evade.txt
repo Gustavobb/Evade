@@ -29,10 +29,10 @@ Michel:
 - ui power ups ***
 - Vida extra
 - Diminuir bolinha
-- Slow down inimigos ou scale down inimigos
 - Time slow down
-
 - Avoid
+- Slow down inimigos ou scale down inimigos
+
 - Animacoes em geral
 - Sons
 

@@ -30,11 +30,6 @@ public class GameManager : MonoBehaviour
     {
         HandleReset();
         HandleMenu();
-
-        // Alterar condição para fim da wave
-        if (Input.GetMouseButtonDown(1)){
-            PowerUpManager.Instance.OpenChoiceMenu();
-        }
     }
 
     private void HandleReset()
@@ -46,7 +41,7 @@ public class GameManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 Player.Instance.Reset();
-                EnemyManager.Instance.Reset();
+                EnemyManager.Instance.Reset(false);
             }
         }
     }

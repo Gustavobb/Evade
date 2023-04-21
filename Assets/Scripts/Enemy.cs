@@ -14,6 +14,20 @@ public class Enemy : MonoBehaviour
         DoNothing
     }
 
+    public enum EnemyType
+    {
+        Square,
+        Rectangle,
+        Triangle,
+        Circle,
+        Polygon,
+        Star,
+        Arrow
+    }
+
+    [Header("Type")]
+    public EnemyType _type;
+
     [Header("Behaviour")]
     public Behaviour _behaviour;
     private Vector2 _velocity, _toPlayerInitial, _toPlayer;
@@ -34,14 +48,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] private bool _needsToEnterArena = true;
     private Collider2D _collider;
 
-    private void Awake()
+    private void Start()
     {
         Setup();
     }
 
     private void Update()
     {
-        if (!GameManager.Instance.OnGame || Pause.Paused || _dead) return;
+        if (!GameManager.Instance.OnGame || Pause.Paused || _dead || PowerUpManager.Instance.OnPowerUpMenu) return;
 
         if (Player.Instance == null || Player.Instance.gameObject.activeSelf == false)
             return;
@@ -56,11 +70,6 @@ public class Enemy : MonoBehaviour
     {
         _collider = GetComponent<Collider2D>();
         _rotate = GetComponent<Rotate>();
-        if (_reportToManager)
-        {
-            EnemyManager.Instance.AddEnemy(this);
-            gameObject.SetActive(false);
-        }
 
         GetShapes();
 
@@ -188,10 +197,14 @@ public class Enemy : MonoBehaviour
     private IEnumerator WaitToEnterArena()
     {
         yield return new WaitForSeconds(_timeToEnterArena);
-        if (_rotate != null) _rotate.enabled = true;
+        if (_rotate != null) 
+        {
+            _rotate.enabled = true;
+            _rotate.LerpRotationSpeed();
+        }
     }
 
-    private IEnumerator Die()
+    private IEnumerator DieCoroutine()
     {
         _dead = true;
         _velocity = Vector2.zero;
@@ -202,8 +215,12 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(_timeToDie);
         gameObject.SetActive(false);
-        if (_reportToManager)
-            EnemyManager.Instance.EnemyDied();
+        Reset(Vector3.zero);
+    }
+
+    public void Die()
+    {
+        StartCoroutine(DieCoroutine());
     }
 
     public void SmoothAppear(float time)
@@ -215,19 +232,13 @@ public class Enemy : MonoBehaviour
     private void OnDisable()
     {
         if (_reportToManager)
-            EnemyManager.Instance.AddInactiveEnemie(this);
+            EnemyManager.Instance.AddInactiveEnemie(this, _type);
     }
 
     private void OnEnable()
     {
         if (_reportToManager)
-            EnemyManager.Instance.RemoveInactiveEnemie(this);
-    }
-
-    private void OnDestroy()
-    {
-        if (_reportToManager)
-            EnemyManager.Instance.RemoveEnemy(this);
+            EnemyManager.Instance.RemoveInactiveEnemie(this, _type);
     }
 
     private void HandleBoundsCollision(Collider2D other)
@@ -251,7 +262,7 @@ public class Enemy : MonoBehaviour
         }
 
         if (inside)
-            StartCoroutine(Die());
+            Die();
     }
 
     public void HandleCollision(Collider2D other)
