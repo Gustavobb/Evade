@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     
     private void Start() {
         ActivateMenu();
+        _shaderMaterial.SetFloat("_ChromaticAberration", 0f);
     }
 
     private void Update()
