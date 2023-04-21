@@ -48,6 +48,16 @@ public class Shape : MonoBehaviour
         StartCoroutine(LerpBlendBlackCoroutine(start, end, duration));
     }
 
+    public virtual void LerpAlpha(float start, float end, float duration)
+    {
+        StartCoroutine(LerpAlphaCoroutine(start, end, duration));
+    }
+
+    public virtual void ResetAlpha()
+    {
+        _color.a = 1f;
+    }
+
     IEnumerator LerpBlendBlackCoroutine(float start, float end, float duration)
     {
         float time = 0;
@@ -57,5 +67,20 @@ public class Shape : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+
+        _blendBlack = end;
+    }
+
+    IEnumerator LerpAlphaCoroutine(float start, float end, float duration)
+    {
+        float time = 0;
+        while (time < duration)
+        {
+            _color.a = Mathf.Lerp(start, end, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        _color.a = end;
     }
 }

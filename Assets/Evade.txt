@@ -19,7 +19,7 @@ Braga:
 - Bug inimigo lento morre -> done
 - Diferentes inimigos
 - Jeito de fazer paletas
-- Efeito morte ***
+- Efeito morte, screen shake *** -> done
 
 - Adicionar mais efeitos de pp (lens distortion, chromatic aberration, ...), Pesquisar efeitos pros power ups
 - Guardiao

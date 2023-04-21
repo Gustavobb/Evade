@@ -28,6 +28,10 @@ public class Enemy : MonoBehaviour
     private bool _isInsideArena;
     [SerializeField] private Rotate _rotate;
     [SerializeField] private float _timeToEnterArena = .5f;
+    [SerializeField] private float _timeToDie = .5f;
+    private bool _dead = false;
+    [SerializeField] private bool _reportToManager = true;
+    [SerializeField] private bool _needsToEnterArena = true;
 
     private void Awake()
     {
@@ -36,7 +40,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.Instance.OnGame) return;
+        if (!GameManager.Instance.OnGame || Pause.Paused || _dead) return;
 
         if (Player.Instance == null || Player.Instance.gameObject.activeSelf == false)
             return;
@@ -50,14 +54,18 @@ public class Enemy : MonoBehaviour
     private void Setup()
     {
         _rotate = GetComponent<Rotate>();
-        EnemyManager.Instance.AddEnemy(this);
+        if (_reportToManager)
+        {
+            EnemyManager.Instance.AddEnemy(this);
+            gameObject.SetActive(false);
+        }
+
         GetShapes();
 
         if (_movementPivot == null)
             _movementPivot = transform;
         
         Reset(transform.position);
-        gameObject.SetActive(false);
     }
 
     private void GetShapes()
@@ -156,35 +164,63 @@ public class Enemy : MonoBehaviour
     {
         transform.position = position;
         _velocity = Vector3.zero;
-        if (_rotate != null) _rotate.enabled = false;
-        _isInsideArena = false;
+        _dead = false;
+        _isInsideArena = !_needsToEnterArena;
+        if (_rotate != null && _needsToEnterArena) _rotate.enabled = false;
         
         for (int i = 0; i < _shapes.Count; i++)
-            _shapes[i].SetBlendBlack(0);
+        {
+            if (_needsToEnterArena) _shapes[i].SetBlendBlack(0);
+            _shapes[i].ResetAlpha();
+        }
 
         if (Player.Instance != null)
             _toPlayerInitial = Player.Instance.transform.position - transform.position;
     }
 
-    IEnumerator WaitToEnterArena()
+    private IEnumerator WaitToEnterArena()
     {
         yield return new WaitForSeconds(_timeToEnterArena);
         if (_rotate != null) _rotate.enabled = true;
     }
 
+    private IEnumerator Die()
+    {
+        _dead = true;
+        _velocity = Vector2.zero;
+        if (_rotate != null) _rotate.enabled = false;
+
+        for (int i = 0; i < _shapes.Count; i++)
+            _shapes[i].LerpAlpha(1, 0, _timeToDie);
+
+        yield return new WaitForSeconds(_timeToDie);
+        gameObject.SetActive(false);
+        if (_reportToManager)
+            EnemyManager.Instance.EnemyDied();
+    }
+
+    public void SmoothAppear(float time)
+    {
+        for (int i = 0; i < _shapes.Count; i++)
+            _shapes[i].LerpAlpha(0, 1, time);
+    }
+
     private void OnDisable()
     {
-        EnemyManager.Instance.AddInactiveEnemie(this);
+        if (_reportToManager)
+            EnemyManager.Instance.AddInactiveEnemie(this);
     }
 
     private void OnEnable()
     {
-        EnemyManager.Instance.RemoveInactiveEnemie(this);
+        if (_reportToManager)
+            EnemyManager.Instance.RemoveInactiveEnemie(this);
     }
 
     private void OnDestroy()
     {
-        EnemyManager.Instance.RemoveEnemy(this);
+        if (_reportToManager)
+            EnemyManager.Instance.RemoveEnemy(this);
     }
 
     private void HandleBoundsCollision(Collider2D other)
@@ -208,7 +244,7 @@ public class Enemy : MonoBehaviour
         }
 
         if (inside)
-            EnemyManager.Instance.KillEnemy(this);
+            StartCoroutine(Die());
     }
 
     public void HandleCollision(Collider2D other)

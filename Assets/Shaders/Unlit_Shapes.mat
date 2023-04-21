@@ -30,6 +30,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _CameraShake: 0.005
     - _ChromaticAberration: 0
     - _ColorDecay: 1
     - _FilmGrain: 0
@@ -39,12 +40,24 @@ Material:
     - _LensDistortionStrength: 1
     - _LensDistortionTightness: 0.44
     - _LensZoom: 1
+    - _OldTV: 0
+    - _OldTVAmplitude: 5
+    - _OldTVFrequency: 0.19
     - _PixelSize: 4.8
     - _Pixelate: 0
+    - _ScreenShake: 0
+    - _ScreenShakeAmplitude: 0.11
+    - _ScreenShakeFrequency: 3.2
     - _Shadow: 1
-    - _ShadowOffset: 0.01
+    - _ShadowOffset: 0.015
     - _SunRotation: 34
+    - _Wobble: 0
+    - _WobbleAmplitude: 0.1
+    - _WobbleFrequency: 0.14
     m_Colors:
-    - _Background: {r: 0.9882, g: 1, b: 0.823, a: 1}
+    - _Background: {r: 1, g: 0.668, b: 0.668, a: 1}
+    - _OldTVXY: {r: 1, g: 1, b: 0, a: 0}
+    - _ScreenShakeXY: {r: 1, g: 0, b: 0, a: 0}
     - _ShadowColor: {r: 0.305, g: 0.305, b: 0.305, a: 1}
+    - _WobbleXY: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

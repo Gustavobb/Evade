@@ -18,6 +18,16 @@ Shader "Unlit/Shapes"
         _Pixelate ("Pixelate", Range(0, 1)) = 0.0
         _PixelSize ("Pixel Size", Range(0, 64)) = 0.01
         _HueShift ("Hue Shift", Range(0, 1)) = 0.0
+        _Wobble ("Wobble", Range(0, 1)) = 0.0
+        _WobbleFrequency ("Wobble Frequency", Range(0, 10)) = 1.0
+        _WobbleAmplitude ("Wobble Amplitude", Range(-5, 5)) = 0.1
+        [ShowAsVector2] _WobbleXY ("Wobble XY", Vector) = (0, 0, 0, 0)
+        _OldTV ("Old TV", Range(0, 1)) = 0.0
+        [ShowAsVector2] _OldTVXY ("Old TV XY", Vector) = (0, 0, 0, 0)
+        _ScreenShake ("Screen Shake", Range(0, 1)) = 0.0
+        _ScreenShakeFrequency ("Screen Shake Frequency", Range(0, 40)) = 1.0
+        _ScreenShakeAmplitude ("Screen Shake Amplitude", Range(0, 10)) = 0.1
+        [ShowAsVector2] _ScreenShakeXY ("Screen Shake XY", Vector) = (0, 0, 0, 0)
     }
     SubShader
     {
@@ -60,6 +70,16 @@ Shader "Unlit/Shapes"
             float _Pixelate;
             float _PixelSize;
             float _HueShift;
+            float _Wobble;
+            float _WobbleAmplitude;
+            float _WobbleFrequency;
+            float2 _WobbleXY;
+            float _OldTV;
+            float2 _OldTVXY;
+            float _ScreenShake;
+            float _ScreenShakeFrequency;
+            float _ScreenShakeAmplitude;
+            float2 _ScreenShakeXY;
 
             // Circles: x, y, radius, scale and color
             int _CirclesCount;
@@ -119,19 +139,24 @@ Shader "Unlit/Shapes"
             {
                 switch (colorType)
                 {
-                    case 0.0: return lerp(0, color, blend);
-                    case 1.0: return lerp(0, RainbowColor(uv), blend);
-                    default: return 0;
+                    case 0.0: break;
+                    case 1.0: color = RainbowColor(uv); break;
+                    default: color = 0; break;
                 }
+
+                color = lerp(0, color, blend);
+                return color;
             }
 
             HitInfo CheckCircle(float2 uv, HitInfo hitInfo, float2 shadowDir)
             {
+                fixed4 oc = hitInfo.col;
                 for (int k = 0; k < _CirclesCount; k++)
                 {
                     if (IsPointInCircle(uv, _CirclesProperties[k].xy, _CirclesProperties[k].z))
                     {
                         HitInfo hitInfo = { HandleColor(uv, _CirclesColor[k], _CirclesExtra[k].x, _CirclesExtra[k].z), true };
+                        hitInfo.col = lerp(oc, hitInfo.col, _CirclesColor[k].a);
                         return hitInfo;
                     }
 
@@ -141,8 +166,8 @@ Shader "Unlit/Shapes"
                         float2 shadowCenter = _CirclesProperties[k].xy + shadowDir;
                         if (IsPointInCircle(uv, shadowCenter, _CirclesProperties[k].z))
                         {
-                            // HitInfo hitInfo = { _CirclesExtra[k].x ? 0 : _ShadowColor, true };
                             hitInfo.col = _CirclesExtra[k].x ? 0 : _ShadowColor;
+                            hitInfo.col = lerp(oc, hitInfo.col, _CirclesColor[k].a);
                             hitInfo.hit = true;
                         }
                     }
@@ -153,11 +178,13 @@ Shader "Unlit/Shapes"
 
             HitInfo CheckRectangle(float2 uv, HitInfo hitInfo, float2 shadowDir)
             {
+                fixed4 oc = hitInfo.col;
                 for (int k = 0; k < _RectanglesCount; k++)
                 {
                     if (IsPointInRectangle(uv, _RectanglesProperties[k].xy, _RectanglesProperties[k].zw, _RectanglesExtra[k].y))
                     {
                         HitInfo hitInfo = { HandleColor(uv, _RectanglesColor[k], _RectanglesExtra[k].x, _RectanglesExtra[k].w), true };
+                        hitInfo.col = lerp(oc, hitInfo.col, _RectanglesColor[k].a);
                         return hitInfo;
                     }
 
@@ -167,8 +194,8 @@ Shader "Unlit/Shapes"
                         float2 shadowCenter = _RectanglesProperties[k].xy + shadowDir;
                         if (IsPointInRectangle(uv, shadowCenter, _RectanglesProperties[k].zw, _RectanglesExtra[k].y))
                         {
-                            // hitInfo = { _ShadowColor, true };
                             hitInfo.col = _ShadowColor;
+                            hitInfo.col = lerp(oc, hitInfo.col, _RectanglesColor[k].a);
                             hitInfo.hit = true;
                         }
                     }
@@ -178,49 +205,7 @@ Shader "Unlit/Shapes"
             }
             /////// SHAPE CHECKING ///////
 
-            fixed4 Explosion(float2 uv)
-            {
-                float seed = 0.32;
-                float particles = 128.0;
-                float res = 16.0;
-                float gravity = 0.0;
-                float scale = 10;
-                float2 offset = float2(0.0, 0.0);
-                uv = uv - offset;
-                uv = uv * scale;
-
-                float clr = 0.0;
-                float timecycle = _Time.y - floor(_Time.y);
-                float seed2 = seed + floor(_Time.y);
-
-                float invres = 1.0 / res;
-                float invparticles = 1.0 / particles;
-
-                for (float i = 0.0; i < particles; i += 1.0)
-                {
-                    seed2 += i + tan(seed2);
-                    float2 tPos = (float2(cos(seed2), sin(seed2))) * i * invparticles;
-
-                    float2 pPos = float2(0.0, 0.0);
-                    pPos.x = ((tPos.x) * timecycle);
-                    pPos.y = -gravity * (timecycle * timecycle) + tPos.y * timecycle + pPos.y;
-
-                    // pPos = floor(pPos*res)*invres;
-
-                    float2 p1 = pPos;
-                    float4 r1 = float4(float2(step(p1, uv)), 1.0 - float2(step(p1 + invres, uv)));
-                    float px1 = r1.x * r1.y * r1.z * r1.w;
-
-                    // glow
-                    float px2 = smoothstep(0.0, 200.0, (1.0 / distance(uv, pPos + .015)));
-                    px1 = max(px1, px2);
-
-                    clr += px1 * (sin(20.0 + i) + 1.0);
-                }
-
-                return clr * (1.0 - timecycle) * float4(1, 0.0, 0.9848619, 1.0);
-            }
-
+            ////// EFFECTS //////
             float2 LensDistortion(float2 uv)
             {
                 return uv * (_LensZoom + _LensDistortion * (uv.x * uv.x + uv.y * uv.y));
@@ -275,11 +260,44 @@ Shader "Unlit/Shapes"
                 return fixed4(col, 1.0);
             }
 
+            float2 ScreenShake(float2 uv)
+            {
+                float amount = sin(dot(_Time.y, float2(12.9898, 78.233)) * _ScreenShakeFrequency) * _ScreenShakeAmplitude;
+                float2 shake = float2(amount * _ScreenShakeXY.x, amount * _ScreenShakeXY.y) * _ScreenShake;
+                
+                return uv + shake;
+            }
+
+            float2 OldTV(float2 uv)
+            {
+                float hash = frac(sin(dot(uv + _Time.y, float2(12.9898, 78.233))) * 43758.5453);
+                if (hash < 0.5) hash = -hash;
+                float2 effect = float2(hash * _OldTVXY.x, hash * _OldTVXY.y) * _OldTV;
+                return uv + effect;
+            }
+
+            float2 Wobble(float2 uv)
+            {
+                float wsin = sin(dot(uv + _Time.y, float2(12.9898, 78.233)) * _WobbleFrequency) * _WobbleAmplitude;
+                float2 effect = float2(wsin * _WobbleXY.x, wsin * _WobbleXY.y) * _Wobble;
+                return uv + effect;
+            }
+            ////// EFFECTS //////
+
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = _Background;
                 fixed4 prevColor = tex2D(_PrevFrame, float2(i.uv.x, 1 - i.uv.y));
                 float2 uv = i.uv - 0.5;
+
+                if (_Wobble > 0)
+                    uv = Wobble(uv);
+                
+                if (_OldTV > 0)
+                    uv = OldTV(uv);
+                
+                if (_ScreenShake > 0)
+                    uv = ScreenShake(uv);
 
                 if (_ChromaticAberration > 0)
                     col = ChromaticAberration(uv, col);

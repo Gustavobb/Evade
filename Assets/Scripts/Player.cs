@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.Instance.OnGame) return;
+        if (!GameManager.Instance.OnGame || Pause.Paused) return;
         
         Vector2 mousePos = Input.mousePosition;
         if (mousePos.x < 0 || mousePos.x > Screen.width || mousePos.y < 0 || mousePos.y > Screen.height)
@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
     public void Die()
     {
         // gameObject.SetActive(false);
+        GameManager.Instance.ShakeScreen(.2f);
         Cursor.visible = true;
         GameManager.Instance.GameOver();
     }

@@ -51,25 +51,26 @@ public class EnemyManager : MonoBehaviour
         return enemy;
     }
 
-    public void SpawnEnemy()
+    public IEnumerator SpawnEnemy()
     {
         int activeEnemies = _enemiesPool.Count - _inactiveEnemies.Count;
-        if (activeEnemies >= MAX_ACTIVE_ENEMIES) return;
+        if (activeEnemies >= MAX_ACTIVE_ENEMIES) yield break;;
 
         Enemy enemy = RequestAvailableEnemy();
-        if (enemy == null) return;
+        while (enemy == null)
+        {
+            yield return new WaitForSeconds(.1f);
+            enemy = RequestAvailableEnemy();
+        }
         
         Vector4 spawnRect = _spawnRects[Random.Range(0, _spawnRects.Count)];
         Vector3 spawnPos = new Vector3(Random.Range(spawnRect.x, spawnRect.z), Random.Range(spawnRect.y, spawnRect.w), 0f);
         enemy.Reset(spawnPos);
     }
 
-    public void KillEnemy(Enemy enemy)
+    public void EnemyDied()
     {
-        enemy.gameObject.SetActive(false);
-
-        // ?
-        SpawnEnemy();
+        StartCoroutine(SpawnEnemy());
     }
 
     public void Reset()
@@ -81,7 +82,7 @@ public class EnemyManager : MonoBehaviour
         }
         
         for (int i = 0; i < MAX_ACTIVE_ENEMIES; i++)
-            SpawnEnemy();
+            StartCoroutine(SpawnEnemy());
     }
     
     public void AddInactiveEnemie(Enemy enemy)

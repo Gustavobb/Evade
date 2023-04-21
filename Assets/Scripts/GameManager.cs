@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private GameObject menuUI, pauseUI;
+    [SerializeField] private UnityEvent _onGameStart;
+    [SerializeField] private GameObject menuUI;
     
     [SerializeField] private Material _shaderMaterial;
     private bool onGame;
@@ -28,7 +30,6 @@ public class GameManager : MonoBehaviour
     {
         HandleReset();
         HandleMenu();
-        HandlePause();
 
         // Alterar condição para fim da wave
         if (Input.GetMouseButtonDown(1)){
@@ -36,20 +37,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void HandlePause()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            pauseUI.SetActive(!pauseUI.activeSelf);
-            onGame = !onGame;
-        }
-    }
-
     private void HandleReset()
     {
         if (Player.Instance == null) return;
         
-        if (!onGame && !pauseUI.activeSelf)
+        if (!onGame)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -57,6 +49,18 @@ public class GameManager : MonoBehaviour
                 EnemyManager.Instance.Reset();
             }
         }
+    }
+
+    public void ShakeScreen(float time)
+    {
+        StartCoroutine(ShakeScreenCoroutine(time));
+    }
+
+    private IEnumerator ShakeScreenCoroutine(float time)
+    {
+        _shaderMaterial.SetFloat("_ScreenShake", 0.1f);
+        yield return new WaitForSeconds(time);
+        _shaderMaterial.SetFloat("_ScreenShake", 0f);
     }
 
     private void HandleMenu()
@@ -68,15 +72,14 @@ public class GameManager : MonoBehaviour
 
     private void DestroyMenu()
     {
+        _onGameStart.Invoke();
         menuUI.SetActive(false);
-        pauseUI.SetActive(false);
         onGame = true;
     }
 
     protected void ActivateMenu()
     {
         menuUI.SetActive(true);
-        pauseUI.SetActive(false);
         onGame = false;
     }
 
