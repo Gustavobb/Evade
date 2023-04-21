@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
     private bool _dead = false;
     [SerializeField] private bool _reportToManager = true;
     [SerializeField] private bool _needsToEnterArena = true;
+    private Collider2D _collider;
 
     private void Awake()
     {
@@ -53,6 +54,7 @@ public class Enemy : MonoBehaviour
 
     private void Setup()
     {
+        _collider = GetComponent<Collider2D>();
         _rotate = GetComponent<Rotate>();
         if (_reportToManager)
         {
@@ -160,6 +162,11 @@ public class Enemy : MonoBehaviour
         _isInsideArena = true;
     }
 
+    public void EnableCollider(bool enable)
+    {
+        _collider.enabled = enable;
+    }
+    
     public void Reset(Vector3 position)
     {
         transform.position = position;

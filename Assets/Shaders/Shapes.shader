@@ -289,6 +289,7 @@ Shader "Unlit/Shapes"
                 fixed4 col = _Background;
                 fixed4 prevColor = tex2D(_PrevFrame, float2(i.uv.x, 1 - i.uv.y));
                 float2 uv = i.uv - 0.5;
+                uv.y += .02;
 
                 if (_Wobble > 0)
                     uv = Wobble(uv);

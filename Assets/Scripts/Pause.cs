@@ -7,6 +7,7 @@ public class Pause : MonoBehaviour
     private static bool _paused = false;
     public static bool Paused => _paused;
     [SerializeField] private List<Enemy> _enemies = new List<Enemy>();
+    [SerializeField] private float _timeToEnableColliders = .2f;
 
     private void Start()
     {
@@ -29,20 +30,25 @@ public class Pause : MonoBehaviour
                 enemiesEnabled |= enemy.gameObject.activeSelf;
             
             if (enemiesEnabled) return;
+            _paused = !_paused;
 
-            if (!_paused)
+            if (_paused)
             {
                 ResetEnemies();
+                EnableColliders(false);
                 EnableEnemies(true);
             }
 
-            _paused = !_paused;
+            if (!_paused) StartCoroutine(WaitToEnableColliders(_timeToEnableColliders));
         }
 
         if (_paused)
         {
             if (Input.GetMouseButtonDown(0))
+            {
                 _paused = false;
+                StartCoroutine(WaitToEnableColliders(_timeToEnableColliders));
+            }
         }
     }
 
@@ -68,7 +74,20 @@ public class Pause : MonoBehaviour
         foreach (Enemy enemy in _enemies)
         {
             enemy.gameObject.SetActive(enable);
-            if (enable) enemy.SmoothAppear(.1f);
+            if (enable) 
+                enemy.SmoothAppear(.1f);
         }
+    }
+
+    private IEnumerator WaitToEnableColliders(float time)
+    {
+        yield return new WaitForSeconds(time);
+        EnableColliders(true);
+    }
+
+    private void EnableColliders(bool enable)
+    {
+        foreach (Enemy enemy in _enemies)
+            enemy.EnableCollider(enable);
     }
 }

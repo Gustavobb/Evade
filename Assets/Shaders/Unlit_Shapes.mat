@@ -43,7 +43,7 @@ Material:
     - _OldTV: 0
     - _OldTVAmplitude: 5
     - _OldTVFrequency: 0.19
-    - _PixelSize: 4.8
+    - _PixelSize: 5.8
     - _Pixelate: 0
     - _ScreenShake: 0
     - _ScreenShakeAmplitude: 0.11
@@ -52,12 +52,12 @@ Material:
     - _ShadowOffset: 0.015
     - _SunRotation: 34
     - _Wobble: 0
-    - _WobbleAmplitude: 0.1
-    - _WobbleFrequency: 0.14
+    - _WobbleAmplitude: 3
+    - _WobbleFrequency: 0.2
     m_Colors:
     - _Background: {r: 1, g: 0.668, b: 0.668, a: 1}
     - _OldTVXY: {r: 1, g: 1, b: 0, a: 0}
     - _ScreenShakeXY: {r: 1, g: 0, b: 0, a: 0}
     - _ShadowColor: {r: 0.305, g: 0.305, b: 0.305, a: 1}
-    - _WobbleXY: {r: 1, g: 1, b: 0, a: 0}
+    - _WobbleXY: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
