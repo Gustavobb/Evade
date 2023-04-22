@@ -36,7 +36,6 @@ Michel:
 - Animacoes em geral
 - Sons
 
-
 Inimigos:
 - Quadrado: lento e facil de matar, follow (8,8)
 - Retangulo: rapido impossivel de matar (7, 300)

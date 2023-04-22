@@ -8,6 +8,7 @@ public class Pause : MonoBehaviour
     public static bool Paused => _paused;
     [SerializeField] private List<Enemy> _enemies = new List<Enemy>();
     [SerializeField] private float _timeToEnableColliders = .2f;
+    [SerializeField] private Material _material;
 
     private void Start()
     {
@@ -34,18 +35,24 @@ public class Pause : MonoBehaviour
 
             if (_paused)
             {
+                _material.SetFloat("_OldTV", 0.005f);
                 ResetEnemies();
                 EnableColliders(false);
                 EnableEnemies(true);
             }
 
-            if (!_paused) StartCoroutine(WaitToEnableColliders(_timeToEnableColliders));
+            if (!_paused) 
+            {
+                _material.SetFloat("_OldTV", 0f);
+                StartCoroutine(WaitToEnableColliders(_timeToEnableColliders));
+            }
         }
 
         if (_paused)
         {
             if (Input.GetMouseButtonDown(0))
             {
+                _material.SetFloat("_OldTV", 0f);
                 _paused = false;
                 StartCoroutine(WaitToEnableColliders(_timeToEnableColliders));
             }

@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.Instance.OnGame || Pause.Paused) return;
+        if (!GameManager.Instance.OnGame || Pause.Paused || PowerUpManager.Instance.OnPowerUpMenu) return;
         
         Vector2 mousePos = Input.mousePosition;
         if (mousePos.x < 0 || mousePos.x > Screen.width || mousePos.y < 0 || mousePos.y > Screen.height)
@@ -60,7 +60,6 @@ public class Player : MonoBehaviour
     public void Die()
     {
         // gameObject.SetActive(false);
-        GameManager.Instance.ShakeScreen(.2f);
         Cursor.visible = true;
         GameManager.Instance.GameOver();
     }
@@ -73,19 +72,27 @@ public class Player : MonoBehaviour
     public void HandleCollision(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
+        {
+            GameManager.Instance.ShakeScreen(.15f);
             if (lifes <= 0) Die();
-            else if (!isInvencible){
+            else if (!isInvencible)
+            {
                 lifes --;
-                isInvencible = true;
-                GameManager.Instance.CallSlowDown();
+                // isInvencible = true;
+                // GameManager.Instance.CallSlowDown();
             }
+        }
         
         if (other.CompareTag("Bounds"))
+        {
+            GameManager.Instance.ShakeScreen(.15f);
             if (lifes <= 0) Die();
-            else if (!isInvencible){
+            else if (!isInvencible)
+            {
                 lifes --;
-                isInvencible = true;
-                GameManager.Instance.CallSlowDown();
+                // isInvencible = true;
+                // GameManager.Instance.CallSlowDown();
             }
+        }
     }
 }

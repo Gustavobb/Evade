@@ -14,6 +14,7 @@ public class PowerUpManager : MonoBehaviour
         }
     }
 
+    [SerializeField] private float _xAnimation = 10f;
     private List<GenericPowerUp> allPowerUps = new List<GenericPowerUp>();
     [SerializeField] private bool _onPowerUpMenu;
     public bool OnPowerUpMenu => _onPowerUpMenu;
@@ -27,51 +28,65 @@ public class PowerUpManager : MonoBehaviour
         GetAllShapesFromChildren();
     }
 
-    private void GetAllShapesFromChildren(){
-        foreach (Transform child in transform){
-            _shapes.Add(child.gameObject.GetComponent<Shape>());
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
+    private void GetAllShapesFromChildren()
     {
-        
+        foreach (Transform child in transform)
+            _shapes.Add(child.gameObject.GetComponent<Shape>());
     }
 
-    private IEnumerator OpenChoiceMenuCoroutine(float time){
+    private IEnumerator OpenMenuAnimation(float time)
+    {
+        float elapsedTime = 0;
+        float startX = transform.position.x;
+        float endX = 0;
+
+        while (elapsedTime < time)
+        {
+            transform.position = new Vector3(Mathf.Lerp(startX, endX, elapsedTime / time), transform.position.y, transform.position.z);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = new Vector3(endX, transform.position.y, transform.position.z);
+    }
+
+    public void OpenChoiceMenu()
+    {
         _onPowerUpMenu = true;
-        Player.Instance.EnableCollider(false);
-        yield return new WaitForSeconds(time);
         Cursor.visible = true;
-        Player.Instance.gameObject.SetActive(false);
+        transform.position = new Vector3(_xAnimation, transform.position.y, transform.position.z);
+        
         // fazer inimigos sumirem
-        for (int i = 0; i < transform.childCount; i++){
+        for (int i = 0; i < transform.childCount; i++)
+        {
             Transform child = transform.GetChild(i);
             child.gameObject.SetActive(true);
 
-            _shapes[i].LerpAlpha(0, 1, .1f);
+            // _shapes[i].LerpAlpha(0, 1, .1f);
+            PowerUpCard powerUpCard = child.gameObject.GetComponent<PowerUpCard>();
+
+            if (powerUpCard == null) continue;
             int index = Random.Range(0, allPowerUps.Count);
-            child.gameObject.GetComponent<PowerUpCard>().powerUp = allPowerUps[index];
+            powerUpCard.powerUp = allPowerUps[index];
         }
+
+        StartCoroutine(OpenMenuAnimation(.3f));
     }
 
-    public void OpenChoiceMenu(){
-        StartCoroutine(OpenChoiceMenuCoroutine(.25f));
-    }
-
-    public void SelectPowerUp(GenericPowerUp powerUp){
+    public void SelectPowerUp(GenericPowerUp powerUp)
+    {
         Inventory.Instance.addPowerUp(powerUp);
         PowerUpManager.Instance.CloseChoiceMenu();
     }
 
-    public void CloseChoiceMenu(){
-        Player.Instance.EnableCollider(true);
+    public void CloseChoiceMenu()
+    {
         Player.Instance.Reset();
         Cursor.visible = false;
         _onPowerUpMenu = false;
-        foreach (Transform child in transform){
+        foreach (Transform child in transform)
             child.gameObject.SetActive(false);
-        }
+
+        WaveManager.Instance.SetupWave();
     }
 }

@@ -10,7 +10,6 @@ public class Rectangle : Shape
     private void Awake()
     {
         _boxCollider = GetComponent<BoxCollider2D>();
-        ShapesManager.Instance.AddShape(this);
     }
 
     public override Vector4 GetProperties()
@@ -31,11 +30,5 @@ public class Rectangle : Shape
     public override Vector4 GetExtra()
     {
         return new Vector4((float) _colorType, -transform.rotation.eulerAngles.z, _hasShadow ? 1 : 0, _blendBlack);
-    }
-
-    private void OnDestory()
-    {
-        print("Rectangle Destroyed");
-        ShapesManager.Instance.RemoveShape(this);
     }
 }

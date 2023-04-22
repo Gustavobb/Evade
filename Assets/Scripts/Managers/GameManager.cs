@@ -54,7 +54,9 @@ public class GameManager : MonoBehaviour
     private IEnumerator ShakeScreenCoroutine(float time)
     {
         _shaderMaterial.SetFloat("_ScreenShake", 0.1f);
+        _shaderMaterial.SetFloat("_ChromaticAberration", 0.007f);
         yield return new WaitForSeconds(time);
+        _shaderMaterial.SetFloat("_ChromaticAberration", 0f);
         _shaderMaterial.SetFloat("_ScreenShake", 0f);
     }
 
@@ -87,6 +89,21 @@ public class GameManager : MonoBehaviour
 
     public void CallSlowDown(){
         StartCoroutine(SlowDown());
+    }
+
+    public void RequestWobble()
+    {
+        if (!PowerUpManager.Instance.OnPowerUpMenu)
+        {
+            _shaderMaterial.SetFloat("_Wobble", 0.007f);
+            _shaderMaterial.SetFloat("_OldTV", 0.007f);
+        }
+    }
+
+    public void StopWobble()
+    {
+        _shaderMaterial.SetFloat("_Wobble", 0f);
+        _shaderMaterial.SetFloat("_OldTV", 0f);
     }
     
     public IEnumerator SlowDown(){

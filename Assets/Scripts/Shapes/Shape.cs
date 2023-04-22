@@ -7,7 +7,7 @@ public class Shape : MonoBehaviour
     [SerializeField] protected float _factor = 10f;
     [SerializeField] protected Color _color = Color.white;
 
-    protected enum ColorType { Custom, Rainbow }
+    public enum ColorType { Custom, Rainbow }
     [SerializeField] protected ColorType _colorType = ColorType.Custom;
     [SerializeField] protected float _blendBlack = 1f;
     [SerializeField] protected bool _hasShadow = false;
@@ -33,9 +33,19 @@ public class Shape : MonoBehaviour
         return _color;
     }
 
+    public virtual void SetColor(Color color)
+    {
+        _color = color;
+    }
+
     public virtual float GetColorType()
     {
         return (float) _colorType;
+    }
+
+    public void SetColorType(ColorType colorType)
+    {
+        _colorType = colorType;
     }
 
     public virtual void SetBlendBlack(float blendBlack)
@@ -82,5 +92,21 @@ public class Shape : MonoBehaviour
         }
 
         _color.a = end;
+    }
+
+    private void OnDisable()
+    {
+        if (ShapesManager.Instance != null) ShapesManager.Instance.RemoveShape(this);
+    }
+
+    private void OnEnable()
+    {
+        if (ShapesManager.Instance != null) ShapesManager.Instance.AddShape(this);
+    }
+
+    private void OnDestroy()
+    {
+            
+        if (ShapesManager.Instance != null) ShapesManager.Instance.RemoveShape(this);
     }
 }

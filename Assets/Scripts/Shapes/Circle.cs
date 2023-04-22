@@ -10,7 +10,6 @@ public class Circle : Shape
     private void Awake()
     {
         _circleCollider = GetComponent<CircleCollider2D>();
-        ShapesManager.Instance.AddShape(this);
     }
 
     public override Vector4 GetProperties()
@@ -29,10 +28,5 @@ public class Circle : Shape
     public override Vector4 GetExtra()
     {
         return new Vector4((float) _colorType, _hasShadow ? 1 : 0, _blendBlack, 0);
-    }
-
-    private void OnDestory()
-    {
-        ShapesManager.Instance.RemoveShape(this);
     }
 }

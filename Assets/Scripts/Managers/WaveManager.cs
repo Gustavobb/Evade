@@ -14,7 +14,9 @@ public class WaveManager : MonoBehaviour
     private Wave _currentWave;
 
     private float _waveTime;
-    private int _waveNumber = 0;
+    [SerializeField] private int _waveNumber = 0;
+    [SerializeField] private EnemyData _enemyData;
+    public EnemyData EnemyData => _enemyData;
 
     private static WaveManager _instance;
     public static WaveManager Instance
@@ -46,13 +48,10 @@ public class WaveManager : MonoBehaviour
         _waveTime -= Time.deltaTime;
 
         if (_waveTime <= 0)
-        {
-            SetupWave();
             _onWaveChange?.Invoke();
-        }
     }
 
-    private void SetupWave()
+    public void SetupWave()
     {
         _currentWave.VanishWave();
 
@@ -70,6 +69,11 @@ public class WaveManager : MonoBehaviour
         _currentWave.Setup();
         _waveTime = _waveTimeStart;
     }
+
+    private void OnApplicationQuit()
+    {
+        _enemyData.Reset();
+    }
 }
 
 [System.Serializable]
@@ -77,12 +81,19 @@ public class Wave
 {
     public int maxEnemyCount;
     public float spawnRate;
+    public float enemySpeedMultiplier = 1f;
+    public float enemySizeMultiplier = 1f;
     private float spawnRateCountdown = 0f;
+    public bool usePallette = false;
+    public int palletteIndex = 0;
     public List<Enemy.EnemyType> possibleEnemyTypes;
     
     public void Setup()
     {
         EnemyManager.Instance.ChangeMaxActiveEnemies(maxEnemyCount);
+        WaveManager.Instance.EnemyData.MultiplySpeed(enemySpeedMultiplier);
+        WaveManager.Instance.EnemyData.MultiplySize(enemySizeMultiplier);
+        if (usePallette) PaletteManager.Instance.ApplyPalette(palletteIndex);
     }
 
     public void WaveLogic()
@@ -104,6 +115,6 @@ public class Wave
 
     public void VanishWave()
     {
-        EnemyManager.Instance.Reset(true);
+        EnemyManager.Instance.Reset(false);
     }
 }

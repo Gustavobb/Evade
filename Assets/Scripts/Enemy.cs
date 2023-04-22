@@ -47,9 +47,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private bool _reportToManager = true;
     [SerializeField] private bool _needsToEnterArena = true;
     private Collider2D _collider;
+    [SerializeField] private EnemyData _enemyData;
+    private Vector3 _originalScale;
 
     private void Start()
     {
+        _originalScale = transform.localScale;
         Setup();
     }
 
@@ -90,6 +93,15 @@ public class Enemy : MonoBehaviour
             _originalColors.Add(shape.GetColor());
     }
 
+    public void SetColor(Color color, Shape.ColorType colorType)
+    {
+        foreach (Shape shape in _shapes)
+        {
+            shape.SetColor(color);
+            shape.SetColorType(colorType);
+        }
+    }
+
     private void HandleEnemyBehaviour()
     {
         if (Player.Instance != null)
@@ -117,41 +129,41 @@ public class Enemy : MonoBehaviour
                 break;
         }
 
-        _velocity = Vector3.ClampMagnitude(_velocity, MAX_SPEED);
+        _velocity = Vector3.ClampMagnitude(_velocity, MAX_SPEED * _enemyData.speedMultiplier);
         _movementPivot.position += new Vector3(_velocity.x, _velocity.y, 0) * Time.deltaTime;
     }
 
     private void FollowPlayer()
     {
-        _velocity += _toPlayer.normalized * _speed * Time.deltaTime;
+        _velocity += _toPlayer.normalized * _speed * _enemyData.speedMultiplier * Time.deltaTime;
     }
 
     private void AvoidPlayer()
     {
-        _velocity -= _toPlayer.normalized * _speed * Time.deltaTime;
+        _velocity -= _toPlayer.normalized * _speed * _enemyData.speedMultiplier * Time.deltaTime;
     }
 
     private void Wander()
     {
-        _velocity += new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * _speed * Time.deltaTime;
+        _velocity += new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * _speed * _enemyData.speedMultiplier * Time.deltaTime;
     }
     
     private void PlayerDirection()
     {
-        _velocity += _toPlayerInitial.normalized * _speed * Time.deltaTime;
+        _velocity += _toPlayerInitial.normalized * _speed * _enemyData.speedMultiplier * Time.deltaTime;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, _toPlayerInitial);
     }
 
     private void Bouncer()
     {
-        _velocity += _toPlayerInitial.normalized * _speed * Time.deltaTime;
+        _velocity += _toPlayerInitial.normalized * _speed * _enemyData.speedMultiplier * Time.deltaTime;
     }
 
     private void BounceToPlayer()
     {
         float angle = Mathf.Atan2(_toPlayer.y, _toPlayer.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        _velocity = rotation * Vector2.right * _speed;
+        _velocity = rotation * Vector2.right * _speed * _enemyData.speedMultiplier;
         _toPlayerInitial = _toPlayer;
     }
 
@@ -178,6 +190,7 @@ public class Enemy : MonoBehaviour
     
     public void Reset(Vector3 position)
     {
+        transform.localScale = _originalScale * _enemyData.sizeMultiplier;
         transform.position = position;
         _velocity = Vector3.zero;
         _dead = false;
@@ -206,6 +219,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator DieCoroutine()
     {
+        GameManager.Instance.RequestWobble();
         _dead = true;
         _velocity = Vector2.zero;
         if (_rotate != null) _rotate.enabled = false;
@@ -214,6 +228,7 @@ public class Enemy : MonoBehaviour
             _shapes[i].LerpAlpha(1, 0, _timeToDie);
 
         yield return new WaitForSeconds(_timeToDie);
+        GameManager.Instance.StopWobble();
         gameObject.SetActive(false);
         Reset(Vector3.zero);
     }
@@ -249,17 +264,6 @@ public class Enemy : MonoBehaviour
         Vector2 diff = transform.position - other.transform.position;
         float dot = Vector2.Dot(diff, normal);
         inside &= dot > 0;
-
-        if (transform.childCount > 0)
-        {
-            foreach (Transform child in transform)
-            {
-                diff = child.position - other.transform.position;
-                dot = Vector2.Dot(diff, normal);
-
-                inside &= dot > 0;
-            }
-        }
 
         if (inside)
             Die();

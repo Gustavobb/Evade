@@ -92,7 +92,7 @@ Shader "Unlit/Shapes"
             float4 _RectanglesProperties[50];
             float4 _RectanglesExtra[50];
             float4 _RectanglesColor[50];
-
+            
             v2f vert (appdata v)
             {
                 v2f o;
@@ -308,8 +308,8 @@ Shader "Unlit/Shapes"
                 
                 HitInfo hitInfo = { col, false };
                 float2 shadowDir = Rotate(float2(0, -_ShadowOffset), _SunRotation);
-                hitInfo = CheckRectangle(uv, hitInfo, shadowDir);
                 hitInfo = CheckCircle(uv, hitInfo, shadowDir);
+                hitInfo = CheckRectangle(uv, hitInfo, shadowDir);
 
                 col = hitInfo.col;
                 if (!hitInfo.hit) col = lerp(prevColor, col, _ColorDecay);
