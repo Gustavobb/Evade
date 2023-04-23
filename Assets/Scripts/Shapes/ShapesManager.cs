@@ -18,6 +18,7 @@ public class ShapesManager : MonoBehaviour
     private Vector4[] _shapesProperties = new Vector4[50];
     private Vector4[] _shapesExtra = new Vector4[50];
     private Color[] _shapesColors = new Color[50];
+    private float[] _sortOrders = new float[50];
 
     private static ShapesManager _instance;
     public static ShapesManager Instance
@@ -99,12 +100,12 @@ public class ShapesManager : MonoBehaviour
         Vector4 shapeProperties;
         Vector4 shapeExtra;
         Color shapeColor;
+        float sortOrder;
         int count = 0;
 
         foreach (T shape in shapes)
         {
             if (!shape.gameObject.activeInHierarchy) continue;
-            print(shape.gameObject.name);
             shapeProperties = shape.GetProperties();
             _shapesProperties[count] = shapeProperties;
 
@@ -114,6 +115,9 @@ public class ShapesManager : MonoBehaviour
             shapeColor = shape.GetColor();
             _shapesColors[count] = shapeColor;
 
+            sortOrder = shape.GetSortOrder();
+            _sortOrders[count] = sortOrder;
+
             count++;
         }
 
@@ -121,6 +125,7 @@ public class ShapesManager : MonoBehaviour
         _shapesMaterial.SetVectorArray($"_{name}Properties", _shapesProperties);
         _shapesMaterial.SetVectorArray($"_{name}Extra", _shapesExtra);
         _shapesMaterial.SetColorArray($"_{name}Color", _shapesColors);
+        _shapesMaterial.SetFloatArray($"_{name}SortOrder", _sortOrders);
     }
 
     private void OnRenderImage(RenderTexture source, RenderTexture destination)

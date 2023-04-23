@@ -34,20 +34,25 @@ public class PowerUpManager : MonoBehaviour
             _shapes.Add(child.gameObject.GetComponent<Shape>());
     }
 
-    private IEnumerator OpenMenuAnimation(float time)
+    private IEnumerator MenuAnimation(float time, float start, float end, bool open)
     {
         float elapsedTime = 0;
-        float startX = transform.position.x;
-        float endX = 0;
 
         while (elapsedTime < time)
         {
-            transform.position = new Vector3(Mathf.Lerp(startX, endX, elapsedTime / time), transform.position.y, transform.position.z);
+            transform.position = new Vector3(Mathf.Lerp(start, end, elapsedTime / time), transform.position.y, transform.position.z);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        transform.position = new Vector3(endX, transform.position.y, transform.position.z);
+        transform.position = new Vector3(end, transform.position.y, transform.position.z);
+
+        if (!open)
+        {
+            foreach (Transform child in transform)
+                child.gameObject.SetActive(false);
+            _onPowerUpMenu = false;
+        }
     }
 
     public void OpenChoiceMenu()
@@ -70,7 +75,7 @@ public class PowerUpManager : MonoBehaviour
             powerUpCard.powerUp = allPowerUps[index];
         }
 
-        StartCoroutine(OpenMenuAnimation(.3f));
+        StartCoroutine(MenuAnimation(.2f, _xAnimation, 0, true));
     }
 
     public void SelectPowerUp(GenericPowerUp powerUp)
@@ -81,12 +86,8 @@ public class PowerUpManager : MonoBehaviour
 
     public void CloseChoiceMenu()
     {
-        Player.Instance.Reset();
         Cursor.visible = false;
-        _onPowerUpMenu = false;
-        foreach (Transform child in transform)
-            child.gameObject.SetActive(false);
-
         WaveManager.Instance.SetupWave();
+        StartCoroutine(MenuAnimation(.2f, 0, _xAnimation, false));
     }
 }

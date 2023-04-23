@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Shape : MonoBehaviour
 {
+    [SerializeField] protected float _sortOrder = 0;
     [SerializeField] protected float _factor = 10f;
     [SerializeField] protected Color _color = Color.white;
 
@@ -11,16 +12,16 @@ public class Shape : MonoBehaviour
     [SerializeField] protected ColorType _colorType = ColorType.Custom;
     [SerializeField] protected float _blendBlack = 1f;
     [SerializeField] protected bool _hasShadow = false;
-    // [SerializeField] protected Color _shadowColor = Color.black;
-
-    [SerializeField] protected bool _hasOutline = false;
-    // [SerializeField] protected Color _outlineColor = Color.black;
-
     [SerializeField] protected bool _accountParentScale = false;
 
     public virtual Vector4 GetProperties()
     {
         return new Vector4(transform.position.x / _factor, transform.position.y / _factor, 0, 0);
+    }
+
+    public virtual float GetSortOrder()
+    {
+        return _sortOrder;
     }
 
     public virtual Vector4 GetExtra()

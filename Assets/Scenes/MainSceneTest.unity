@@ -194,12 +194,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0.9232155, g: 1, b: 0, a: 1}
   _colorType: 0
   _blendBlack: 0
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &54459429
 GameObject:
@@ -246,12 +246,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &54459432
 BoxCollider2D:
@@ -324,12 +324,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &84107319
 BoxCollider2D:
@@ -460,12 +460,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0.9232155, g: 1, b: 0, a: 1}
   _colorType: 0
   _blendBlack: 0
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &120182840
 GameObject:
@@ -621,12 +621,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 0
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &123996996
 BoxCollider2D:
@@ -699,12 +699,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &126452874
 BoxCollider2D:
@@ -809,12 +809,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &171866736
 BoxCollider2D:
@@ -913,12 +913,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0.11860776, g: 1, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &205804176
 GameObject:
@@ -1022,12 +1022,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &207565000
 BoxCollider2D:
@@ -1207,12 +1207,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 2
   _factor: 10
   _color: {r: 1, g: 1, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &306438265
 GameObject:
@@ -1372,12 +1372,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 1, g: 1, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &433844529
 GameObject:
@@ -1507,12 +1507,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0.9232155, g: 1, b: 0, a: 1}
   _colorType: 0
   _blendBlack: 0
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &447452937
 GameObject:
@@ -1617,12 +1617,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!114 &447452942
 MonoBehaviour:
@@ -2117,12 +2117,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &585672905
 BoxCollider2D:
@@ -2251,12 +2251,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0.11764706, g: 1, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &620660645
 GameObject:
@@ -2356,12 +2356,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 0
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &620660650
 BoxCollider2D:
@@ -2533,12 +2533,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0.1342473, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 0.9710444
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &691548491
 GameObject:
@@ -2641,12 +2641,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615b6ade420d249cda3f1483dcce30b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0.59817696, g: 0, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 0
 --- !u!58 &691548496
 CircleCollider2D:
@@ -2730,12 +2730,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &693624659
 BoxCollider2D:
@@ -2914,12 +2914,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!114 &843489552
 MonoBehaviour:
@@ -3125,12 +3125,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &873997512
 BoxCollider2D:
@@ -3236,12 +3236,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &999796082
 BoxCollider2D:
@@ -3509,12 +3509,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &1035930123
 BoxCollider2D:
@@ -3727,12 +3727,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &1095579965
 BoxCollider2D:
@@ -3805,12 +3805,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &1102376241
 BoxCollider2D:
@@ -3988,12 +3988,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0.18730927, b: 1, a: 1}
   _colorType: 1
   _blendBlack: 0.9773778
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &1173886010
 GameObject:
@@ -4244,12 +4244,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 1, g: 0.6383666, b: 0, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &1247469148
 GameObject:
@@ -4497,12 +4497,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 2
   _factor: 10
   _color: {r: 1, g: 1, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &1280897201
 GameObject:
@@ -4549,12 +4549,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &1280897204
 BoxCollider2D:
@@ -4708,12 +4708,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0.1342473, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 0.9710444
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &1346583079
 GameObject:
@@ -4760,12 +4760,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &1346583082
 BoxCollider2D:
@@ -4974,12 +4974,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0.025951147, g: 1, b: 0, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &1473152930
 GameObject:
@@ -5052,12 +5052,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0.1342473, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 0.9710444
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &1533156149
 GameObject:
@@ -5104,12 +5104,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &1533156152
 BoxCollider2D:
@@ -5370,12 +5370,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 0
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &1585649865
 BoxCollider2D:
@@ -5505,12 +5505,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 1, g: 1, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &1638958274
 GameObject:
@@ -5583,12 +5583,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0.9232155, g: 1, b: 0, a: 1}
   _colorType: 0
   _blendBlack: 0
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &1656816602
 GameObject:
@@ -5799,12 +5799,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 1, g: 0.020645857, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 0.9773778
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &1734277690
 GameObject:
@@ -5894,12 +5894,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 2
   _factor: 10
   _color: {r: 1, g: 1, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &1750950149
 GameObject:
@@ -5972,12 +5972,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 1
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &1782463330
 GameObject:
@@ -6050,12 +6050,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0.11764706, g: 1, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 0.9773778
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &1786853031
 GameObject:
@@ -6128,12 +6128,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0.11764706, g: 1, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &1809575267
 GameObject:
@@ -6238,12 +6238,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!114 &1809575272
 MonoBehaviour:
@@ -6368,12 +6368,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 1, g: 1, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!1 &1813037251
 GameObject:
@@ -6661,12 +6661,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 0
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &1947835822
 BoxCollider2D:
@@ -6777,12 +6777,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &2028947692
 BoxCollider2D:
@@ -6890,7 +6890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1860a819826a1d54d9a0088dae5c2bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _xAnimation: 10
+  _xAnimation: 16
   _onPowerUpMenu: 0
   _shapes: []
 --- !u!4 &2120988218
@@ -6957,12 +6957,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &2138977152
 BoxCollider2D:
@@ -7035,12 +7035,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523735e5517af4e10a5d44d7b8faa292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 0, g: 0, b: 0, a: 1}
   _colorType: 1
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 1
 --- !u!61 &2145431169
 BoxCollider2D:
@@ -7137,12 +7137,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615b6ade420d249cda3f1483dcce30b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sortOrder: 0
   _factor: 10
   _color: {r: 1, g: 0, b: 0.98486185, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
-  _hasOutline: 0
   _accountParentScale: 0
 --- !u!58 &4544061167957553337
 CircleCollider2D:
