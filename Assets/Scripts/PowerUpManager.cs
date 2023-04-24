@@ -22,8 +22,9 @@ public class PowerUpManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        allPowerUps.Add(new LifeUpPowerUp("LifeUpPowerUp", true, 1));
-        allPowerUps.Add(new SizeUpPowerUp("SizeUpPowerUp", true, 1));
+        allPowerUps.Add(new LifeUpPowerUp("LifeUpPowerUp", true, 1, 0, 0));
+        allPowerUps.Add(new SizeUpPowerUp("SizeUpPowerUp", true, 1, 0, 0));
+        allPowerUps.Add(new SlowDownPowerUp("SlowDownPowerUp", true, 1, 10, 100));
         GetAllShapesFromChildren();
     }
 

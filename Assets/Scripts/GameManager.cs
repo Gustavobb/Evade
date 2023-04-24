@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     {
         HandleReset();
         HandleMenu();
+        HandleClosestEnemy();
     }
 
     private void HandleReset()
@@ -43,6 +44,24 @@ public class GameManager : MonoBehaviour
             {
                 Player.Instance.Reset();
                 EnemyManager.Instance.Reset(false);
+            }
+        }
+    }
+
+    public void HandleClosestEnemy(){
+        bool haveSlowDown=false;
+        int slowDownPowerUpIndex=0;
+        for (int i=0; i < Inventory.Instance.powerUps.Count; i++)
+        {
+            if (Inventory.Instance.powerUps[i].GetName() == "SlowDownPowerUp"){
+                haveSlowDown = true;
+                slowDownPowerUpIndex = i;
+            }
+        }
+        if (Player.Instance.GetClosestEnemy()!=null){
+            if ((Player.Instance.GetClosestEnemy().GetToPlayer().magnitude <= 1.5f)&(haveSlowDown)){
+                Inventory.Instance.powerUps[slowDownPowerUpIndex].ActivatePowerUp();
+                print(Inventory.Instance.powerUps[slowDownPowerUpIndex].cooldownTimer);
             }
         }
     }
@@ -89,6 +108,10 @@ public class GameManager : MonoBehaviour
     public void CallSlowDown(){
         StartCoroutine(SlowDown());
     }
+
+    public void CallStopTime(){
+        StartCoroutine(StopTime());
+    }
     
     public IEnumerator SlowDown(){
         Time.timeScale = .1f;
@@ -96,6 +119,16 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         Player.Instance.isInvencible = false;
         yield return new WaitForSeconds(.2f);
+        _shaderMaterial.SetFloat("_ChromaticAberration", 0f);
+        Time.timeScale = 1;
+    }
+
+    public IEnumerator StopTime(){
+        Time.timeScale = .001f;
+        _shaderMaterial.SetFloat("_ChromaticAberration", 0.01f);
+        yield return new WaitForSeconds(.001f);
+        Player.Instance.isInvencible = false;
+        yield return new WaitForSeconds(.001f);
         _shaderMaterial.SetFloat("_ChromaticAberration", 0f);
         Time.timeScale = 1;
     }

@@ -51,6 +51,11 @@ public class Player : MonoBehaviour
             _closestEnemy = enemy;
     }
 
+    public Enemy GetClosestEnemy(){
+        return _closestEnemy;
+    }
+
+
     public void Reset()
     {
         gameObject.SetActive(true);
@@ -77,7 +82,7 @@ public class Player : MonoBehaviour
             else if (!isInvencible){
                 lifes --;
                 isInvencible = true;
-                GameManager.Instance.CallSlowDown();
+                GameManager.Instance.CallStopTime();
             }
         
         if (other.CompareTag("Bounds"))
@@ -85,7 +90,7 @@ public class Player : MonoBehaviour
             else if (!isInvencible){
                 lifes --;
                 isInvencible = true;
-                GameManager.Instance.CallSlowDown();
+                GameManager.Instance.CallStopTime();
             }
     }
 }

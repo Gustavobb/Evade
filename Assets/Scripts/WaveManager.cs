@@ -13,7 +13,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private List<Wave> _waves;
     private Wave _currentWave;
 
-    private float _waveTime;
+    public float _waveTime;
     private int _waveNumber = 0;
 
     private static WaveManager _instance;
