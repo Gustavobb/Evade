@@ -89,6 +89,9 @@ public class Player : MonoBehaviour
         _isInvincible = true;
         int cycles = 0;
         Color color = _shape.GetColor();
+        GameManager.Instance.AnimateGreyScale(0f, 1f, .3f);
+        AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, 0, .4f, false, false);
+        GameManager.Instance.SlowDown();
 
         while (cycles <= _invencibilityCycles)
         {
@@ -99,6 +102,9 @@ public class Player : MonoBehaviour
         }
 
         color.a = 1f;
+        GameManager.Instance.StopSlowDown();
+        GameManager.Instance.AnimateGreyScale(1f, 0f, .3f);
+        AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, 1, .4f, false, false);
         _shape.SetColor(color);
         _isInvincible = false;
     }
