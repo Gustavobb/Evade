@@ -49,6 +49,7 @@ public class ClockManager : MonoBehaviour
 
     public void UseClock()
     {
+        if (Player.Instance.IsInvincible) return;
         if (_clocksActive == 0) return;
 
         _clocksActive --;
