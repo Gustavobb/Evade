@@ -10311,8 +10311,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifes: 0
-  _invencibilityCycles: 8
-  _invencibilityTime: 1
+  _invencibilityCycles: 10
+  _invencibilityTime: 2
 --- !u!114 &5268743476328805393
 MonoBehaviour:
   m_ObjectHideFlags: 0
