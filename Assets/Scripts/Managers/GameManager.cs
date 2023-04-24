@@ -61,17 +61,16 @@ public class GameManager : MonoBehaviour
     {
         bool haveSlowDown=false;
         int slowDownPowerUpIndex=0;
-        for (int i=0; i < Inventory.Instance.powerUps.Count; i++)
+        for (int i=0; i < PowerUpManager.Instance.allPowerUps.Count; i++)
         {
-            if (Inventory.Instance.powerUps[i].GetName() == "SlowDownPowerUp"){
+            if (PowerUpManager.Instance.allPowerUps[i].GetName() == "SlowDownPowerUp"){
                 haveSlowDown = true;
                 slowDownPowerUpIndex = i;
             }
         }
         if (Player.Instance.GetClosestEnemy()!=null){
             if ((Player.Instance.GetClosestEnemy().GetToPlayer().magnitude <= 1.5f)&(haveSlowDown)){
-                Inventory.Instance.powerUps[slowDownPowerUpIndex].ActivatePowerUp();
-                print(Inventory.Instance.powerUps[slowDownPowerUpIndex].cooldownTimer);
+                PowerUpManager.Instance.allPowerUps[slowDownPowerUpIndex].ActivatePowerUp();
             }
         }
     }

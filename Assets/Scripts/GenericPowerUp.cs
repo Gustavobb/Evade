@@ -23,4 +23,8 @@ public class GenericPowerUp{
     public virtual string GetName(){
         return name;
     }
+
+    public virtual bool CheckCondition(){
+        return true;
+    }
 }

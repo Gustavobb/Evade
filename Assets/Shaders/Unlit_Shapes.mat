@@ -37,7 +37,7 @@ Material:
     - _GrainStrength: 17
     - _GreyScale: 1
     - _HueShift: 0
-    - _LensDistortion: 1.0198462
+    - _LensDistortion: 1.0040562
     - _LensDistortionStrength: 1
     - _LensDistortionTightness: 0.44
     - _LensZoom: 1
@@ -53,8 +53,8 @@ Material:
     - _ShadowOffset: 0.015
     - _SunRotation: 34
     - _Wobble: 0
-    - _WobbleAmplitude: 0.89
-    - _WobbleFrequency: 4.78
+    - _WobbleAmplitude: 0.7
+    - _WobbleFrequency: 0.4
     m_Colors:
     - _Background: {r: 1, g: 0.8235294, b: 0.5411765, a: 1}
     - _OldTVXY: {r: 1, g: 1, b: 0, a: 0}

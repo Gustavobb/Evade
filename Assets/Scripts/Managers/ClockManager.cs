@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ClockManager : MonoBehaviour
 {
-    [SerializeField] private int MAX_CLOCKS = 3;
-    [SerializeField] private int _clockCount = 1;
+    [SerializeField] public int MAX_CLOCKS = 3;
+    [SerializeField] public int _clockCount = 1;
     [SerializeField] private float _timeScale = 0.5f;
     [SerializeField] private float _duration = 5f;
     [SerializeField] private EnemyData _enemyData;
