@@ -10,6 +10,7 @@ public class ClockManager : MonoBehaviour
     [SerializeField] private float _duration = 5f;
     [SerializeField] private EnemyData _enemyData;
     private int _clocksActive = 0;
+    private AudioSource _audioSource;
 
     private static ClockManager _instance;
     public static ClockManager Instance
@@ -25,6 +26,7 @@ public class ClockManager : MonoBehaviour
 
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         _clocksActive = _clockCount;
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -51,6 +53,7 @@ public class ClockManager : MonoBehaviour
 
         _clocksActive --;
         _clocks[_clocksActive].SetActive(false);
+        _audioSource.Play();
         
         StartCoroutine(SlowDownCoroutine());
     }
