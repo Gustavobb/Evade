@@ -16,18 +16,26 @@ public class Player : MonoBehaviour
 
     private Enemy _closestEnemy;
     public int lifes;
-    public bool isInvencible;
+    [SerializeField] private int _invencibilityCycles = 10;
+    [SerializeField] private float _invencibilityTime = 1f;
+
     private Collider2D _collider;
+    private Shape _shape;
+    private bool _isInvincible = false;
+    public Shape Shape => _shape;
+    private AudioSource _audioSource;
 
     private void Start()
     {
         _collider = GetComponent<Collider2D>();
+        _shape = GetComponent<Shape>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
-        if (!GameManager.Instance.OnGame || Pause.Paused || PowerUpManager.Instance.OnPowerUpMenu) return;
-        
+        if (!GameManager.Instance.OnGame || Pause.Paused) return;
+
         Vector2 mousePos = Input.mousePosition;
         if (mousePos.x < 0 || mousePos.x > Screen.width || mousePos.y < 0 || mousePos.y > Screen.height)
         {
@@ -35,7 +43,8 @@ public class Player : MonoBehaviour
             return;
         }
 
-        Cursor.visible = false;
+        _collider.enabled = !PowerUpManager.Instance.OnPowerUpMenu;
+        Cursor.visible = PowerUpManager.Instance.OnPowerUpMenu;
         transform.position = Camera.main.ScreenToWorldPoint(mousePos);
     }
 
@@ -69,30 +78,56 @@ public class Player : MonoBehaviour
         _collider.enabled = enable;
     }
 
+    private IEnumerator Invincible()
+    {
+        _isInvincible = true;
+        int cycles = 0;
+        Color color = _shape.GetColor();
+
+        while (cycles <= _invencibilityCycles)
+        {
+            color.a = cycles % 2 == 0 ? 0.2f : 1f;
+            _shape.SetColor(color);
+            cycles++;
+            yield return new WaitForSeconds(_invencibilityTime / _invencibilityCycles);
+        }
+
+        color.a = 1f;
+        _shape.SetColor(color);
+        _isInvincible = false;
+    }
+
     public void HandleCollision(Collider2D other)
     {
+        if (_isInvincible) return;
         if (other.CompareTag("Enemy"))
         {
+            _audioSource.pitch = Random.Range(.9f, 1.1f);
+            _audioSource.Play();
             GameManager.Instance.ShakeScreen(.15f);
-            if (lifes <= 0) Die();
-            else if (!isInvencible)
+            if (lifes <= 0) 
             {
-                lifes --;
-                // isInvencible = true;
-                // GameManager.Instance.CallSlowDown();
+                Die();
+                return;
             }
+
+            lifes --;
+            StartCoroutine(Invincible());
         }
         
         if (other.CompareTag("Bounds"))
         {
+            _audioSource.pitch = Random.Range(.9f, 1.1f);
+            _audioSource.Play();
             GameManager.Instance.ShakeScreen(.15f);
-            if (lifes <= 0) Die();
-            else if (!isInvencible)
+            if (lifes <= 0) 
             {
-                lifes --;
-                // isInvencible = true;
-                // GameManager.Instance.CallSlowDown();
+                Die();
+                return;
             }
+
+            lifes --;
+            StartCoroutine(Invincible());
         }
     }
 }

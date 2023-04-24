@@ -9,10 +9,12 @@ public class Pause : MonoBehaviour
     [SerializeField] private List<Enemy> _enemies = new List<Enemy>();
     [SerializeField] private float _timeToEnableColliders = .2f;
     [SerializeField] private Material _material;
+    [SerializeField] private AudioSource _audioSource;
 
     private void Start()
     {
         _enemies = new List<Enemy>(GetComponentsInChildren<Enemy>());
+        _audioSource = GetComponent<AudioSource>();
         EnableEnemies(false);
     }
 
@@ -31,32 +33,41 @@ public class Pause : MonoBehaviour
                 enemiesEnabled |= enemy.gameObject.activeSelf;
             
             if (enemiesEnabled) return;
-            _paused = !_paused;
-
-            if (_paused)
+            if (!_paused)
             {
-                _material.SetFloat("_OldTV", 0.005f);
-                ResetEnemies();
-                EnableColliders(false);
-                EnableEnemies(true);
+                PauseGame();
+                return;
             }
 
-            if (!_paused) 
-            {
-                _material.SetFloat("_OldTV", 0f);
-                StartCoroutine(WaitToEnableColliders(_timeToEnableColliders));
-            }
+            if (_paused) 
+                ResumeGame();
         }
 
         if (_paused)
         {
             if (Input.GetMouseButtonDown(0))
-            {
-                _material.SetFloat("_OldTV", 0f);
-                _paused = false;
-                StartCoroutine(WaitToEnableColliders(_timeToEnableColliders));
-            }
+                ResumeGame();
         }
+    }
+
+    private void PauseGame()
+    {
+        AudioHelper.Instance.SmoothAudio(_audioSource, .3f, .4f, false, true);
+        AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, 0.3f, .5f, false, true);
+        _paused = true;
+        _material.SetFloat("_OldTV", 0.005f);
+        ResetEnemies();
+        EnableColliders(false);
+        EnableEnemies(true);
+    }
+
+    private void ResumeGame()
+    {
+        AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, .8f, .5f, false, true);
+        AudioHelper.Instance.SmoothAudio(_audioSource, 0f, .4f, true, true);
+        _material.SetFloat("_OldTV", 0f);
+        _paused = false;
+        StartCoroutine(WaitToEnableColliders(_timeToEnableColliders));
     }
 
     public void OnGameStart()

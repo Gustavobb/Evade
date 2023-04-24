@@ -21,8 +21,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Material _shaderMaterial;
     private bool onGame;
     public bool OnGame => onGame;
+    private AudioSource _audioSource;
+    public AudioSource _AudioSource => _audioSource;
+    [SerializeField] private AudioSource _startAudioSource;
     
     private void Start() {
+        _audioSource = GetComponent<AudioSource>();
         ActivateMenu();
     }
 
@@ -77,7 +81,9 @@ public class GameManager : MonoBehaviour
     protected void ActivateMenu()
     {
         menuUI.SetActive(true);
+        _startAudioSource.Play();
         onGame = false;
+        StartCoroutine(AnimateLensDistortion());
     }
 
     public void GameOver()
@@ -87,32 +93,84 @@ public class GameManager : MonoBehaviour
         // resetar power ups
     }
 
-    public void CallSlowDown(){
-        StartCoroutine(SlowDown());
+    private IEnumerator AnimateLensDistortion()
+    {
+        float time = 0;
+        float duration = .19f;
+        float startValue = 1f;
+        float endValue = 1.03f;
+        float op = 1f;
+
+        while (Application.isPlaying)
+        {
+            if (time >= duration) op = -1f;
+            if (time <= 0) op = 1f;
+
+            time += op * Time.deltaTime;
+            float value = Mathf.Lerp(startValue, endValue, time / duration);
+            _shaderMaterial.SetFloat("_LensDistortion", value);
+            yield return null;
+        }
+
+        _shaderMaterial.SetFloat("_LensDistortion", 1f);
     }
 
     public void RequestWobble()
     {
         if (!PowerUpManager.Instance.OnPowerUpMenu)
         {
+            GameBounds.Instance.PlaySound();
             _shaderMaterial.SetFloat("_Wobble", 0.007f);
+            _shaderMaterial.SetFloat("_WobbleFrequency", 0.4f);
+            _shaderMaterial.SetFloat("_WobbleAmplitude", 1.18f);
             _shaderMaterial.SetFloat("_OldTV", 0.007f);
         }
+    }
+
+    public void AnimateGreyScale(float start, float end, float duration)
+    {
+        StartCoroutine(AnimateGreyScaleCoroutine(start, end, duration));
+    }
+
+    public IEnumerator AnimateGreyScaleCoroutine(float start, float end, float duration)
+    {
+        float time = 0;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float value = Mathf.Lerp(start, end, time / duration);
+            _shaderMaterial.SetFloat("_GreyScale", value);
+            yield return null;
+        }
+
+        _shaderMaterial.SetFloat("_GreyScale", end);
+    }
+
+    public void SlowDown()
+    {
+        _shaderMaterial.SetFloat("_OldTV", 0.007f);
+    }
+
+    public void StopSlowDown()
+    {
+        _shaderMaterial.SetFloat("_OldTV", 0f);
+    }
+
+    public void RequestPowerUpPP()
+    {
+        _shaderMaterial.SetFloat("_Wobble", 0.007f);
+        _shaderMaterial.SetFloat("_WobbleFrequency", 4.78f);
+        _shaderMaterial.SetFloat("_WobbleAmplitude", 0.89f);
+    }
+
+    public void StopPowerUpPP()
+    {
+        _shaderMaterial.SetFloat("_Wobble", 0f);
     }
 
     public void StopWobble()
     {
         _shaderMaterial.SetFloat("_Wobble", 0f);
         _shaderMaterial.SetFloat("_OldTV", 0f);
-    }
-    
-    public IEnumerator SlowDown(){
-        Time.timeScale = .1f;
-        _shaderMaterial.SetFloat("_ChromaticAberration", 0.01f);
-        yield return new WaitForSeconds(.1f);
-        Player.Instance.isInvencible = false;
-        yield return new WaitForSeconds(.2f);
-        _shaderMaterial.SetFloat("_ChromaticAberration", 0f);
-        Time.timeScale = 1;
     }
 }

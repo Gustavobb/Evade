@@ -6,10 +6,11 @@ using TMPro;
 
 public class WaveManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _waveTimerText;
+    [SerializeField] private TextMeshProUGUI _waveTimerText, _waveTimerTextShadow;
     [SerializeField] private float _waveTimeStart = 10f;
     [SerializeField] private float _waveTimeConstant = 2f;
-    [SerializeField] private UnityEvent _onWaveChange;
+    [SerializeField] private float _timeScale = 1f;
+    [SerializeField] private UnityEvent _onWaveChange, _onWaveStart;
     [SerializeField] private List<Wave> _waves;
     private Wave _currentWave;
 
@@ -45,7 +46,8 @@ public class WaveManager : MonoBehaviour
     private void HandleWaveTime()
     {
         _waveTimerText.text = _waveTime.ToString("F1");
-        _waveTime -= Time.deltaTime;
+        _waveTimerTextShadow.text = _waveTime.ToString("F1");
+        _waveTime -= Time.deltaTime * _timeScale;
 
         if (_waveTime <= 0)
             _onWaveChange?.Invoke();
@@ -60,6 +62,7 @@ public class WaveManager : MonoBehaviour
         _waveTime = _waveTimeStart + _waveTimeConstant * _waveNumber;
         _currentWave = _waves[_waveNumber];
         _currentWave.Setup();
+        _onWaveStart?.Invoke();
     }
 
     public void ResetWaves()
@@ -68,6 +71,11 @@ public class WaveManager : MonoBehaviour
         _currentWave = _waves[_waveNumber];
         _currentWave.Setup();
         _waveTime = _waveTimeStart;
+    }
+
+    public void SetTimeScale(float timeScale)
+    {
+        _timeScale = timeScale;
     }
 
     private void OnApplicationQuit()

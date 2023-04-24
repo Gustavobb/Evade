@@ -48,6 +48,9 @@ public class Palette
 
     public List<EnemyPalette> enemyPalettes = new List<EnemyPalette>();
 
+    public bool randomPlayerColor;
+    public Color playerColor;
+
     public void ApplyPalette(Material shaderMaterial)
     {
         if (randomBackgroundColor) shaderMaterial.SetColor("_Background", Random.ColorHSV());
@@ -55,6 +58,9 @@ public class Palette
 
         foreach (EnemyPalette enemyPalette in enemyPalettes)
             enemyPalette.ApplyPalette(shaderMaterial);
+        
+        if (randomPlayerColor) Player.Instance.Shape.SetColor(Random.ColorHSV());
+        else Player.Instance.Shape.SetColor(playerColor);
     }
 }
 

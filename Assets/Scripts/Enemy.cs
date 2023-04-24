@@ -222,7 +222,7 @@ public class Enemy : MonoBehaviour
         GameManager.Instance.RequestWobble();
         _dead = true;
         _velocity = Vector2.zero;
-        if (_rotate != null) _rotate.enabled = false;
+        if (_rotate != null && _needsToEnterArena) _rotate.enabled = false;
 
         for (int i = 0; i < _shapes.Count; i++)
             _shapes[i].LerpAlpha(1, 0, _timeToDie);

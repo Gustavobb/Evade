@@ -35,15 +35,16 @@ Material:
     - _ColorDecay: 1
     - _FilmGrain: 0
     - _GrainStrength: 17
-    - _HueShift: 0
-    - _LensDistortion: 1
+    - _GreyScale: 0
+    - _HueShift: 0.004
+    - _LensDistortion: 1.015749
     - _LensDistortionStrength: 1
     - _LensDistortionTightness: 0.44
     - _LensZoom: 1
     - _OldTV: 0
     - _OldTVAmplitude: 5
     - _OldTVFrequency: 0.19
-    - _PixelSize: 5.3
+    - _PixelSize: 7.1
     - _Pixelate: 0
     - _ScreenShake: 0
     - _ScreenShakeAmplitude: 0.11
@@ -55,7 +56,7 @@ Material:
     - _WobbleAmplitude: 1.18
     - _WobbleFrequency: 0.4
     m_Colors:
-    - _Background: {r: 1, g: 0.8235294, b: 0.5411765, a: 0}
+    - _Background: {r: 1, g: 0.8235294, b: 0.5411765, a: 1}
     - _OldTVXY: {r: 1, g: 1, b: 0, a: 0}
     - _ScreenShakeXY: {r: 1, g: 0, b: 0, a: 0}
     - _ShadowColor: {r: 0.305, g: 0.305, b: 0.305, a: 1}

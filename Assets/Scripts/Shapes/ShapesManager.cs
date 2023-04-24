@@ -15,10 +15,10 @@ public class ShapesManager : MonoBehaviour
     [SerializeField] private List<Rectangle> _rectanglesList = new List<Rectangle>();
     [SerializeField] private HashSet<Rectangle> _rectangles = new HashSet<Rectangle>();
     
-    private Vector4[] _shapesProperties = new Vector4[50];
-    private Vector4[] _shapesExtra = new Vector4[50];
-    private Color[] _shapesColors = new Color[50];
-    private float[] _sortOrders = new float[50];
+    private Vector4[] _shapesProperties = new Vector4[100];
+    private Vector4[] _shapesExtra = new Vector4[100];
+    private Color[] _shapesColors = new Color[100];
+    private float[] _sortOrders = new float[100];
 
     private static ShapesManager _instance;
     public static ShapesManager Instance

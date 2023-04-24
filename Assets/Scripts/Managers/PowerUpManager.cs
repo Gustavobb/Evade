@@ -52,11 +52,15 @@ public class PowerUpManager : MonoBehaviour
             foreach (Transform child in transform)
                 child.gameObject.SetActive(false);
             _onPowerUpMenu = false;
+            GameManager.Instance.StopPowerUpPP();
+            AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, .8f, .5f, false, true);
         }
     }
 
     public void OpenChoiceMenu()
     {
+        AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, 0.3f, .5f, false, true);
+
         _onPowerUpMenu = true;
         Cursor.visible = true;
         transform.position = new Vector3(_xAnimation, transform.position.y, transform.position.z);
@@ -75,7 +79,8 @@ public class PowerUpManager : MonoBehaviour
             powerUpCard.powerUp = allPowerUps[index];
         }
 
-        StartCoroutine(MenuAnimation(.2f, _xAnimation, 0, true));
+        GameManager.Instance.RequestPowerUpPP();
+        StartCoroutine(MenuAnimation(.5f, _xAnimation, 0, true));
     }
 
     public void SelectPowerUp(GenericPowerUp powerUp)
@@ -88,6 +93,6 @@ public class PowerUpManager : MonoBehaviour
     {
         Cursor.visible = false;
         WaveManager.Instance.SetupWave();
-        StartCoroutine(MenuAnimation(.2f, 0, _xAnimation, false));
+        StartCoroutine(MenuAnimation(.5f, 0, _xAnimation, false));
     }
 }

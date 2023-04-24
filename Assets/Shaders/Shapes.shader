@@ -6,6 +6,7 @@ Shader "Unlit/Shapes"
         _PrevFrame ("Previous Frame", 2D) = "white" {}
         _ColorDecay ("Color Decay", Range(0, 1)) = 0.01
         _Background ("Background", Color) = (0, 0, 0, 1)
+        _GreyScale ("Grey Scale", Range(0, 1)) = 0.0
         _Shadow ("Shadow", Range(0, 1)) = 0.0
         _ShadowColor ("Shadow Color", Color) = (0.5, 0.5, 0.5, 1)
         _ShadowOffset ("Shadow Offset", Range(0, 1)) = 0.01
@@ -58,6 +59,7 @@ Shader "Unlit/Shapes"
             sampler2D _PrevFrame;
             float _ColorDecay;
             float4 _Background;
+            float _GreyScale;
             float _Shadow;
             fixed4 _ShadowColor;
             float _ShadowOffset;
@@ -83,17 +85,17 @@ Shader "Unlit/Shapes"
 
             // Circles: x, y, radius, scale and color
             int _CirclesCount;
-            float4 _CirclesProperties[50];
-            float4 _CirclesExtra[50];
-            float4 _CirclesColor[50];
-            float _CirclesSortOrder[50];
+            float4 _CirclesProperties[100];
+            float4 _CirclesExtra[100];
+            float4 _CirclesColor[100];
+            float _CirclesSortOrder[100];
 
             // Rectangles: x, y, width, height and color
             int _RectanglesCount;
-            float4 _RectanglesProperties[50];
-            float4 _RectanglesExtra[50];
-            float4 _RectanglesColor[50];
-            float _RectanglesSortOrder[50];
+            float4 _RectanglesProperties[100];
+            float4 _RectanglesExtra[100];
+            float4 _RectanglesColor[100];
+            float _RectanglesSortOrder[100];
             
             v2f vert (appdata v)
             {
@@ -336,6 +338,13 @@ Shader "Unlit/Shapes"
                 
                 if (_HueShift > 0)
                     col = HueShift(col.rgb);
+                
+                if (_GreyScale > 0)
+                {
+                    float grey = dot(col.rgb, float3(0.299, 0.587, 0.114));
+                    col = lerp(col, grey, _GreyScale);
+                    col.a = 1;
+                }
 
                 return col;
             }
