@@ -20,11 +20,12 @@ public class PowerUpManager : MonoBehaviour
     public bool OnPowerUpMenu => _onPowerUpMenu;
     [SerializeField] private List<Shape> _shapes = new List<Shape>();
     
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        allPowerUps.Add(new LifeUpPowerUp("LifeUpPowerUp", true, 1));
-        allPowerUps.Add(new SizeUpPowerUp("SizeUpPowerUp", true, 1));
+        allPowerUps.Add(new LifeUpPowerUp("LifeUpPowerUp", true, 1, 0 ,0));
+        allPowerUps.Add(new SizeUpPowerUp("SizeUpPowerUp", true, 1, 0, 0));
+        // allPowerUps.Add(new SlowDownPowerUp("SlowDownPowerUp", true, 1, 10, 100));
+
         GetAllShapesFromChildren();
     }
 

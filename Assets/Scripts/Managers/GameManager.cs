@@ -28,12 +28,18 @@ public class GameManager : MonoBehaviour
     private void Start() {
         _audioSource = GetComponent<AudioSource>();
         ActivateMenu();
+        _shaderMaterial.SetFloat("_ChromaticAberration", 0f);
+        _shaderMaterial.SetFloat("_ScreenShake", 0f);
+        _shaderMaterial.SetFloat("_Wobble", 0f);
+        _shaderMaterial.SetFloat("_OldTV", 0f);
+        _shaderMaterial.SetFloat("_GreyScale", 0);
     }
 
     private void Update()
     {
         HandleReset();
         HandleMenu();
+        HandleClosestEnemy();
     }
 
     private void HandleReset()
@@ -46,6 +52,25 @@ public class GameManager : MonoBehaviour
             {
                 Player.Instance.Reset();
                 EnemyManager.Instance.Reset(false);
+            }
+        }
+    }
+
+    public void HandleClosestEnemy()
+    {
+        bool haveSlowDown=false;
+        int slowDownPowerUpIndex=0;
+        for (int i=0; i < Inventory.Instance.powerUps.Count; i++)
+        {
+            if (Inventory.Instance.powerUps[i].GetName() == "SlowDownPowerUp"){
+                haveSlowDown = true;
+                slowDownPowerUpIndex = i;
+            }
+        }
+        if (Player.Instance.GetClosestEnemy()!=null){
+            if ((Player.Instance.GetClosestEnemy().GetToPlayer().magnitude <= 1.5f)&(haveSlowDown)){
+                Inventory.Instance.powerUps[slowDownPowerUpIndex].ActivatePowerUp();
+                print(Inventory.Instance.powerUps[slowDownPowerUpIndex].cooldownTimer);
             }
         }
     }

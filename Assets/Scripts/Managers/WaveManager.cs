@@ -14,10 +14,10 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private List<Wave> _waves;
     private Wave _currentWave;
 
-    private float _waveTime;
     [SerializeField] private int _waveNumber = 0;
     [SerializeField] private EnemyData _enemyData;
     public EnemyData EnemyData => _enemyData;
+    public float _waveTime;
 
     private static WaveManager _instance;
     public static WaveManager Instance
@@ -38,7 +38,7 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
-        if (Player.Instance == null || !GameManager.Instance.OnGame || Pause.Paused || PowerUpManager.Instance.OnPowerUpMenu) return;
+        if (Player.Instance == null || !GameManager.Instance.OnGame || Pause.Paused || PowerUpManager.Instance.OnPowerUpMenu || Player.Instance.IsInvincible) return;
         HandleWaveTime();
         _currentWave.WaveLogic();
     }

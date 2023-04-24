@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.Instance.OnGame || Pause.Paused || _dead || PowerUpManager.Instance.OnPowerUpMenu) return;
+        if (!GameManager.Instance.OnGame || Pause.Paused || _dead || PowerUpManager.Instance.OnPowerUpMenu || Player.Instance.IsInvincible) return;
 
         if (Player.Instance == null || Player.Instance.gameObject.activeSelf == false)
             return;

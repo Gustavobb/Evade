@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     private Collider2D _collider;
     private Shape _shape;
     private bool _isInvincible = false;
+    public bool IsInvincible => _isInvincible;
     public Shape Shape => _shape;
     private AudioSource _audioSource;
 
@@ -59,6 +60,11 @@ public class Player : MonoBehaviour
         if (enemy.GetToPlayer().magnitude < _closestEnemy.GetToPlayer().magnitude)
             _closestEnemy = enemy;
     }
+
+    public Enemy GetClosestEnemy(){
+        return _closestEnemy;
+    }
+
 
     public void Reset()
     {

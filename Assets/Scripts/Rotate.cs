@@ -52,6 +52,7 @@ public class Rotate : MonoBehaviour
 
     private void Update()
     {
+        if (Player.Instance.IsInvincible) return;
         if (PowerUpManager.Instance.OnPowerUpMenu) return;
         if ((Pause.Paused || !GameManager.Instance.OnGame) && !_playInPause) return;
         if (_circularRotation) CircularRotation();
