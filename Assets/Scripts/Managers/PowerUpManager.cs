@@ -38,6 +38,7 @@ public class PowerUpManager : MonoBehaviour
     private IEnumerator MenuAnimation(float time, float start, float end, bool open)
     {
         float elapsedTime = 0;
+        GameManager.Instance.RequestPowerUpPP();
 
         while (elapsedTime < time)
         {
@@ -54,13 +55,13 @@ public class PowerUpManager : MonoBehaviour
                 child.gameObject.SetActive(false);
             _onPowerUpMenu = false;
             GameManager.Instance.StopPowerUpPP();
-            AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, .8f, .5f, false, true);
+            AudioHelper.Instance.SmoothLowPass(1f, .5f);
         }
     }
 
     public void OpenChoiceMenu()
     {
-        AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, 0.3f, .5f, false, true);
+        AudioHelper.Instance.SmoothLowPass(0.1f, .5f);
 
         _onPowerUpMenu = true;
         Cursor.visible = true;
@@ -80,7 +81,6 @@ public class PowerUpManager : MonoBehaviour
             powerUpCard.powerUp = allPowerUps[index];
         }
 
-        GameManager.Instance.RequestPowerUpPP();
         StartCoroutine(MenuAnimation(.5f, _xAnimation, 0, true));
     }
 

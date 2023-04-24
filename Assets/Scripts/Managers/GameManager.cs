@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField] private UnityEvent _onGameStart;
-    [SerializeField] private GameObject menuUI;
+    [SerializeField] private GameObject menuUI, volumeUI;
     
     [SerializeField] private Material _shaderMaterial;
     private bool onGame;
@@ -30,12 +30,13 @@ public class GameManager : MonoBehaviour
         ActivateMenu();
         _shaderMaterial.SetFloat("_ChromaticAberration", 0f);
         _shaderMaterial.SetFloat("_ScreenShake", 0f);
+        _shaderMaterial.SetFloat("_ColorDecay", 1f);
         _shaderMaterial.SetFloat("_Wobble", 0f);
         _shaderMaterial.SetFloat("_OldTV", 0f);
         _shaderMaterial.SetFloat("_GreyScale", 0);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         HandleReset();
         HandleMenu();
@@ -99,6 +100,7 @@ public class GameManager : MonoBehaviour
     private void DestroyMenu()
     {
         _onGameStart.Invoke();
+        volumeUI.SetActive(false);
         menuUI.SetActive(false);
         onGame = true;
     }
@@ -106,6 +108,7 @@ public class GameManager : MonoBehaviour
     protected void ActivateMenu()
     {
         menuUI.SetActive(true);
+        volumeUI.SetActive(true);
         _startAudioSource.Play();
         onGame = false;
         StartCoroutine(AnimateLensDistortion());
@@ -145,57 +148,60 @@ public class GameManager : MonoBehaviour
         if (!PowerUpManager.Instance.OnPowerUpMenu)
         {
             GameBounds.Instance.PlaySound();
-            _shaderMaterial.SetFloat("_Wobble", 0.007f);
+            AnimateMaterial("_Wobble", 0f, 0.007f, 0.2f);
             _shaderMaterial.SetFloat("_WobbleFrequency", 0.4f);
-            _shaderMaterial.SetFloat("_WobbleAmplitude", 1.18f);
-            _shaderMaterial.SetFloat("_OldTV", 0.007f);
+            _shaderMaterial.SetFloat("_WobbleAmplitude", 0.7f);
+            AnimateMaterial("_OldTV", 0f, 0.004f, 0.2f);
         }
     }
 
-    public void AnimateGreyScale(float start, float end, float duration)
+    public void AnimateMaterial(string name, float start, float end, float duration)
     {
-        StartCoroutine(AnimateGreyScaleCoroutine(start, end, duration));
+        StartCoroutine(AnimateMaterialCoroutine(name, start, end, duration));
     }
 
-    public IEnumerator AnimateGreyScaleCoroutine(float start, float end, float duration)
+    public IEnumerator AnimateMaterialCoroutine(string name, float start, float end, float duration)
     {
         float time = 0;
         while (time < duration)
         {
             time += Time.deltaTime;
             float value = Mathf.Lerp(start, end, time / duration);
-            _shaderMaterial.SetFloat("_GreyScale", value);
+            _shaderMaterial.SetFloat(name, value);
             yield return null;
         }
 
-        _shaderMaterial.SetFloat("_GreyScale", end);
+        _shaderMaterial.SetFloat(name, end);
     }
 
     public void SlowDown()
     {
+        _shaderMaterial.SetFloat("_ColorDecay", .2f);
         _shaderMaterial.SetFloat("_OldTV", 0.007f);
     }
 
     public void StopSlowDown()
     {
+        _shaderMaterial.SetFloat("_ColorDecay", 1f);
         _shaderMaterial.SetFloat("_OldTV", 0f);
     }
 
     public void RequestPowerUpPP()
     {
-        _shaderMaterial.SetFloat("_Wobble", 0.007f);
+        AnimateMaterial("_Wobble", 0f, 0.007f, 0.2f);
         _shaderMaterial.SetFloat("_WobbleFrequency", 4.78f);
         _shaderMaterial.SetFloat("_WobbleAmplitude", 0.89f);
     }
 
     public void StopPowerUpPP()
     {
-        _shaderMaterial.SetFloat("_Wobble", 0f);
+        AnimateMaterial("_Wobble", 0.007f, 0f, 0.2f);
     }
 
     public void StopWobble()
     {
-        _shaderMaterial.SetFloat("_Wobble", 0f);
-        _shaderMaterial.SetFloat("_OldTV", 0f);
+        if (PowerUpManager.Instance.OnPowerUpMenu) return;
+        AnimateMaterial("_Wobble", 0.007f, 0f, 0.2f);
+        if (!Player.Instance.IsInvincible) AnimateMaterial("_OldTV", 0.004f, 0f, 0.2f);
     }
 }

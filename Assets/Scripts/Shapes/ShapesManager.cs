@@ -120,7 +120,8 @@ public class ShapesManager : MonoBehaviour
 
             count++;
         }
-
+        
+        // print($"Shapes count {name}: {count}");
         _shapesMaterial.SetInt($"_{name}Count", count);
         _shapesMaterial.SetVectorArray($"_{name}Properties", _shapesProperties);
         _shapesMaterial.SetVectorArray($"_{name}Extra", _shapesExtra);

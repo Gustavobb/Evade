@@ -10,6 +10,7 @@ public class Pause : MonoBehaviour
     [SerializeField] private float _timeToEnableColliders = .2f;
     [SerializeField] private Material _material;
     [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private GameObject _volumeUI;
 
     private void Start()
     {
@@ -52,10 +53,14 @@ public class Pause : MonoBehaviour
 
     private void PauseGame()
     {
+        _volumeUI.SetActive(true);
         AudioHelper.Instance.SmoothAudio(_audioSource, .3f, .4f, false, true);
-        AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, 0.3f, .5f, false, true);
         _paused = true;
-        _material.SetFloat("_OldTV", 0.005f);
+        AudioHelper.Instance.SmoothLowPass(0.1f, .5f);
+
+        if (!Player.Instance.IsInvincible)
+            GameManager.Instance.AnimateMaterial("_OldTV", 0, 0.005f, .2f);
+
         ResetEnemies();
         EnableColliders(false);
         EnableEnemies(true);
@@ -63,9 +68,13 @@ public class Pause : MonoBehaviour
 
     private void ResumeGame()
     {
-        AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, .8f, .5f, false, true);
+        _volumeUI.SetActive(false);
         AudioHelper.Instance.SmoothAudio(_audioSource, 0f, .4f, true, true);
-        _material.SetFloat("_OldTV", 0f);
+        AudioHelper.Instance.SmoothLowPass(1f, .5f);
+
+        if (!Player.Instance.IsInvincible)
+            GameManager.Instance.AnimateMaterial("_OldTV", 0.005f, 0, .2f);
+        
         _paused = false;
         StartCoroutine(WaitToEnableColliders(_timeToEnableColliders));
     }

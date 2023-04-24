@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioHelper : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class AudioHelper : MonoBehaviour
             return _instance;
         }
     }
+    
+    [SerializeField] private AudioMixer _audioMixer;
 
     public void SmoothAudio(AudioSource audioSource, float targetVar, float duration, bool stop, bool volume)
     {
@@ -40,5 +43,40 @@ public class AudioHelper : MonoBehaviour
 
         if (stop && audioSource.isPlaying)
             audioSource.Stop();
+    }
+
+    public void SmoothLowPass(float targetVar, float duration)
+    {
+        StartCoroutine(SmoothLowPassFilter(targetVar, duration));
+    }
+
+    public IEnumerator SmoothLowPassFilter(float targetVar, float duration)
+    {
+        float initialVar = _audioMixer.GetFloat("MasterFreq", out float value) ? value : 0;
+        float max = 22000;
+        initialVar /= max;
+
+        float time = 0;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float val = Mathf.Lerp(initialVar, targetVar, time / duration);
+            SetMasterFreq(val);
+            yield return null;
+        }
+
+        SetMasterFreq(targetVar);
+    }
+
+    public void SetMasterVolume(float volume)
+    {
+        _audioMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
+    }
+
+    public void SetMasterFreq(float freq)
+    {
+        float max = 22000;
+        freq *= max;
+        _audioMixer.SetFloat("MasterFreq", freq);
     }
 }

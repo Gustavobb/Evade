@@ -220,6 +220,7 @@ public class Enemy : MonoBehaviour
     private IEnumerator DieCoroutine()
     {
         GameManager.Instance.RequestWobble();
+
         _dead = true;
         _velocity = Vector2.zero;
         if (_rotate != null && _needsToEnterArena) _rotate.enabled = false;

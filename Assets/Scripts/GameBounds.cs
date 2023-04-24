@@ -36,6 +36,6 @@ public class GameBounds : MonoBehaviour
     public void PlaySound()
     {
         _audioSource.pitch = Random.Range(0.8f, 1.2f);
-        _audioSource.Play();
+        _audioSource.PlayOneShot(_audioSource.clip);
     }
 }

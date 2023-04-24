@@ -70,7 +70,8 @@ public class ClockManager : MonoBehaviour
     {
         _enemyData.MultiplySpeed(_timeScale);
         WaveManager.Instance.SetTimeScale(_timeScale);
-        GameManager.Instance.AnimateGreyScale(0f, 1f, .3f);
+        GameManager.Instance.AnimateMaterial("_GreyScale", 0f, 1f, .3f);
+        GameManager.Instance.AnimateMaterial("_ColorDecay", 1f, .2f, .3f);
         AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, _timeScale, .4f, false, false);
         
         float timer = 0f;
@@ -87,7 +88,8 @@ public class ClockManager : MonoBehaviour
         WaveManager.Instance.SetTimeScale(1f);
         _enemyData.MultiplySpeed(1f);
         GameManager.Instance.StopSlowDown();
-        GameManager.Instance.AnimateGreyScale(1f, 0f, .3f);
+        GameManager.Instance.AnimateMaterial("_GreyScale", 1f, 0f, .3f);
+        GameManager.Instance.AnimateMaterial("_ColorDecay", .2f, 1f, .3f);
         AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, 1, .4f, false, false);
     }
 }
