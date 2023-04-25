@@ -20,6 +20,7 @@ public class PowerUpManager : MonoBehaviour
     [SerializeField] private bool _onPowerUpMenu;
     public bool OnPowerUpMenu => _onPowerUpMenu;
     [SerializeField] private List<Shape> _shapes = new List<Shape>();
+    public List<GameObject> noPowerUpPrefabs = new List<GameObject>();
     
     private void Start()
     {
@@ -28,7 +29,8 @@ public class PowerUpManager : MonoBehaviour
         allPowerUps.Add(new AddClockPowerUp("AddClockPowerUp", true, 0, 0, 0));
         allPowerUps.Add(new EnemySpeedDownPowerUp("EnemySpeedDownPowerUp", true, 0, 0, 0));
         allPowerUps.Add(new EnemySizeDownPowerUp("EnemySizeDownPowerUp", true, 0, 0, 0));
-        // allPowerUps.Add(new SlowDownPowerUp("SlowDownPowerUp", true, 1, 10, 100));
+        allPowerUps.Add(new GuardianPowerUp("GuardianPowerUp", true, 0, 0, 0));
+        allPowerUps.Add(new GuardianSizeUpPowerUp("GuardianSizeUpPowerUp", true, 0, 0, 0));
 
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -38,11 +40,16 @@ public class PowerUpManager : MonoBehaviour
                 powerUpCards.Add(powerUpCard);
        }
 
+        foreach (GameObject noPowerUpPrefab in noPowerUpPrefabs)
+            noPowerUpPrefab.SetActive(false);
+
         GetAllShapesFromChildren();
     }
 
     public void AddPowerUp(GenericPowerUp powerUp){
-        powerUp.ObtainPowerUp();
+        if (powerUp != null)
+            powerUp.ObtainPowerUp();
+        
         PowerUpManager.Instance.CloseChoiceMenu();
     }
 
@@ -94,23 +101,28 @@ public class PowerUpManager : MonoBehaviour
         _onPowerUpMenu = true;
         Cursor.visible = true;
         transform.position = new Vector3(_xAnimation, transform.position.y, transform.position.z);
-        if(possiblePowerUps.Count != 0){
-        // fazer inimigos sumirem
-            for (int i = 0; i < possiblePowerUps.Count; i++)
-            {
-                Transform child = powerUpCards[i].transform;
-                child.gameObject.SetActive(true);
+        transform.GetChild(0).gameObject.SetActive(true);
 
-                PowerUpCard powerUpCard = powerUpCards[i];
-                
+        for (int i = 0; i < powerUpCards.Count; i++)
+        {
+            Transform child = powerUpCards[i].transform;
+            child.gameObject.SetActive(true);
+
+            PowerUpCard powerUpCard = powerUpCards[i];
+
+            GameObject icon;
+            icon = noPowerUpPrefabs[i];
+            if (possiblePowerUps.Count > 0)
+            {
                 int index = Random.Range(0, possiblePowerUps.Count);
                 powerUpCard.powerUp = possiblePowerUps[index];
-                GameObject icon = possiblePowerUps[index].icon;
-                icon.transform.position = child.transform.position;
-                icon.transform.parent = child.transform;
-                icon.SetActive(true);
+                icon = possiblePowerUps[index].icon;
                 possiblePowerUps.RemoveAt(index);
             }
+
+            icon.transform.position = child.transform.position;
+            icon.transform.parent = child.transform;
+            icon.SetActive(true);
         }
         StartCoroutine(MenuAnimation(.5f, _xAnimation, 0, true));
     }

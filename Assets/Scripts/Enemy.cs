@@ -219,11 +219,11 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator DieCoroutine()
     {
+        _dead = true;
         GameBounds.Instance.PlaySound();
         bool canWobble = !GameManager.Instance.wobbling;
         if (canWobble) GameManager.Instance.RequestWobble();
 
-        _dead = true;
         _velocity = Vector2.zero;
         if (_rotate != null && _needsToEnterArena) _rotate.enabled = false;
 
@@ -232,8 +232,8 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(_timeToDie);
         if (canWobble) GameManager.Instance.StopWobble();
-        gameObject.SetActive(false);
         Reset(Vector3.zero);
+        gameObject.SetActive(false);
     }
 
     public void Die()
@@ -274,6 +274,7 @@ public class Enemy : MonoBehaviour
 
     public void HandleCollision(Collider2D other)
     {
+        if (_dead) return;
         if (other.CompareTag("Bounds"))
         {
             if (!_isInsideArena)
@@ -289,6 +290,13 @@ public class Enemy : MonoBehaviour
 
                 HandleBoundsCollision(other);
             }
+        }
+
+        else if (other.CompareTag("Guardian"))
+        {
+            Guardian guardian = other.GetComponent<Guardian>();
+            guardian.Hit();
+            Die();
         }
     }
 }

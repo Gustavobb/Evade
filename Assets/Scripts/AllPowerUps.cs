@@ -22,35 +22,13 @@ public class LifeUpPowerUp: GenericPowerUp{
 
     public override void ObtainPowerUp(){
         base.ObtainPowerUp();
-        Player.Instance.lifes ++;
+        LifesManager.Instance.GainLife();
     }
 
     public override bool CheckCondition(){
-        return Player.Instance.lifes <= 5f;
+        return LifesManager.Instance._lifesCount < LifesManager.Instance.MAX_LIFES;
     }
 }
-
-// [System.Serializable]
-// public class SlowDownPowerUp: GenericPowerUp{
-
-//     public SlowDownPowerUp(string name, bool isActive, int quantity, float cooldown, float cooldownTimer):base(name, isActive, quantity, cooldown, cooldownTimer){}
-
-//     public override void ObtainPowerUp(){
-//         base.ObtainPowerUp();
-//         this.cooldown = 11 - quantity*1;
-//     }
-
-//     public override void ActivatePowerUp(){
-//         if(this.cooldownTimer >= WaveManager.Instance._waveTime+cooldown){
-//             this.cooldownTimer = WaveManager.Instance._waveTime;
-//         }
-//     }
-
-//     public override bool CheckCondition(){
-//         return ClockManager.Instance._clockCount < ClockManager.Instance.MAX_CLOCKS;
-//     }
-// }
-
 
 [System.Serializable]
 public class AddClockPowerUp: GenericPowerUp{
@@ -105,10 +83,25 @@ public class GuardianPowerUp: GenericPowerUp{
 
     public override void ObtainPowerUp(){
         base.ObtainPowerUp();
-        
+        GuardianManager.Instance.AddGuardian();
     }
 
     public override bool CheckCondition(){
-        return EnemyManager.Instance.enemyData.sizeMultiplierPowerUp > .3f;
+        return GuardianManager.Instance._guardianCount < GuardianManager.Instance.MAX_GUARDIANS;
+    }
+}
+
+[System.Serializable]
+public class GuardianSizeUpPowerUp: GenericPowerUp{
+
+    public GuardianSizeUpPowerUp(string name, bool isActive, int quantity, float cooldown, float cooldownTimer):base(name, isActive, quantity, cooldown, cooldownTimer){}
+
+    public override void ObtainPowerUp(){
+        base.ObtainPowerUp();
+        GuardianManager.Instance.guardianData.MultiplySizePowerUp(0.05f);
+    }
+
+    public override bool CheckCondition(){
+        return GuardianManager.Instance.guardianData.sizeMultiplierPowerUp < 1.7f && GuardianManager.Instance._guardianCount > 0;
     }
 }

@@ -16,6 +16,7 @@ public class WaveManager : MonoBehaviour
 
     [SerializeField] private int _waveNumber = 0;
     [SerializeField] private EnemyData _enemyData;
+    [SerializeField] private GuardianData _guardianData;
     public EnemyData EnemyData => _enemyData;
     public float _waveTime;
 
@@ -81,6 +82,7 @@ public class WaveManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         _enemyData.Reset();
+        _guardianData.Reset();
     }
 }
 
@@ -98,6 +100,7 @@ public class Wave
     
     public void Setup()
     {
+        spawnRateCountdown = 0f;
         EnemyManager.Instance.ChangeMaxActiveEnemies(maxEnemyCount);
         WaveManager.Instance.EnemyData.MultiplySpeed(enemySpeedMultiplier);
         WaveManager.Instance.EnemyData.MultiplySize(enemySizeMultiplier);

@@ -47,6 +47,7 @@ public class Palette
     public Color backgroundColor;
 
     public List<EnemyPalette> enemyPalettes = new List<EnemyPalette>();
+    public List<Guardian> guardians = new List<Guardian>();
 
     public bool randomPlayerColor;
     public Color playerColor;
@@ -61,6 +62,9 @@ public class Palette
         
         if (randomPlayerColor) Player.Instance.Shape.SetColor(Random.ColorHSV());
         else Player.Instance.Shape.SetColor(playerColor);
+
+        foreach (Guardian guardian in guardians)
+            guardian.SetColor(Player.Instance.Shape.GetColor(), (Shape.ColorType) Player.Instance.Shape.GetColorType());
     }
 }
 

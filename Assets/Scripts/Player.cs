@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     }
 
     private Enemy _closestEnemy;
-    public int lifes;
     [SerializeField] private int _invencibilityCycles = 10;
     [SerializeField] private float _invencibilityTime = 1f;
 
@@ -124,13 +123,14 @@ public class Player : MonoBehaviour
             _audioSource.pitch = Random.Range(.9f, 1.1f);
             _audioSource.Play();
             GameManager.Instance.ShakeScreen(.15f);
-            if (lifes <= 0) 
+            
+            if (LifesManager.Instance._lifesCount <= 0) 
             {
                 Die();
                 return;
             }
 
-            lifes --;
+            LifesManager.Instance.LoseLife();
             StartCoroutine(Invincible());
         }
         
@@ -139,13 +139,14 @@ public class Player : MonoBehaviour
             _audioSource.pitch = Random.Range(.9f, 1.1f);
             _audioSource.Play();
             GameManager.Instance.ShakeScreen(.15f);
-            if (lifes <= 0) 
+
+            if (LifesManager.Instance._lifesCount <= 0) 
             {
                 Die();
                 return;
             }
 
-            lifes --;
+            LifesManager.Instance.LoseLife();
             StartCoroutine(Invincible());
         }
     }

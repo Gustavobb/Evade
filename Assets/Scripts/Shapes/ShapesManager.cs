@@ -13,9 +13,9 @@ public class ShapesManager : MonoBehaviour
     // Rectangles
     [SerializeField] private HashSet<Rectangle> _rectangles = new HashSet<Rectangle>();
     
-    private Vector4[] _shapesProperties = new Vector4[60];
-    private Vector4[] _shapesExtra = new Vector4[60];
-    private Color[] _shapesColors = new Color[60];
+    private Vector4[] _shapesProperties = new Vector4[100];
+    private Vector4[] _shapesExtra = new Vector4[100];
+    private Color[] _shapesColors = new Color[100];
 
     private static ShapesManager _instance;
     public static ShapesManager Instance
@@ -90,7 +90,11 @@ public class ShapesManager : MonoBehaviour
 
         foreach (T shape in shapes)
         {
-            if (count >= shapes.Count) break;
+            if (count >= shapes.Count)
+            {
+                Debug.LogWarning($"Too many {name} to render");
+                break;
+            }
             if (!shape.gameObject.activeInHierarchy) continue;
             shapeProperties = shape.GetProperties();
             _shapesProperties[count] = shapeProperties;
@@ -104,7 +108,6 @@ public class ShapesManager : MonoBehaviour
             count++;
         }
         
-        print($"Shapes count {name}: {count}");
         _shapesMaterial.SetInt($"_{name}Count", count);
         _shapesMaterial.SetVectorArray($"_{name}Properties", _shapesProperties);
         _shapesMaterial.SetVectorArray($"_{name}Extra", _shapesExtra);

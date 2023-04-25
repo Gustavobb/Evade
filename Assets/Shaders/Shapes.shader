@@ -85,15 +85,15 @@ Shader "Unlit/Shapes"
 
             // Circles: x, y, radius, scale and color
             int _CirclesCount;
-            float4 _CirclesProperties[60];
-            float4 _CirclesExtra[60];
-            float4 _CirclesColor[60];
+            float4 _CirclesProperties[100];
+            float4 _CirclesExtra[100];
+            float4 _CirclesColor[100];
 
             // Rectangles: x, y, width, height and color
             int _RectanglesCount;
-            float4 _RectanglesProperties[60];
-            float4 _RectanglesExtra[60];
-            float4 _RectanglesColor[60];
+            float4 _RectanglesProperties[100];
+            float4 _RectanglesExtra[100];
+            float4 _RectanglesColor[100];
 
             #define MAX_COLOR_TYPES 2
             v2f vert (appdata v)
@@ -182,7 +182,7 @@ Shader "Unlit/Shapes"
                         if (IsPointInCircle(uv, shadowCenter, _CirclesProperties[k].z))
                         {
                             hitInfo.highestSortOrder = _CirclesExtra[k].w;
-                            hitInfo.col = _CirclesExtra[k].x ? 0 : _ShadowColor;
+                            hitInfo.col = _ShadowColor;
                             hitInfo.col = lerp(oc, hitInfo.col, _CirclesColor[k].a);
                             hitInfo.hit = true;
                         }

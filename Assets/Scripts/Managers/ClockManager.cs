@@ -9,6 +9,7 @@ public class ClockManager : MonoBehaviour
     [SerializeField] private float _timeScale = 0.5f;
     [SerializeField] private float _duration = 5f;
     [SerializeField] private EnemyData _enemyData;
+    [SerializeField] private GuardianData _guardianData;
     private int _clocksActive = 0;
     private AudioSource _audioSource;
 
@@ -62,14 +63,24 @@ public class ClockManager : MonoBehaviour
     public void WaveReset()
     {
         _clocksActive = _clockCount;
-        for (int i = 0; i < _clocksActive; i++)
+        for (int i = 0; i < _clocks.Count; i++)
+        {
+            if (i >= _clockCount) 
+            {
+                _clocks[i].SetActive(false);
+                continue;
+            }
+            
             _clocks[i].SetActive(true);
+        }
     }
 
     private IEnumerator SlowDownCoroutine()
     {
         float enemySpeed = _enemyData.speedMultiplier;
+        float guardianSpeed = _enemyData.speedMultiplier;
         _enemyData.MultiplySpeed(_timeScale);
+        _guardianData.MultiplySpeed(_timeScale);
         WaveManager.Instance.SetTimeScale(_timeScale);
         GameManager.Instance.AnimateMaterial("_GreyScale", 0f, 1f, .3f);
         GameManager.Instance.AnimateMaterial("_ColorDecay", 1f, .2f, .3f);
@@ -88,6 +99,7 @@ public class ClockManager : MonoBehaviour
         
         WaveManager.Instance.SetTimeScale(1f);
         _enemyData.MultiplySpeed(enemySpeed);
+        _guardianData.MultiplySpeed(guardianSpeed);
         GameManager.Instance.StopSlowDown();
         GameManager.Instance.AnimateMaterial("_GreyScale", 1f, 0f, .3f);
         GameManager.Instance.AnimateMaterial("_ColorDecay", .2f, 1f, .3f);
