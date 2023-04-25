@@ -6,7 +6,7 @@ using TMPro;
 
 public class WaveManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _waveTimerText, _waveTimerTextShadow;
+    [SerializeField] private TextMeshProUGUI _waveTimerText, _waveTimerTextShadow, _waveCountText, _waveCountTextShadow;
     [SerializeField] private float _waveTimeStart = 10f;
     [SerializeField] private float _waveTimeConstant = 2f;
     [SerializeField] private float _timeScale = 1f;
@@ -14,7 +14,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private List<Wave> _waves;
     private Wave _currentWave;
 
-    [SerializeField] private int _waveNumber = 0;
+    [SerializeField] private int _waveNumber = 0, _waveNumberTotal = 1;
     [SerializeField] private EnemyData _enemyData;
     [SerializeField] private GuardianData _guardianData;
     public EnemyData EnemyData => _enemyData;
@@ -38,6 +38,8 @@ public class WaveManager : MonoBehaviour
         _waveTime = _waveTimeStart;
         _currentWave = _waves[_waveNumber];
         _currentWave.Setup();
+        _waveCountText.text = $"WAVE {_waveNumberTotal}";
+        _waveCountTextShadow.text = $"WAVE {_waveNumberTotal}";
     }
 
     private void Update()
@@ -62,6 +64,10 @@ public class WaveManager : MonoBehaviour
         _currentWave.VanishWave();
 
         _waveNumber ++;
+        _waveNumberTotal ++;
+        _waveCountText.text = $"WAVE {_waveNumberTotal}";
+        _waveCountTextShadow.text = $"WAVE {_waveNumberTotal}";
+
         if (_waveNumber == 1 && !_pastWave2)
         {
             _pastWave2 = true;
@@ -89,6 +95,9 @@ public class WaveManager : MonoBehaviour
     public void ResetWaves()
     {
         _waveNumber = 0;
+        _waveNumberTotal = 1;
+        _waveCountText.text = $"WAVE {_waveNumberTotal}";
+        _waveCountTextShadow.text = $"WAVE {_waveNumberTotal}";
         _currentWave = _waves[_waveNumber];
         _currentWave.Setup();
         _waveTime = _waveTimeStart;
