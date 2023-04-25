@@ -159,7 +159,7 @@ Shader "Unlit/Shapes"
                 fixed4 oc = hitInfo.col;
                 for (int k = 0; k < _CirclesCount; k++)
                 {
-                    if (_CirclesSortOrder[k] <= hitInfo.highestSortOrder)
+                    if (_CirclesSortOrder[k] < hitInfo.highestSortOrder)
                         continue;
                     
                     if (IsPointInCircle(uv, _CirclesProperties[k].xy, _CirclesProperties[k].z))
@@ -171,7 +171,8 @@ Shader "Unlit/Shapes"
                         hitShape = true;
                     }
 
-                    if (_CirclesExtra[k].y > 0 && _Shadow > 0 && !hitShape)
+                    if (_CirclesExtra[k].y > 0 && _Shadow > 0 &&
+                    (!hitShape || _CirclesSortOrder[k] > hitInfo.highestSortOrder))
                     {
                         float2 shadowCenter = _CirclesProperties[k].xy + shadowDir;
                         if (IsPointInCircle(uv, shadowCenter, _CirclesProperties[k].z))
@@ -193,7 +194,7 @@ Shader "Unlit/Shapes"
                 fixed4 oc = hitInfo.col;
                 for (int k = 0; k < _RectanglesCount; k++)
                 {
-                    if (_RectanglesSortOrder[k] <= hitInfo.highestSortOrder)
+                    if (_RectanglesSortOrder[k] < hitInfo.highestSortOrder)
                         continue;
                     
                     if (IsPointInRectangle(uv, _RectanglesProperties[k].xy, _RectanglesProperties[k].zw, _RectanglesExtra[k].y))
@@ -203,9 +204,11 @@ Shader "Unlit/Shapes"
                         hitInfo.col = lerp(oc, hitInfo.col, _RectanglesColor[k].a);
                         hitInfo.hit = true;
                         hitShape = true;
+                        continue;
                     }
 
-                    if (_RectanglesExtra[k].z > 0 && _Shadow > 0 && !hitShape)
+                    if (_RectanglesExtra[k].z > 0 && _Shadow > 0 && 
+                    (!hitShape || _RectanglesSortOrder[k] > hitInfo.highestSortOrder))
                     {
                         float2 shadowCenter = _RectanglesProperties[k].xy + shadowDir;
                         if (IsPointInRectangle(uv, shadowCenter, _RectanglesProperties[k].zw, _RectanglesExtra[k].y))

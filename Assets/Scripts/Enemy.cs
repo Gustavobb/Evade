@@ -129,41 +129,41 @@ public class Enemy : MonoBehaviour
                 break;
         }
 
-        _velocity = Vector3.ClampMagnitude(_velocity, MAX_SPEED * _enemyData.speedMultiplier);
+        _velocity = Vector3.ClampMagnitude(_velocity, MAX_SPEED * _enemyData.speedMultiplier * _enemyData.speedMultiplierPowerUp);
         _movementPivot.position += new Vector3(_velocity.x, _velocity.y, 0) * Time.deltaTime;
     }
 
     private void FollowPlayer()
     {
-        _velocity += _toPlayer.normalized * _speed * _enemyData.speedMultiplier * Time.deltaTime;
+        _velocity += _toPlayer.normalized * _speed * _enemyData.speedMultiplier * _enemyData.speedMultiplierPowerUp * Time.deltaTime;
     }
 
     private void AvoidPlayer()
     {
-        _velocity -= _toPlayer.normalized * _speed * _enemyData.speedMultiplier * Time.deltaTime;
+        _velocity -= _toPlayer.normalized * _speed * _enemyData.speedMultiplier * _enemyData.speedMultiplierPowerUp * Time.deltaTime;
     }
 
     private void Wander()
     {
-        _velocity += new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * _speed * _enemyData.speedMultiplier * Time.deltaTime;
+        _velocity += new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * _speed * _enemyData.speedMultiplier * _enemyData.speedMultiplierPowerUp * Time.deltaTime;
     }
     
     private void PlayerDirection()
     {
-        _velocity += _toPlayerInitial.normalized * _speed * _enemyData.speedMultiplier * Time.deltaTime;
+        _velocity += _toPlayerInitial.normalized * _speed * _enemyData.speedMultiplier * _enemyData.speedMultiplierPowerUp * Time.deltaTime;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, _toPlayerInitial);
     }
 
     private void Bouncer()
     {
-        _velocity += _toPlayerInitial.normalized * _speed * _enemyData.speedMultiplier * Time.deltaTime;
+        _velocity += _toPlayerInitial.normalized * _speed * _enemyData.speedMultiplier * _enemyData.speedMultiplierPowerUp * Time.deltaTime;
     }
 
     private void BounceToPlayer()
     {
         float angle = Mathf.Atan2(_toPlayer.y, _toPlayer.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        _velocity = rotation * Vector2.right * _speed * _enemyData.speedMultiplier;
+        _velocity = rotation * Vector2.right * _speed * _enemyData.speedMultiplier * _enemyData.speedMultiplierPowerUp;
         _toPlayerInitial = _toPlayer;
     }
 
@@ -190,7 +190,7 @@ public class Enemy : MonoBehaviour
     
     public void Reset(Vector3 position)
     {
-        transform.localScale = _originalScale * _enemyData.sizeMultiplier;
+        transform.localScale = _originalScale * _enemyData.sizeMultiplier * _enemyData.sizeMultiplierPowerUp;
         transform.position = position;
         _velocity = Vector3.zero;
         _dead = false;

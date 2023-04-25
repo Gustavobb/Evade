@@ -25,6 +25,8 @@ public class PowerUpManager : MonoBehaviour
         allPowerUps.Add(new LifeUpPowerUp("LifeUpPowerUp", true, 0, 0 ,0));
         allPowerUps.Add(new SizeDownPowerUp("SizeDownPowerUp", true, 0, 0, 0));
         allPowerUps.Add(new AddClockPowerUp("AddClockPowerUp", true, 0, 0, 0));
+        allPowerUps.Add(new EnemySpeedDownPowerUp("EnemySpeedDownPowerUp", true, 0, 0, 0));
+        allPowerUps.Add(new EnemySizeDownPowerUp("EnemySizeDownPowerUp", true, 0, 0, 0));
         // allPowerUps.Add(new SlowDownPowerUp("SlowDownPowerUp", true, 1, 10, 100));
 
         GetAllShapesFromChildren();
@@ -59,9 +61,12 @@ public class PowerUpManager : MonoBehaviour
         {
             foreach (Transform child in transform){
                 child.gameObject.SetActive(false);
-                Transform icon = child.gameObject.transform.GetChild(0);
-                icon.parent = null;
-                icon.gameObject.SetActive(false);
+                Transform icon;
+                if (child.gameObject.transform.childCount > 0){
+                    icon = child.gameObject.transform.GetChild(0);
+                    icon.parent = null;
+                    icon.gameObject.SetActive(false);
+                }
             }
             _onPowerUpMenu = false;
             GameManager.Instance.StopPowerUpPP();
@@ -96,8 +101,10 @@ public class PowerUpManager : MonoBehaviour
                 int index = Random.Range(0, possiblePowerUps.Count);
                 powerUpCard.powerUp = possiblePowerUps[index];
                 GameObject icon = possiblePowerUps[index].icon;
-                icon.transform.parent = child;
+                icon.transform.position = child.transform.position;
+                icon.transform.parent = child.transform;
                 icon.SetActive(true);
+                possiblePowerUps.RemoveAt(index);
             }
         }
         StartCoroutine(MenuAnimation(.5f, _xAnimation, 0, true));

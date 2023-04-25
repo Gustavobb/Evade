@@ -11,7 +11,7 @@ public class SizeDownPowerUp: GenericPowerUp{
     }
 
     public override bool CheckCondition(){
-        return (Player.Instance.transform.localScale.x >= .2f);
+        return (Player.Instance.transform.localScale.x >= .3f);
     }
 }
 
@@ -30,26 +30,26 @@ public class LifeUpPowerUp: GenericPowerUp{
     }
 }
 
-[System.Serializable]
-public class SlowDownPowerUp: GenericPowerUp{
+// [System.Serializable]
+// public class SlowDownPowerUp: GenericPowerUp{
 
-    public SlowDownPowerUp(string name, bool isActive, int quantity, float cooldown, float cooldownTimer):base(name, isActive, quantity, cooldown, cooldownTimer){}
+//     public SlowDownPowerUp(string name, bool isActive, int quantity, float cooldown, float cooldownTimer):base(name, isActive, quantity, cooldown, cooldownTimer){}
 
-    public override void ObtainPowerUp(){
-        base.ObtainPowerUp();
-        this.cooldown = 11 - quantity*1;
-    }
+//     public override void ObtainPowerUp(){
+//         base.ObtainPowerUp();
+//         this.cooldown = 11 - quantity*1;
+//     }
 
-    public override void ActivatePowerUp(){
-        if(this.cooldownTimer >= WaveManager.Instance._waveTime+cooldown){
-            this.cooldownTimer = WaveManager.Instance._waveTime;
-        }
-    }
+//     public override void ActivatePowerUp(){
+//         if(this.cooldownTimer >= WaveManager.Instance._waveTime+cooldown){
+//             this.cooldownTimer = WaveManager.Instance._waveTime;
+//         }
+//     }
 
-    public override bool CheckCondition(){
-        return ClockManager.Instance._clockCount < ClockManager.Instance.MAX_CLOCKS;
-    }
-}
+//     public override bool CheckCondition(){
+//         return ClockManager.Instance._clockCount < ClockManager.Instance.MAX_CLOCKS;
+//     }
+// }
 
 
 [System.Serializable]
@@ -64,5 +64,51 @@ public class AddClockPowerUp: GenericPowerUp{
 
     public override bool CheckCondition(){
         return ClockManager.Instance._clockCount < ClockManager.Instance.MAX_CLOCKS;
+    }
+}
+
+
+[System.Serializable]
+public class EnemySpeedDownPowerUp: GenericPowerUp{
+
+    public EnemySpeedDownPowerUp(string name, bool isActive, int quantity, float cooldown, float cooldownTimer):base(name, isActive, quantity, cooldown, cooldownTimer){}
+
+    public override void ObtainPowerUp(){
+        base.ObtainPowerUp();
+        EnemyManager.Instance.enemyData.MultiplySpeedPowerUp(0.1f);
+    }
+
+    public override bool CheckCondition(){
+        return EnemyManager.Instance.enemyData.speedMultiplierPowerUp > .1f;
+    }
+}
+
+[System.Serializable]
+public class EnemySizeDownPowerUp: GenericPowerUp{
+
+    public EnemySizeDownPowerUp(string name, bool isActive, int quantity, float cooldown, float cooldownTimer):base(name, isActive, quantity, cooldown, cooldownTimer){}
+
+    public override void ObtainPowerUp(){
+        base.ObtainPowerUp();
+        EnemyManager.Instance.enemyData.MultiplySizePowerUp(0.05f);
+    }
+
+    public override bool CheckCondition(){
+        return EnemyManager.Instance.enemyData.sizeMultiplierPowerUp > .3f;
+    }
+}
+
+[System.Serializable]
+public class GuardianPowerUp: GenericPowerUp{
+
+    public GuardianPowerUp(string name, bool isActive, int quantity, float cooldown, float cooldownTimer):base(name, isActive, quantity, cooldown, cooldownTimer){}
+
+    public override void ObtainPowerUp(){
+        base.ObtainPowerUp();
+        
+    }
+
+    public override bool CheckCondition(){
+        return EnemyManager.Instance.enemyData.sizeMultiplierPowerUp > .3f;
     }
 }
