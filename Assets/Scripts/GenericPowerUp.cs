@@ -1,9 +1,12 @@
+using UnityEngine;
+
 [System.Serializable]
 public class GenericPowerUp{
     public string name;
     public bool isActive;
     public int quantity;
     public float cooldown, cooldownTimer;
+    public GameObject icon;
 
     public GenericPowerUp(string name, bool isActive, int quantity, float cooldown, float cooldownTimer){
         this.name = name;
@@ -11,6 +14,8 @@ public class GenericPowerUp{
         this.quantity = quantity;
         this.cooldown = cooldown;
         this.cooldownTimer = cooldownTimer;
+        this.icon = GameObject.Find(name);
+        icon.SetActive(false);
     }
 
     public virtual void ObtainPowerUp(){
@@ -22,5 +27,9 @@ public class GenericPowerUp{
 
     public virtual string GetName(){
         return name;
+    }
+
+    public virtual bool CheckCondition(){
+        return true;
     }
 }

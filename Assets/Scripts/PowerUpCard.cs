@@ -17,7 +17,7 @@ public class PowerUpCard : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             audioSource.Play();
-            PowerUpManager.Instance.SelectPowerUp(powerUp);
+            PowerUpManager.Instance.AddPowerUp(powerUp);
         }
     }  
 }

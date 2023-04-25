@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ClockManager : MonoBehaviour
 {
-    [SerializeField] private int MAX_CLOCKS = 3;
-    [SerializeField] private int _clockCount = 1;
+    [SerializeField] public int MAX_CLOCKS = 3;
+    [SerializeField] public int _clockCount = 1;
     [SerializeField] private float _timeScale = 0.5f;
     [SerializeField] private float _duration = 5f;
     [SerializeField] private EnemyData _enemyData;
@@ -68,6 +68,7 @@ public class ClockManager : MonoBehaviour
 
     private IEnumerator SlowDownCoroutine()
     {
+        float enemySpeed = _enemyData.speedMultiplier;
         _enemyData.MultiplySpeed(_timeScale);
         WaveManager.Instance.SetTimeScale(_timeScale);
         GameManager.Instance.AnimateMaterial("_GreyScale", 0f, 1f, .3f);
@@ -86,10 +87,16 @@ public class ClockManager : MonoBehaviour
         }
         
         WaveManager.Instance.SetTimeScale(1f);
-        _enemyData.MultiplySpeed(1f);
+        _enemyData.MultiplySpeed(enemySpeed);
         GameManager.Instance.StopSlowDown();
         GameManager.Instance.AnimateMaterial("_GreyScale", 1f, 0f, .3f);
         GameManager.Instance.AnimateMaterial("_ColorDecay", .2f, 1f, .3f);
         AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, 1, .4f, false, false);
+
+    }
+
+    public void ResetClock(){
+        _clockCount = 1;
+        WaveReset();
     }
 }

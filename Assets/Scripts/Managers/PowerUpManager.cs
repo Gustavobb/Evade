@@ -15,18 +15,26 @@ public class PowerUpManager : MonoBehaviour
     }
 
     [SerializeField] private float _xAnimation = 10f;
-    private List<GenericPowerUp> allPowerUps = new List<GenericPowerUp>();
+    public List<GenericPowerUp> allPowerUps = new List<GenericPowerUp>();
     [SerializeField] private bool _onPowerUpMenu;
     public bool OnPowerUpMenu => _onPowerUpMenu;
     [SerializeField] private List<Shape> _shapes = new List<Shape>();
     
     private void Start()
     {
-        allPowerUps.Add(new LifeUpPowerUp("LifeUpPowerUp", true, 1, 0 ,0));
-        allPowerUps.Add(new SizeUpPowerUp("SizeUpPowerUp", true, 1, 0, 0));
+        allPowerUps.Add(new LifeUpPowerUp("LifeUpPowerUp", true, 0, 0 ,0));
+        allPowerUps.Add(new SizeDownPowerUp("SizeDownPowerUp", true, 0, 0, 0));
+        allPowerUps.Add(new AddClockPowerUp("AddClockPowerUp", true, 0, 0, 0));
+        allPowerUps.Add(new EnemySpeedDownPowerUp("EnemySpeedDownPowerUp", true, 0, 0, 0));
+        allPowerUps.Add(new EnemySizeDownPowerUp("EnemySizeDownPowerUp", true, 0, 0, 0));
         // allPowerUps.Add(new SlowDownPowerUp("SlowDownPowerUp", true, 1, 10, 100));
 
         GetAllShapesFromChildren();
+    }
+
+    public void AddPowerUp(GenericPowerUp powerUp){
+        powerUp.ObtainPowerUp();
+        PowerUpManager.Instance.CloseChoiceMenu();
     }
 
     private void GetAllShapesFromChildren()
@@ -51,8 +59,15 @@ public class PowerUpManager : MonoBehaviour
 
         if (!open)
         {
-            foreach (Transform child in transform)
+            foreach (Transform child in transform){
                 child.gameObject.SetActive(false);
+                Transform icon;
+                if (child.gameObject.transform.childCount > 0){
+                    icon = child.gameObject.transform.GetChild(0);
+                    icon.parent = null;
+                    icon.gameObject.SetActive(false);
+                }
+            }
             _onPowerUpMenu = false;
             GameManager.Instance.StopPowerUpPP();
             AudioHelper.Instance.SmoothLowPass(1f, .5f);
@@ -63,31 +78,36 @@ public class PowerUpManager : MonoBehaviour
     {
         AudioHelper.Instance.SmoothLowPass(0.1f, .5f);
 
+        List<GenericPowerUp> possiblePowerUps = new List<GenericPowerUp>();
+        for (int i = 0; i < allPowerUps.Count; i++)
+        {
+            if(allPowerUps[i].CheckCondition()) possiblePowerUps.Add(allPowerUps[i]);
+        }
+
         _onPowerUpMenu = true;
         Cursor.visible = true;
         transform.position = new Vector3(_xAnimation, transform.position.y, transform.position.z);
-        
+        if(possiblePowerUps.Count != 0){
         // fazer inimigos sumirem
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            Transform child = transform.GetChild(i);
-            child.gameObject.SetActive(true);
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Transform child = transform.GetChild(i);
+                child.gameObject.SetActive(true);
 
-            // _shapes[i].LerpAlpha(0, 1, .1f);
-            PowerUpCard powerUpCard = child.gameObject.GetComponent<PowerUpCard>();
+                // _shapes[i].LerpAlpha(0, 1, .1f);
+                PowerUpCard powerUpCard = child.gameObject.GetComponent<PowerUpCard>();
 
-            if (powerUpCard == null) continue;
-            int index = Random.Range(0, allPowerUps.Count);
-            powerUpCard.powerUp = allPowerUps[index];
+                if (powerUpCard == null) continue;
+                int index = Random.Range(0, possiblePowerUps.Count);
+                powerUpCard.powerUp = possiblePowerUps[index];
+                GameObject icon = possiblePowerUps[index].icon;
+                icon.transform.position = child.transform.position;
+                icon.transform.parent = child.transform;
+                icon.SetActive(true);
+                possiblePowerUps.RemoveAt(index);
+            }
         }
-
         StartCoroutine(MenuAnimation(.5f, _xAnimation, 0, true));
-    }
-
-    public void SelectPowerUp(GenericPowerUp powerUp)
-    {
-        Inventory.Instance.addPowerUp(powerUp);
-        PowerUpManager.Instance.CloseChoiceMenu();
     }
 
     public void CloseChoiceMenu()

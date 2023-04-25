@@ -7,6 +7,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private int MAX_ACTIVE_ENEMIES = 10;
     [SerializeField] private List<EnemyPool> _enemyPools = new List<EnemyPool>();
     [SerializeField] private List<Vector4> _spawnRects = new List<Vector4>();
+    [SerializeField] private EnemyData _enemyData;
+    public EnemyData enemyData => _enemyData;
 
     private static EnemyManager _instance;
     public static EnemyManager Instance

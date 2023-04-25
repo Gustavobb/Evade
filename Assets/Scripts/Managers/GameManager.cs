@@ -61,17 +61,16 @@ public class GameManager : MonoBehaviour
     {
         bool haveSlowDown=false;
         int slowDownPowerUpIndex=0;
-        for (int i=0; i < Inventory.Instance.powerUps.Count; i++)
+        for (int i=0; i < PowerUpManager.Instance.allPowerUps.Count; i++)
         {
-            if (Inventory.Instance.powerUps[i].GetName() == "SlowDownPowerUp"){
+            if (PowerUpManager.Instance.allPowerUps[i].GetName() == "SlowDownPowerUp"){
                 haveSlowDown = true;
                 slowDownPowerUpIndex = i;
             }
         }
         if (Player.Instance.GetClosestEnemy()!=null){
             if ((Player.Instance.GetClosestEnemy().GetToPlayer().magnitude <= 1.5f)&(haveSlowDown)){
-                Inventory.Instance.powerUps[slowDownPowerUpIndex].ActivatePowerUp();
-                print(Inventory.Instance.powerUps[slowDownPowerUpIndex].cooldownTimer);
+                PowerUpManager.Instance.allPowerUps[slowDownPowerUpIndex].ActivatePowerUp();
             }
         }
     }
@@ -189,8 +188,8 @@ public class GameManager : MonoBehaviour
     public void RequestPowerUpPP()
     {
         AnimateMaterial("_Wobble", 0f, 0.007f, 0.2f);
-        _shaderMaterial.SetFloat("_WobbleFrequency", 4.78f);
-        _shaderMaterial.SetFloat("_WobbleAmplitude", 0.89f);
+        _shaderMaterial.SetFloat("_WobbleFrequency", 2.47f);
+        _shaderMaterial.SetFloat("_WobbleAmplitude", 0.3f);
     }
 
     public void StopPowerUpPP()
