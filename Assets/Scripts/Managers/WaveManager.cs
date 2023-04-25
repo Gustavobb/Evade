@@ -19,6 +19,9 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private GuardianData _guardianData;
     public EnemyData EnemyData => _enemyData;
     public float _waveTime;
+    [SerializeField] private GameObject _mouseUI;
+
+    private static bool _pastWave2 = false;
 
     private static WaveManager _instance;
     public static WaveManager Instance
@@ -59,11 +62,28 @@ public class WaveManager : MonoBehaviour
         _currentWave.VanishWave();
 
         _waveNumber ++;
+        if (_waveNumber == 1 && !_pastWave2)
+        {
+            _pastWave2 = true;
+            StartCoroutine(DelayTutorial());
+        }
+
         if (_waveNumber >= _waves.Count) _waveNumber = _waves.Count - 1;
         _waveTime = _waveTimeStart + _waveTimeConstant * _waveNumber;
         _currentWave = _waves[_waveNumber];
         _currentWave.Setup();
         _onWaveStart?.Invoke();
+    }
+
+    public void DisableTutorial()
+    {
+        _mouseUI.SetActive(false);
+    }
+
+    private IEnumerator DelayTutorial()
+    {
+        yield return new WaitForSeconds(3f);
+        _mouseUI.SetActive(true);
     }
 
     public void ResetWaves()

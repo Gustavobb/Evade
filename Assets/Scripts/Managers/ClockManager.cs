@@ -53,6 +53,7 @@ public class ClockManager : MonoBehaviour
         if (Player.Instance.IsInvincible) return;
         if (_clocksActive == 0) return;
 
+        WaveManager.Instance.DisableTutorial();
         _clocksActive --;
         _clocks[_clocksActive].SetActive(false);
         _audioSource.Play();

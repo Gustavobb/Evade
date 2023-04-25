@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField] private UnityEvent _onGameStart;
-    [SerializeField] private GameObject menuUI;
+    [SerializeField] private GameObject clickUI, titleUI;
     [SerializeField] private AudioUI audioUI;
     
     [SerializeField] private Material _shaderMaterial;
@@ -102,13 +102,15 @@ public class GameManager : MonoBehaviour
     {
         _onGameStart.Invoke();
         audioUI.Disable();
-        menuUI.SetActive(false);
+        titleUI.SetActive(false);
+        clickUI.SetActive(false);
         onGame = true;
     }
 
     protected void ActivateMenu()
     {
-        menuUI.SetActive(true);
+        titleUI.SetActive(true);
+        clickUI.SetActive(true);
         audioUI.Enable();
         _startAudioSource.Play();
         onGame = false;
