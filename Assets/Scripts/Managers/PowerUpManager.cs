@@ -23,21 +23,16 @@ public class PowerUpManager : MonoBehaviour
     private void Start()
     {
         allPowerUps.Add(new LifeUpPowerUp("LifeUpPowerUp", true, 0, 0 ,0));
-        allPowerUps.Add(new SizeUpPowerUp("SizeUpPowerUp", true, 0, 0, 0));
+        allPowerUps.Add(new SizeDownPowerUp("SizeDownPowerUp", true, 0, 0, 0));
         allPowerUps.Add(new AddClockPowerUp("AddClockPowerUp", true, 0, 0, 0));
         // allPowerUps.Add(new SlowDownPowerUp("SlowDownPowerUp", true, 1, 10, 100));
 
         GetAllShapesFromChildren();
     }
 
-    public void addPowerUp(GenericPowerUp powerUp){
+    public void AddPowerUp(GenericPowerUp powerUp){
         powerUp.ObtainPowerUp();
-        // for (int i=0; i < allPowerUps.Count; i++)
-        // {
-        //     if (allPowerUps[i].GetName() == powerUp.GetName()){
-        //         allPowerUps[i].ObtainPowerUp();
-        //     }
-        // }
+        PowerUpManager.Instance.CloseChoiceMenu();
     }
 
     private void GetAllShapesFromChildren()
@@ -62,8 +57,12 @@ public class PowerUpManager : MonoBehaviour
 
         if (!open)
         {
-            foreach (Transform child in transform)
+            foreach (Transform child in transform){
                 child.gameObject.SetActive(false);
+                Transform icon = child.gameObject.transform.GetChild(0);
+                icon.parent = null;
+                icon.gameObject.SetActive(false);
+            }
             _onPowerUpMenu = false;
             GameManager.Instance.StopPowerUpPP();
             AudioHelper.Instance.SmoothLowPass(1f, .5f);
@@ -75,10 +74,8 @@ public class PowerUpManager : MonoBehaviour
         AudioHelper.Instance.SmoothLowPass(0.1f, .5f);
 
         List<GenericPowerUp> possiblePowerUps = new List<GenericPowerUp>();
-        print(allPowerUps.Count);
         for (int i = 0; i < allPowerUps.Count; i++)
         {
-            print(allPowerUps[i].CheckCondition());
             if(allPowerUps[i].CheckCondition()) possiblePowerUps.Add(allPowerUps[i]);
         }
 
@@ -97,17 +94,13 @@ public class PowerUpManager : MonoBehaviour
 
                 if (powerUpCard == null) continue;
                 int index = Random.Range(0, possiblePowerUps.Count);
-                print(possiblePowerUps[0]);
                 powerUpCard.powerUp = possiblePowerUps[index];
+                GameObject icon = possiblePowerUps[index].icon;
+                icon.transform.parent = child;
+                icon.SetActive(true);
             }
         }
         StartCoroutine(MenuAnimation(.5f, _xAnimation, 0, true));
-    }
-
-    public void SelectPowerUp(GenericPowerUp powerUp)
-    {
-        addPowerUp(powerUp);
-        PowerUpManager.Instance.CloseChoiceMenu();
     }
 
     public void CloseChoiceMenu()

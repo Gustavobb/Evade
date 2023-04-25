@@ -137,6 +137,7 @@ Shader "Unlit/Shapes"
             {
                 fixed4 col;
                 bool hit;
+                int highestSortOrder;
             };
 
             fixed4 HandleColor(float2 uv, float4 color, float colorType, float blend)
@@ -154,17 +155,16 @@ Shader "Unlit/Shapes"
 
             HitInfo CheckCircle(float2 uv, HitInfo hitInfo, float2 shadowDir)
             {
-                float highestSortOrder = -1;
                 bool hitShape = false;
                 fixed4 oc = hitInfo.col;
                 for (int k = 0; k < _CirclesCount; k++)
                 {
-                    if (_CirclesSortOrder[k] < highestSortOrder)
+                    if (_CirclesSortOrder[k] <= hitInfo.highestSortOrder)
                         continue;
                     
                     if (IsPointInCircle(uv, _CirclesProperties[k].xy, _CirclesProperties[k].z))
                     {
-                        highestSortOrder = _CirclesSortOrder[k];
+                        hitInfo.highestSortOrder = _CirclesSortOrder[k];
                         hitInfo.col = HandleColor(uv, _CirclesColor[k], _CirclesExtra[k].x, _CirclesExtra[k].z);
                         hitInfo.col = lerp(oc, hitInfo.col, _CirclesColor[k].a);
                         hitInfo.hit = true;
@@ -176,6 +176,7 @@ Shader "Unlit/Shapes"
                         float2 shadowCenter = _CirclesProperties[k].xy + shadowDir;
                         if (IsPointInCircle(uv, shadowCenter, _CirclesProperties[k].z))
                         {
+                            hitInfo.highestSortOrder = _CirclesSortOrder[k];
                             hitInfo.col = _CirclesExtra[k].x ? 0 : _ShadowColor;
                             hitInfo.col = lerp(oc, hitInfo.col, _CirclesColor[k].a);
                             hitInfo.hit = true;
@@ -188,17 +189,16 @@ Shader "Unlit/Shapes"
 
             HitInfo CheckRectangle(float2 uv, HitInfo hitInfo, float2 shadowDir)
             {
-                float highestSortOrder = -1;
                 bool hitShape = false;
                 fixed4 oc = hitInfo.col;
                 for (int k = 0; k < _RectanglesCount; k++)
                 {
-                    if (_RectanglesSortOrder[k] < highestSortOrder)
+                    if (_RectanglesSortOrder[k] <= hitInfo.highestSortOrder)
                         continue;
                     
                     if (IsPointInRectangle(uv, _RectanglesProperties[k].xy, _RectanglesProperties[k].zw, _RectanglesExtra[k].y))
                     {
-                        highestSortOrder = _RectanglesSortOrder[k];
+                        hitInfo.highestSortOrder = _RectanglesSortOrder[k];
                         hitInfo.col = HandleColor(uv, _RectanglesColor[k], _RectanglesExtra[k].x, _RectanglesExtra[k].w);
                         hitInfo.col = lerp(oc, hitInfo.col, _RectanglesColor[k].a);
                         hitInfo.hit = true;
@@ -210,6 +210,7 @@ Shader "Unlit/Shapes"
                         float2 shadowCenter = _RectanglesProperties[k].xy + shadowDir;
                         if (IsPointInRectangle(uv, shadowCenter, _RectanglesProperties[k].zw, _RectanglesExtra[k].y))
                         {
+                            hitInfo.highestSortOrder = _RectanglesSortOrder[k];
                             hitInfo.col = _ShadowColor;
                             hitInfo.col = lerp(oc, hitInfo.col, _RectanglesColor[k].a);
                             hitInfo.hit = true;
@@ -322,7 +323,7 @@ Shader "Unlit/Shapes"
                 if (_LensDistortion != 0)
                     uv = LensDistortion(uv);
                 
-                HitInfo hitInfo = { col, false };
+                HitInfo hitInfo = { col, false, -1 };
                 float2 shadowDir = Rotate(float2(0, -_ShadowOffset), _SunRotation);
                 hitInfo = CheckCircle(uv, hitInfo, shadowDir);
                 hitInfo = CheckRectangle(uv, hitInfo, shadowDir);

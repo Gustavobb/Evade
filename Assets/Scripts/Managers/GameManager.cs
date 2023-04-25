@@ -188,8 +188,8 @@ public class GameManager : MonoBehaviour
     public void RequestPowerUpPP()
     {
         AnimateMaterial("_Wobble", 0f, 0.007f, 0.2f);
-        _shaderMaterial.SetFloat("_WobbleFrequency", 4.78f);
-        _shaderMaterial.SetFloat("_WobbleAmplitude", 0.89f);
+        _shaderMaterial.SetFloat("_WobbleFrequency", 2.47f);
+        _shaderMaterial.SetFloat("_WobbleAmplitude", 0.3f);
     }
 
     public void StopPowerUpPP()

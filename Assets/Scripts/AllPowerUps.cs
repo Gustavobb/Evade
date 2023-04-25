@@ -1,9 +1,9 @@
 using UnityEngine;
 
 [System.Serializable]
-public class SizeUpPowerUp: GenericPowerUp{
+public class SizeDownPowerUp: GenericPowerUp{
 
-    public SizeUpPowerUp(string name, bool isActive, int quantity, float cooldown, float cooldownTimer):base(name, isActive, quantity, cooldown, cooldownTimer){}
+    public SizeDownPowerUp(string name, bool isActive, int quantity, float cooldown, float cooldownTimer):base(name, isActive, quantity, cooldown, cooldownTimer){}
 
     public override void ObtainPowerUp(){
         base.ObtainPowerUp();
