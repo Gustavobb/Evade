@@ -290,7 +290,7 @@ Transform:
   m_GameObject: {fileID: 14968480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 140690641}
@@ -5832,7 +5832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6176ce391b54681b070f4253203a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _volume: 1
+  _volume: 0.4
   _volumeSlider: {fileID: 361704261}
 --- !u!1 &389832531
 GameObject:
@@ -11907,7 +11907,7 @@ Transform:
   m_GameObject: {fileID: 765764945}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1761312406}
@@ -15712,7 +15712,7 @@ Transform:
   m_GameObject: {fileID: 1072079252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 673781144}
@@ -16602,7 +16602,7 @@ MonoBehaviour:
     spawnRate: 2
     enemySpeedMultiplier: 1
     enemySizeMultiplier: 1
-    usePallette: 1
+    usePallette: 0
     palletteIndex: 0
     possibleEnemyTypes: 00000000
   - maxEnemyCount: 6
