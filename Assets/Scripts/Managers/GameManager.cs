@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField] private UnityEvent _onGameStart;
-    [SerializeField] private GameObject menuUI, volumeUI;
+    [SerializeField] private GameObject menuUI;
+    [SerializeField] private AudioUI audioUI;
     
     [SerializeField] private Material _shaderMaterial;
     private bool onGame;
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     private AudioSource _audioSource;
     public AudioSource _AudioSource => _audioSource;
     [SerializeField] private AudioSource _startAudioSource;
+    public bool wobbling = false;
     
     private void Start() {
         _audioSource = GetComponent<AudioSource>();
@@ -99,7 +101,7 @@ public class GameManager : MonoBehaviour
     private void DestroyMenu()
     {
         _onGameStart.Invoke();
-        volumeUI.SetActive(false);
+        audioUI.Disable();
         menuUI.SetActive(false);
         onGame = true;
     }
@@ -107,7 +109,7 @@ public class GameManager : MonoBehaviour
     protected void ActivateMenu()
     {
         menuUI.SetActive(true);
-        volumeUI.SetActive(true);
+        audioUI.Enable();
         _startAudioSource.Play();
         onGame = false;
         StartCoroutine(AnimateLensDistortion());
@@ -146,7 +148,7 @@ public class GameManager : MonoBehaviour
     {
         if (!PowerUpManager.Instance.OnPowerUpMenu)
         {
-            GameBounds.Instance.PlaySound();
+            wobbling = true;
             AnimateMaterial("_Wobble", 0f, 0.007f, 0.2f);
             _shaderMaterial.SetFloat("_WobbleFrequency", 0.4f);
             _shaderMaterial.SetFloat("_WobbleAmplitude", 0.7f);
@@ -188,8 +190,8 @@ public class GameManager : MonoBehaviour
     public void RequestPowerUpPP()
     {
         AnimateMaterial("_Wobble", 0f, 0.007f, 0.2f);
-        _shaderMaterial.SetFloat("_WobbleFrequency", 2.47f);
-        _shaderMaterial.SetFloat("_WobbleAmplitude", 0.3f);
+        _shaderMaterial.SetFloat("_WobbleFrequency", 3.92f);
+        _shaderMaterial.SetFloat("_WobbleAmplitude", 0.23f);
     }
 
     public void StopPowerUpPP()
@@ -199,8 +201,9 @@ public class GameManager : MonoBehaviour
 
     public void StopWobble()
     {
+        wobbling = false;
+        if (!Player.Instance.IsInvincible && ! Pause.Paused) AnimateMaterial("_OldTV", 0.004f, 0f, 0.2f);
         if (PowerUpManager.Instance.OnPowerUpMenu) return;
         AnimateMaterial("_Wobble", 0.007f, 0f, 0.2f);
-        if (!Player.Instance.IsInvincible) AnimateMaterial("_OldTV", 0.004f, 0f, 0.2f);
     }
 }

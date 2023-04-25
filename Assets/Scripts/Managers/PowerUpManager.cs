@@ -16,6 +16,7 @@ public class PowerUpManager : MonoBehaviour
 
     [SerializeField] private float _xAnimation = 10f;
     public List<GenericPowerUp> allPowerUps = new List<GenericPowerUp>();
+    public List<PowerUpCard> powerUpCards = new List<PowerUpCard>();
     [SerializeField] private bool _onPowerUpMenu;
     public bool OnPowerUpMenu => _onPowerUpMenu;
     [SerializeField] private List<Shape> _shapes = new List<Shape>();
@@ -28,6 +29,14 @@ public class PowerUpManager : MonoBehaviour
         allPowerUps.Add(new EnemySpeedDownPowerUp("EnemySpeedDownPowerUp", true, 0, 0, 0));
         allPowerUps.Add(new EnemySizeDownPowerUp("EnemySizeDownPowerUp", true, 0, 0, 0));
         // allPowerUps.Add(new SlowDownPowerUp("SlowDownPowerUp", true, 1, 10, 100));
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            PowerUpCard powerUpCard = transform.GetChild(i).GetComponent<PowerUpCard>();
+
+            if (powerUpCard != null)
+                powerUpCards.Add(powerUpCard);
+       }
 
         GetAllShapesFromChildren();
     }
@@ -80,24 +89,20 @@ public class PowerUpManager : MonoBehaviour
 
         List<GenericPowerUp> possiblePowerUps = new List<GenericPowerUp>();
         for (int i = 0; i < allPowerUps.Count; i++)
-        {
             if(allPowerUps[i].CheckCondition()) possiblePowerUps.Add(allPowerUps[i]);
-        }
 
         _onPowerUpMenu = true;
         Cursor.visible = true;
         transform.position = new Vector3(_xAnimation, transform.position.y, transform.position.z);
         if(possiblePowerUps.Count != 0){
         // fazer inimigos sumirem
-            for (int i = 0; i < transform.childCount; i++)
+            for (int i = 0; i < possiblePowerUps.Count; i++)
             {
-                Transform child = transform.GetChild(i);
+                Transform child = powerUpCards[i].transform;
                 child.gameObject.SetActive(true);
 
-                // _shapes[i].LerpAlpha(0, 1, .1f);
-                PowerUpCard powerUpCard = child.gameObject.GetComponent<PowerUpCard>();
-
-                if (powerUpCard == null) continue;
+                PowerUpCard powerUpCard = powerUpCards[i];
+                
                 int index = Random.Range(0, possiblePowerUps.Count);
                 powerUpCard.powerUp = possiblePowerUps[index];
                 GameObject icon = possiblePowerUps[index].icon;

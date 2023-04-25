@@ -8,17 +8,14 @@ public class ShapesManager : MonoBehaviour
     [SerializeField] private RenderTexture _previousFrameTex;
 
     // Circles
-    [SerializeField] private List<Circle> _circlesList = new List<Circle>();
     [SerializeField] private HashSet<Circle> _circles = new HashSet<Circle>();
 
     // Rectangles
-    [SerializeField] private List<Rectangle> _rectanglesList = new List<Rectangle>();
     [SerializeField] private HashSet<Rectangle> _rectangles = new HashSet<Rectangle>();
     
-    private Vector4[] _shapesProperties = new Vector4[100];
-    private Vector4[] _shapesExtra = new Vector4[100];
-    private Color[] _shapesColors = new Color[100];
-    private float[] _sortOrders = new float[100];
+    private Vector4[] _shapesProperties = new Vector4[60];
+    private Vector4[] _shapesExtra = new Vector4[60];
+    private Color[] _shapesColors = new Color[60];
 
     private static ShapesManager _instance;
     public static ShapesManager Instance
@@ -36,23 +33,12 @@ public class ShapesManager : MonoBehaviour
     {
         Application.targetFrameRate = 60;
         CreateRenderTexture();
-        // CopyListToHashSet<Circle>(_circlesList, _circles);
-        // CopyListToHashSet<Rectangle>(_rectanglesList, _rectangles);
     }
 
     private void Update()
     {
         UpdateShapes<Circle>(_circles, "Circles");
         UpdateShapes<Rectangle>(_rectangles, "Rectangles");
-    }
-
-    private void CopyListToHashSet<T>(List<T> list, HashSet<T> hashSet) where T : Shape
-    {
-        hashSet.Clear();
-        foreach (T shape in list)
-            AddShape(shape);
-        
-        list.Clear();
     }
 
     public void AddShape<T>(T shape) where T : Shape
@@ -100,11 +86,11 @@ public class ShapesManager : MonoBehaviour
         Vector4 shapeProperties;
         Vector4 shapeExtra;
         Color shapeColor;
-        float sortOrder;
         int count = 0;
 
         foreach (T shape in shapes)
         {
+            if (count >= shapes.Count) break;
             if (!shape.gameObject.activeInHierarchy) continue;
             shapeProperties = shape.GetProperties();
             _shapesProperties[count] = shapeProperties;
@@ -115,18 +101,14 @@ public class ShapesManager : MonoBehaviour
             shapeColor = shape.GetColor();
             _shapesColors[count] = shapeColor;
 
-            sortOrder = shape.GetSortOrder();
-            _sortOrders[count] = sortOrder;
-
             count++;
         }
         
-        // print($"Shapes count {name}: {count}");
+        print($"Shapes count {name}: {count}");
         _shapesMaterial.SetInt($"_{name}Count", count);
         _shapesMaterial.SetVectorArray($"_{name}Properties", _shapesProperties);
         _shapesMaterial.SetVectorArray($"_{name}Extra", _shapesExtra);
         _shapesMaterial.SetColorArray($"_{name}Color", _shapesColors);
-        _shapesMaterial.SetFloatArray($"_{name}SortOrder", _sortOrders);
     }
 
     private void OnRenderImage(RenderTexture source, RenderTexture destination)

@@ -19,11 +19,6 @@ public class Shape : MonoBehaviour
         return new Vector4(transform.position.x / _factor, transform.position.y / _factor, 0, 0);
     }
 
-    public virtual float GetSortOrder()
-    {
-        return _sortOrder;
-    }
-
     public virtual Vector4 GetExtra()
     {
         return Vector4.zero;

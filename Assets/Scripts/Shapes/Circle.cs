@@ -27,6 +27,6 @@ public class Circle : Shape
 
     public override Vector4 GetExtra()
     {
-        return new Vector4((float) _colorType, _hasShadow ? 1 : 0, _blendBlack, 0);
+        return new Vector4((float) _colorType + Mathf.Clamp(_blendBlack, .001f, .99f), _hasShadow ? 1 : 0, 0, _sortOrder);
     }
 }

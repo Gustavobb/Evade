@@ -30,4 +30,16 @@ public class AudioUI : MonoBehaviour
 
         AudioHelper.Instance.SetMasterVolume(_volume);
     }
+
+    public void Disable()
+    {
+        foreach (Transform child in transform)
+            child.gameObject.SetActive(false);
+    }
+
+    public void Enable()
+    {
+        foreach (Transform child in transform)
+            child.gameObject.SetActive(true);
+    }
 }

@@ -219,7 +219,9 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator DieCoroutine()
     {
-        GameManager.Instance.RequestWobble();
+        GameBounds.Instance.PlaySound();
+        bool canWobble = !GameManager.Instance.wobbling;
+        if (canWobble) GameManager.Instance.RequestWobble();
 
         _dead = true;
         _velocity = Vector2.zero;
@@ -229,7 +231,7 @@ public class Enemy : MonoBehaviour
             _shapes[i].LerpAlpha(1, 0, _timeToDie);
 
         yield return new WaitForSeconds(_timeToDie);
-        GameManager.Instance.StopWobble();
+        if (canWobble) GameManager.Instance.StopWobble();
         gameObject.SetActive(false);
         Reset(Vector3.zero);
     }

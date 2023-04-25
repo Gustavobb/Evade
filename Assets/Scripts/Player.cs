@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
         Color color = _shape.GetColor();
         GameManager.Instance.AnimateMaterial("_GreyScale", 0f, 1f, .3f);
         GameManager.Instance.AnimateMaterial("_ColorDecay", 1f, .2f, .3f);
-        AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, 0, .4f, false, false);
+        AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, 0, .5f, false, false);
         GameManager.Instance.SlowDown();
 
         while (cycles <= _invencibilityCycles)
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
         GameManager.Instance.StopSlowDown();
         GameManager.Instance.AnimateMaterial("_GreyScale", 1f, 0f, .3f);
         GameManager.Instance.AnimateMaterial("_ColorDecay", .2f, 1f, .3f);
-        AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, 1, .4f, false, false);
+        AudioHelper.Instance.SmoothAudio(GameManager.Instance._AudioSource, 1, .5f, false, false);
         _shape.SetColor(color);
         _isInvincible = false;
     }

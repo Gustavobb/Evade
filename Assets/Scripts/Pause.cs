@@ -10,7 +10,7 @@ public class Pause : MonoBehaviour
     [SerializeField] private float _timeToEnableColliders = .2f;
     [SerializeField] private Material _material;
     [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private GameObject _volumeUI;
+    [SerializeField] private AudioUI _audioUI;
 
     private void Start()
     {
@@ -53,7 +53,7 @@ public class Pause : MonoBehaviour
 
     private void PauseGame()
     {
-        _volumeUI.SetActive(true);
+        _audioUI.Enable();
         AudioHelper.Instance.SmoothAudio(_audioSource, .3f, .4f, false, true);
         _paused = true;
         AudioHelper.Instance.SmoothLowPass(0.1f, .5f);
@@ -68,7 +68,7 @@ public class Pause : MonoBehaviour
 
     private void ResumeGame()
     {
-        _volumeUI.SetActive(false);
+        _audioUI.Disable();
         AudioHelper.Instance.SmoothAudio(_audioSource, 0f, .4f, true, true);
         AudioHelper.Instance.SmoothLowPass(1f, .5f);
 

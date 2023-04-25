@@ -29,6 +29,6 @@ public class Rectangle : Shape
 
     public override Vector4 GetExtra()
     {
-        return new Vector4((float) _colorType, -transform.rotation.eulerAngles.z, _hasShadow ? 1 : 0, _blendBlack);
+        return new Vector4((float) _colorType + Mathf.Clamp(_blendBlack, .001f, .99f), -transform.rotation.eulerAngles.z, _hasShadow ? 1 : 0, _sortOrder);
     }
 }
