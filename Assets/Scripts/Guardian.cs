@@ -12,12 +12,11 @@ public class Guardian : MonoBehaviour
     [SerializeField] private float _speed = 5f;
 
     private List<Shape> _shapes = new List<Shape>();
-    private List<Color> _originalColors = new List<Color>();
     [SerializeField] private Rotate _rotate;
-    [SerializeField] private float _timeToDie = .5f;
+    [SerializeField] private float _timeWaiting = 1f;
     [SerializeField] private GuardianData _guardianData;
 
-    private bool _dead = false;
+    private bool _waiting = false;
     private Collider2D _collider;
     private Vector3 _originalScale;
 
@@ -29,7 +28,7 @@ public class Guardian : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.Instance.OnGame || Pause.Paused || _dead || PowerUpManager.Instance.OnPowerUpMenu || Player.Instance.IsInvincible) return;
+        if (!GameManager.Instance.OnGame || Pause.Paused || _waiting || PowerUpManager.Instance.OnPowerUpMenu || Player.Instance.IsInvincible) return;
 
         if (Player.Instance == null || Player.Instance.gameObject.activeSelf == false)
             return;
@@ -55,12 +54,8 @@ public class Guardian : MonoBehaviour
     private void GetShapes()
     {
         _shapes.Clear();
-        _originalColors.Clear();
         _shapes.AddRange(GetComponentsInChildren<Shape>());
         _shapes.AddRange(GetComponents<Shape>());
-
-        foreach (Shape shape in _shapes)
-            _originalColors.Add(shape.GetColor());
     }
 
     public void SetColor(Color color, Shape.ColorType colorType)
@@ -95,7 +90,42 @@ public class Guardian : MonoBehaviour
 
     public void Hit()
     {
+        StartCoroutine(StopForSeconds());
+    }
+
+    private IEnumerator StopForSeconds()
+    {
         _velocity = Vector2.zero;
+        _rotate.enabled = false;
+        _waiting = true;
+        _collider.enabled = false;
+        
+        float _invencibilityCycles = 4;
+        float cycles = 0;
+        float a = 1f;
+
+        while (cycles <= _invencibilityCycles)
+        {
+            if (!Pause.Paused)
+            {
+                a = cycles % 2 == 0 ? 0.2f : 1f;
+                
+                foreach (Shape shape in _shapes)
+                    shape.SetAlpha(a);
+
+                cycles++;
+                yield return new WaitForSeconds(_timeWaiting / _invencibilityCycles);
+            }
+
+            yield return null;
+        }
+
+        foreach (Shape shape in _shapes)
+            shape.ResetAlpha();
+
+        _collider.enabled = true;
+        _rotate.enabled = true;
+        _waiting = false;
     }
     
     public void Reset(Vector3 position)
@@ -103,7 +133,7 @@ public class Guardian : MonoBehaviour
         transform.position = position;
         transform.localScale = _originalScale * _guardianData.sizeMultiplier;
         _velocity = Vector3.zero;
-        _dead = false;
+        _waiting = false;
         MAX_SPEED = Random.Range(MAX_SPEED - 2f, MAX_SPEED + 2f);
 
         if (_rotate == null)
@@ -113,31 +143,5 @@ public class Guardian : MonoBehaviour
         
         for (int i = 0; i < _shapes.Count; i++)
             _shapes[i].ResetAlpha();
-    }
-
-    private IEnumerator DieCoroutine()
-    {
-        _dead = true;
-        _velocity = Vector2.zero;
-
-        if (_rotate == null)
-            _rotate = GetComponent<Rotate>();
-            
-        _rotate.enabled = false;
-
-        for (int i = 0; i < _shapes.Count; i++)
-            _shapes[i].LerpAlpha(1, 0, _timeToDie);
-
-        yield return new WaitForSeconds(_timeToDie);
-
-        Vector2 randomPointInCircle = Random.insideUnitCircle * 2f;
-        Vector3 randomPoint = new Vector3(randomPointInCircle.x, randomPointInCircle.y, 0);
-        Reset(randomPoint);
-        gameObject.SetActive(false);
-    }
-
-    public void Die()
-    {
-        StartCoroutine(DieCoroutine());
     }
 }

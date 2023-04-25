@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     public Shape Shape => _shape;
     private AudioSource _audioSource;
 
-    private void Start()
+    private void Awake()
     {
         _collider = GetComponent<Collider2D>();
         _shape = GetComponent<Shape>();
@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
             _audioSource.pitch = Random.Range(.9f, 1.1f);
             _audioSource.Play();
             GameManager.Instance.ShakeScreen(.15f);
-            
+
             if (LifesManager.Instance._lifesCount <= 0) 
             {
                 Die();

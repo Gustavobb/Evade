@@ -34,6 +34,11 @@ public class Shape : MonoBehaviour
         _color = color;
     }
 
+    public virtual void SetAlpha(float alpha)
+    {
+        _color.a = alpha;
+    }
+
     public virtual float GetColorType()
     {
         return (float) _colorType;
