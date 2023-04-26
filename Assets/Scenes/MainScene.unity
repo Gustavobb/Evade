@@ -253,7 +253,7 @@ MonoBehaviour:
   _type: 2
   _behaviour: 0
   _movementPivot: {fileID: 0}
-  MAX_SPEED: 9
+  MAX_SPEED: 7
   _speed: 20
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
@@ -7358,7 +7358,7 @@ MonoBehaviour:
   _type: 2
   _behaviour: 0
   _movementPivot: {fileID: 0}
-  MAX_SPEED: 9
+  MAX_SPEED: 7
   _speed: 20
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
@@ -7491,7 +7491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 0
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843137, a: 1}
+  _color: {r: 1, g: 1, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
@@ -8030,7 +8030,7 @@ MonoBehaviour:
   _type: 2
   _behaviour: 0
   _movementPivot: {fileID: 0}
-  MAX_SPEED: 9
+  MAX_SPEED: 7
   _speed: 20
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
@@ -8159,7 +8159,7 @@ MonoBehaviour:
   _type: 2
   _behaviour: 0
   _movementPivot: {fileID: 0}
-  MAX_SPEED: 9
+  MAX_SPEED: 7
   _speed: 20
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
@@ -9762,7 +9762,7 @@ MonoBehaviour:
   MAX_SPEED: 6
   _speed: 7
   _rotate: {fileID: 633509809}
-  _timeToEnterArena: 0.3
+  _timeToEnterArena: 0.5
   _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
@@ -10540,7 +10540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 0
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843137, a: 1}
+  _color: {r: 1, g: 1, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
@@ -13084,7 +13084,7 @@ MonoBehaviour:
   _type: 2
   _behaviour: 0
   _movementPivot: {fileID: 0}
-  MAX_SPEED: 9
+  MAX_SPEED: 7
   _speed: 20
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
@@ -14203,7 +14203,7 @@ MonoBehaviour:
   _type: 2
   _behaviour: 0
   _movementPivot: {fileID: 0}
-  MAX_SPEED: 9
+  MAX_SPEED: 7
   _speed: 20
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
@@ -14710,7 +14710,7 @@ MonoBehaviour:
   _type: 2
   _behaviour: 0
   _movementPivot: {fileID: 0}
-  MAX_SPEED: 9
+  MAX_SPEED: 7
   _speed: 20
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
@@ -17953,7 +17953,7 @@ MonoBehaviour:
   MAX_SPEED: 6
   _speed: 7
   _rotate: {fileID: 1199581951}
-  _timeToEnterArena: 0.3
+  _timeToEnterArena: 0.5
   _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
@@ -18005,7 +18005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 0
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843137, a: 1}
+  _color: {r: 1, g: 1, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
@@ -18683,7 +18683,7 @@ MonoBehaviour:
     randomPlayerColor: 0
     playerColor: {r: 0.54509807, g: 0.09411765, b: 0.45490196, a: 1}
   - name: Palette2
-    useHueShift: 0
+    useHueShift: 1
     randomHueShift: 1
     hueShift: 0
     randomBackgroundColor: 0
@@ -18767,7 +18767,7 @@ MonoBehaviour:
     randomPlayerColor: 0
     playerColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
   - name: Palette5
-    useHueShift: 0
+    useHueShift: 1
     randomHueShift: 1
     hueShift: 0
     randomBackgroundColor: 0
@@ -18850,50 +18850,8 @@ MonoBehaviour:
     - {fileID: 765764950}
     randomPlayerColor: 0
     playerColor: {r: 0.23921569, g: 0.33333334, b: 0.047058824, a: 1}
-  - name: Palette7
-    useHueShift: 0
-    randomHueShift: 1
-    hueShift: 0
-    randomBackgroundColor: 0
-    backgroundColor: {r: 0.36862746, g: 0.32156864, b: 0.36078432, a: 1}
-    enemyPalettes:
-    - enemyType: 0
-      colorType: 0
-      randomColor: 0
-      color: {r: 0.48235294, g: 0.43137255, b: 0.8392157, a: 0}
-    - enemyType: 1
-      colorType: 0
-      randomColor: 0
-      color: {r: 0.07450981, g: 0.8039216, b: 0.2901961, a: 0}
-    - enemyType: 2
-      colorType: 0
-      randomColor: 0
-      color: {r: 0.8, g: 0.60784316, b: 0.14509805, a: 0}
-    - enemyType: 3
-      colorType: 0
-      randomColor: 0
-      color: {r: 0.48235294, g: 0.43137255, b: 0.8392157, a: 0}
-    - enemyType: 4
-      colorType: 0
-      randomColor: 0
-      color: {r: 0.07450981, g: 0.8039216, b: 0.2901961, a: 0}
-    - enemyType: 5
-      colorType: 0
-      randomColor: 0
-      color: {r: 0.8, g: 0.60784316, b: 0.14509805, a: 0}
-    - enemyType: 6
-      colorType: 0
-      randomColor: 0
-      color: {r: 0.48235294, g: 0.43137255, b: 0.8392157, a: 0}
-    shapePalettes: []
-    guardians:
-    - {fileID: 1072079254}
-    - {fileID: 14968485}
-    - {fileID: 765764950}
-    randomPlayerColor: 0
-    playerColor: {r: 0.9254902, g: 0.26666668, b: 0.003921569, a: 1}
   - name: Palette8
-    useHueShift: 0
+    useHueShift: 1
     randomHueShift: 1
     hueShift: 0
     randomBackgroundColor: 0
@@ -18977,7 +18935,7 @@ MonoBehaviour:
     randomPlayerColor: 0
     playerColor: {r: 0.7921569, g: 0.7921569, b: 0.7921569, a: 1}
   - name: Palette10
-    useHueShift: 0
+    useHueShift: 1
     randomHueShift: 1
     hueShift: 0
     randomBackgroundColor: 0
@@ -19061,7 +19019,7 @@ MonoBehaviour:
     randomPlayerColor: 0
     playerColor: {r: 0.79607844, g: 0.4862745, b: 0.63529414, a: 1}
   - name: Palette12
-    useHueShift: 0
+    useHueShift: 1
     randomHueShift: 1
     hueShift: 0
     randomBackgroundColor: 0
@@ -19145,7 +19103,7 @@ MonoBehaviour:
     randomPlayerColor: 0
     playerColor: {r: 0.9882353, g: 0.10980392, b: 0.011764706, a: 1}
   - name: Palette14
-    useHueShift: 0
+    useHueShift: 1
     randomHueShift: 1
     hueShift: 0
     randomBackgroundColor: 0
@@ -19229,7 +19187,7 @@ MonoBehaviour:
     randomPlayerColor: 0
     playerColor: {r: 0.63529414, g: 0.6627451, b: 0.6862745, a: 1}
   - name: Palette17
-    useHueShift: 0
+    useHueShift: 1
     randomHueShift: 1
     hueShift: 0
     randomBackgroundColor: 0
@@ -19522,6 +19480,132 @@ MonoBehaviour:
     - {fileID: 765764950}
     randomPlayerColor: 0
     playerColor: {r: 0.56078434, g: 0.06666667, b: 0.5254902, a: 1}
+  - name: Palette7
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.36862746, g: 0.32156864, b: 0.36078432, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.48235294, g: 0.43137255, b: 0.8392157, a: 0}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.07450981, g: 0.8039216, b: 0.2901961, a: 0}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8, g: 0.60784316, b: 0.14509805, a: 0}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.48235294, g: 0.43137255, b: 0.8392157, a: 0}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.07450981, g: 0.8039216, b: 0.2901961, a: 0}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8, g: 0.60784316, b: 0.14509805, a: 0}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.48235294, g: 0.43137255, b: 0.8392157, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0.9254902, g: 0.26666668, b: 0.003921569, a: 1}
+  - name: Palette7
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.36862746, g: 0.32156864, b: 0.36078432, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.48235294, g: 0.43137255, b: 0.8392157, a: 0}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.07450981, g: 0.8039216, b: 0.2901961, a: 0}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8, g: 0.60784316, b: 0.14509805, a: 0}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.48235294, g: 0.43137255, b: 0.8392157, a: 0}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.07450981, g: 0.8039216, b: 0.2901961, a: 0}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8, g: 0.60784316, b: 0.14509805, a: 0}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.48235294, g: 0.43137255, b: 0.8392157, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0.9254902, g: 0.26666668, b: 0.003921569, a: 1}
+  - name: Palette7
+    useHueShift: 1
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.36862746, g: 0.32156864, b: 0.36078432, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.48235294, g: 0.43137255, b: 0.8392157, a: 0}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.07450981, g: 0.8039216, b: 0.2901961, a: 0}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8, g: 0.60784316, b: 0.14509805, a: 0}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.48235294, g: 0.43137255, b: 0.8392157, a: 0}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.07450981, g: 0.8039216, b: 0.2901961, a: 0}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8, g: 0.60784316, b: 0.14509805, a: 0}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.48235294, g: 0.43137255, b: 0.8392157, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0.9254902, g: 0.26666668, b: 0.003921569, a: 1}
 --- !u!1 &1251801319
 GameObject:
   m_ObjectHideFlags: 0
@@ -20750,7 +20834,7 @@ MonoBehaviour:
   _type: 2
   _behaviour: 0
   _movementPivot: {fileID: 0}
-  MAX_SPEED: 9
+  MAX_SPEED: 7
   _speed: 20
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
@@ -21678,7 +21762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 0
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843137, a: 1}
+  _color: {r: 1, g: 1, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
@@ -21746,7 +21830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 0
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843137, a: 1}
+  _color: {r: 1, g: 1, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
@@ -22297,7 +22381,7 @@ MonoBehaviour:
   MAX_SPEED: 6
   _speed: 7
   _rotate: {fileID: 1466494316}
-  _timeToEnterArena: 0.3
+  _timeToEnterArena: 0.5
   _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
@@ -23058,7 +23142,7 @@ MonoBehaviour:
   MAX_SPEED: 6
   _speed: 7
   _rotate: {fileID: 1522328144}
-  _timeToEnterArena: 0.3
+  _timeToEnterArena: 0.5
   _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
@@ -24458,7 +24542,7 @@ MonoBehaviour:
   MAX_SPEED: 6
   _speed: 7
   _rotate: {fileID: 1613816575}
-  _timeToEnterArena: 0.3
+  _timeToEnterArena: 0.5
   _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
@@ -25321,7 +25405,7 @@ MonoBehaviour:
   MAX_SPEED: 6
   _speed: 7
   _rotate: {fileID: 1656816605}
-  _timeToEnterArena: 0.3
+  _timeToEnterArena: 0.5
   _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
@@ -26191,7 +26275,7 @@ MonoBehaviour:
   MAX_SPEED: 6
   _speed: 7
   _rotate: {fileID: 1691232806}
-  _timeToEnterArena: 0.3
+  _timeToEnterArena: 0.5
   _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
@@ -26815,7 +26899,7 @@ MonoBehaviour:
   _type: 2
   _behaviour: 0
   _movementPivot: {fileID: 0}
-  MAX_SPEED: 9
+  MAX_SPEED: 7
   _speed: 20
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
@@ -31225,7 +31309,7 @@ MonoBehaviour:
   MAX_SPEED: 6
   _speed: 7
   _rotate: {fileID: 1979271516}
-  _timeToEnterArena: 0.3
+  _timeToEnterArena: 0.5
   _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
@@ -32007,7 +32091,7 @@ MonoBehaviour:
   MAX_SPEED: 6
   _speed: 7
   _rotate: {fileID: 2054674571}
-  _timeToEnterArena: 0.3
+  _timeToEnterArena: 0.5
   _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1

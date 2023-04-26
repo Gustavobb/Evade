@@ -37,7 +37,7 @@ public class WaveManager : MonoBehaviour
     {
         _waveTime = _waveTimeStart;
         _currentWave = _waves[_waveNumber];
-        _currentWave.Setup();
+        _currentWave.Setup(true);
         _waveCountText.text = $"WAVE {_waveNumberTotal}";
         _waveCountTextShadow.text = $"WAVE {_waveNumberTotal}";
     }
@@ -69,26 +69,25 @@ public class WaveManager : MonoBehaviour
         _waveCountTextShadow.text = $"WAVE {_waveNumberTotal}";
 
         if (_waveNumber == 1 && !_pastWave2)
-        {
-            _pastWave2 = true;
             StartCoroutine(DelayTutorial());
-        }
 
         if (_waveNumber >= _waves.Count) _waveNumber = _waves.Count - 1;
         _waveTime = _waveTimeStart + _waveTimeConstant * _waveNumber;
         _currentWave = _waves[_waveNumber];
-        _currentWave.Setup();
+        _currentWave.Setup(true);
         _onWaveStart?.Invoke();
     }
 
     public void DisableTutorial()
     {
         _mouseUI.SetActive(false);
+        _pastWave2 = true;
     }
 
     private IEnumerator DelayTutorial()
     {
         yield return new WaitForSeconds(3f);
+        if (!GameManager.Instance.OnGame) yield break;
         _mouseUI.SetActive(true);
     }
 
@@ -99,7 +98,7 @@ public class WaveManager : MonoBehaviour
         _waveCountText.text = $"WAVE {_waveNumberTotal}";
         _waveCountTextShadow.text = $"WAVE {_waveNumberTotal}";
         _currentWave = _waves[_waveNumber];
-        _currentWave.Setup();
+        _currentWave.Setup(false);
         _waveTime = _waveTimeStart;
     }
 
@@ -128,13 +127,14 @@ public class Wave
     public int palletteIndex = 0;
     public List<Enemy.EnemyType> possibleEnemyTypes;
     
-    public void Setup()
+    public void Setup(bool rand)
     {
         spawnRateCountdown = 0f;
         EnemyManager.Instance.ChangeMaxActiveEnemies(maxEnemyCount);
         WaveManager.Instance.EnemyData.MultiplySpeed(enemySpeedMultiplier);
         WaveManager.Instance.EnemyData.MultiplySize(enemySizeMultiplier);
         if (usePallette){
+            if (!rand) return;
             if(randomPallette){
                 int idx = Random.Range(0, PaletteManager.Instance.palettes.Count);
                 PaletteManager.Instance.ApplyPalette(idx);

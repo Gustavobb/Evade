@@ -59,6 +59,7 @@ public class Palette
 
     public void ApplyPalette(Material shaderMaterial)
     {
+        shaderMaterial.SetFloat("_HueShift", 0f);
         if(useHueShift){
             shaderMaterial.SetFloat("_HueShift", hueShift);
             if(randomHueShift){

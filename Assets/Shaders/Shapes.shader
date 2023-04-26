@@ -349,7 +349,7 @@ Shader "Unlit/Shapes"
                 
                 if (_GreyScale > 0)
                 {
-                    float grey = dot(col.rgb, float3(0.299, 0.587, 0.114));
+                    float grey = col.r * 0.3 + col.g * 0.59 + col.b * 0.11;
                     col = lerp(col, grey, _GreyScale);
                     col.a = 1;
                 }
