@@ -57,7 +57,7 @@ public class EnemySpeedDownPowerUp: GenericPowerUp{
     }
 
     public override bool CheckCondition(){
-        return EnemyManager.Instance.enemyData.speedMultiplierPowerUp > .1f;
+        return EnemyManager.Instance.enemyData.speedMultiplierPowerUp > .5f;
     }
 }
 
