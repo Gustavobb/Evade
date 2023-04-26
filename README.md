@@ -3,6 +3,7 @@ game: https://gubebra.itch.io/evade
 ![Alt Text](https://img.itch.zone/aW1hZ2UvMjAzMjU2Ny8xMTk3NzM5MC5naWY=/original/0CRIW3.gif)
 ![Alt Text](https://img.itch.zone/aW1hZ2UvMjAzMjU2Ny8xMTk3NzM3NC5naWY=/original/rwYkYk.gif)
 ![Alt Text](https://img.itch.zone/aW1hZ2UvMjAzMjU2Ny8xMTk3NzQyNi5naWY=/original/yfojGd.gif)
+![Alt Text](https://img.itch.zone/aW1hZ2UvMjAzMjU2Ny8xMTk3NzQyNS5naWY=/original/abdGfz.gif)
 
 # Evade - A Game Made for Gamedev.js 2023 with the Theme "Time"
 Evade is a game that puts you in control of time itself. You must use your powers to survive wave after wave of enemies, gaining power-ups along the way to help you stay alive. The game is made entirely in shaders, with no assets whatsoever, creating a unique and immersive experience.
