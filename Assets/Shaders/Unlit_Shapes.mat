@@ -32,16 +32,16 @@ Material:
     m_Floats:
     - _CameraShake: 0.005
     - _ChromaticAberration: 0
-    - _ColorDecay: 1
+    - _ColorDecay: 0.2
     - _FilmGrain: 0
     - _GrainStrength: 17
-    - _GreyScale: 0
-    - _HueShift: 0.26197118
-    - _LensDistortion: 1.0071709
+    - _GreyScale: 1
+    - _HueShift: 0.24426937
+    - _LensDistortion: 1.0105044
     - _LensDistortionStrength: 1
     - _LensDistortionTightness: 0.44
     - _LensZoom: 1
-    - _OldTV: 0
+    - _OldTV: 0.007
     - _OldTVAmplitude: 5
     - _OldTVFrequency: 0.19
     - _PixelSize: 7.1
