@@ -124,6 +124,7 @@ public class Wave
     public float enemySizeMultiplier = 1f;
     private float spawnRateCountdown = 0f;
     public bool usePallette = false;
+    public bool randomPallette = false;
     public int palletteIndex = 0;
     public List<Enemy.EnemyType> possibleEnemyTypes;
     
@@ -133,7 +134,14 @@ public class Wave
         EnemyManager.Instance.ChangeMaxActiveEnemies(maxEnemyCount);
         WaveManager.Instance.EnemyData.MultiplySpeed(enemySpeedMultiplier);
         WaveManager.Instance.EnemyData.MultiplySize(enemySizeMultiplier);
-        if (usePallette) PaletteManager.Instance.ApplyPalette(palletteIndex);
+        if (usePallette){
+            if(randomPallette){
+                int idx = Random.Range(0, PaletteManager.Instance.palettes.Count);
+                PaletteManager.Instance.ApplyPalette(idx);
+                return;
+            }
+            PaletteManager.Instance.ApplyPalette(palletteIndex);
+        }
     }
 
     public void WaveLogic()

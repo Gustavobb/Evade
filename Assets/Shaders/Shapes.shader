@@ -239,8 +239,8 @@ Shader "Unlit/Shapes"
             {
                 uv += 0.5;
                 float r = tex2D(_MainTex, float2(uv.x + _ChromaticAberration, uv.y)).r;
-                float g = tex2D(_MainTex, float2(uv.x, uv.y + _ChromaticAberration)).r;
-                float b = tex2D(_MainTex, float2(uv.x - _ChromaticAberration, uv.y)).r;
+                float g = tex2D(_MainTex, float2(uv.x, uv.y + _ChromaticAberration)).g;
+                float b = tex2D(_MainTex, float2(uv.x - _ChromaticAberration, uv.y)).b;
                 return fixed4(r, g, b, 1) * col;
             }
 

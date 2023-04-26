@@ -5,7 +5,7 @@ using UnityEngine;
 public class PaletteManager : MonoBehaviour
 {
     [SerializeField] private Material shaderMaterial;
-    [SerializeField] List<Palette> palettes = new List<Palette>();
+    public List<Palette> palettes = new List<Palette>();
 
     private static PaletteManager instance;
     public static PaletteManager Instance
@@ -43,10 +43,15 @@ public class PaletteManager : MonoBehaviour
 public class Palette
 {
     public string name;
+    public bool useHueShift; 
+    public bool randomHueShift;
+    public float hueShift;
     public bool randomBackgroundColor;
     public Color backgroundColor;
 
     public List<EnemyPalette> enemyPalettes = new List<EnemyPalette>();
+    public List<ShapePalette> shapePalettes = new List<ShapePalette>();
+
     public List<Guardian> guardians = new List<Guardian>();
 
     public bool randomPlayerColor;
@@ -54,14 +59,25 @@ public class Palette
 
     public void ApplyPalette(Material shaderMaterial)
     {
+        if(useHueShift){
+            shaderMaterial.SetFloat("_HueShift", hueShift);
+            if(randomHueShift){
+                float random = Random.Range(0f,1f);
+                shaderMaterial.SetFloat("_HueShift", random);
+            }
+        }
+        if (randomPlayerColor) Player.Instance.Shape.SetColor(Random.ColorHSV());
+        else Player.Instance.Shape.SetColor(playerColor);
+
         if (randomBackgroundColor) shaderMaterial.SetColor("_Background", Random.ColorHSV());
         else shaderMaterial.SetColor("_Background", backgroundColor);
 
         foreach (EnemyPalette enemyPalette in enemyPalettes)
             enemyPalette.ApplyPalette(shaderMaterial);
+
+        foreach (ShapePalette shapePalette in shapePalettes)
+            shapePalette.ApplyPalette(shaderMaterial);
         
-        if (randomPlayerColor) Player.Instance.Shape.SetColor(Random.ColorHSV());
-        else Player.Instance.Shape.SetColor(playerColor);
 
         foreach (Guardian guardian in guardians)
             guardian.SetColor(Player.Instance.Shape.GetColor(), (Shape.ColorType) Player.Instance.Shape.GetColorType());
@@ -71,14 +87,36 @@ public class Palette
 [System.Serializable]
 public class EnemyPalette
 {
-    public Enemy enemy;
+    public Enemy.EnemyType enemyType;
     public Shape.ColorType colorType;
     public bool randomColor;
     public Color color;
 
     public void ApplyPalette(Material shaderMaterial)
     {
-        if (randomColor) enemy.SetColor(Random.ColorHSV(), colorType);
-        else enemy.SetColor(color, colorType);
+        foreach (EnemyPool pool in EnemyManager.Instance._enemyPools)
+        {
+            if(pool._type == enemyType) {
+                foreach (Enemy enemy in pool._enemies)
+                {
+                    if (randomColor) enemy.SetColor(Random.ColorHSV(), colorType);
+                    else enemy.SetColor(color, colorType);
+                }
+                return;
+            }
+        }
+        
+    }
+}
+
+[System.Serializable]
+public class ShapePalette
+{
+    public Shape shape;
+
+    public void ApplyPalette(Material shaderMaterial)
+    {
+        shape.SetColor(Player.Instance.Shape.GetColor());
+        shape.SetColorType((Shape.ColorType)Player.Instance.Shape.GetColorType());
     }
 }

@@ -2303,7 +2303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 4
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843138, a: 1}
+  _color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   _colorType: 0
   _blendBlack: 0.9710444
   _hasShadow: 1
@@ -3035,7 +3035,7 @@ MonoBehaviour:
   _behaviour: 0
   _movementPivot: {fileID: 0}
   MAX_SPEED: 7
-  _speed: 300
+  _speed: 200
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
   _timeToDie: 0.5
@@ -4924,7 +4924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 4
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843138, a: 1}
+  _color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   _colorType: 0
   _blendBlack: 0.9710444
   _hasShadow: 1
@@ -5581,7 +5581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 4
   _factor: 10
-  _color: {r: 0.02745098, g: 1, b: 0, a: 1}
+  _color: {r: 1, g: 1, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
@@ -9759,11 +9759,11 @@ MonoBehaviour:
   _type: 5
   _behaviour: 0
   _movementPivot: {fileID: 633509806}
-  MAX_SPEED: 5
-  _speed: 6
+  MAX_SPEED: 6
+  _speed: 7
   _rotate: {fileID: 633509809}
-  _timeToEnterArena: 0.2
-  _timeToDie: 0.2
+  _timeToEnterArena: 0.3
+  _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
   _enemyData: {fileID: 11400000, guid: bf1b8ef33b86d4ca6b6eff625e5545bb, type: 2}
@@ -10901,7 +10901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 4
   _factor: 10
-  _color: {r: 0.02745098, g: 1, b: 0, a: 1}
+  _color: {r: 1, g: 1, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
@@ -16478,77 +16478,104 @@ MonoBehaviour:
     spawnRate: 2
     enemySpeedMultiplier: 1
     enemySizeMultiplier: 1
-    usePallette: 0
-    palletteIndex: 0
+    usePallette: 1
+    randomPallette: 1
+    palletteIndex: 17
     possibleEnemyTypes: 00000000
   - maxEnemyCount: 6
     spawnRate: 1.3
     enemySpeedMultiplier: 1
     enemySizeMultiplier: 1
     usePallette: 1
+    randomPallette: 1
     palletteIndex: 0
-    possibleEnemyTypes: 00000000
+    possibleEnemyTypes: 0000000002000000
   - maxEnemyCount: 6
     spawnRate: 1.3
     enemySpeedMultiplier: 1
     enemySizeMultiplier: 1
     usePallette: 1
+    randomPallette: 1
     palletteIndex: 1
     possibleEnemyTypes: 0300000000000000
   - maxEnemyCount: 7
     spawnRate: 2
     enemySpeedMultiplier: 1
     enemySizeMultiplier: 1
-    usePallette: 0
+    usePallette: 1
+    randomPallette: 1
     palletteIndex: 0
-    possibleEnemyTypes: 06000000
+    possibleEnemyTypes: 0600000002000000
   - maxEnemyCount: 7
     spawnRate: 0.5
     enemySpeedMultiplier: 1
     enemySizeMultiplier: 1
-    usePallette: 0
+    usePallette: 1
+    randomPallette: 1
     palletteIndex: 0
     possibleEnemyTypes: 06000000
   - maxEnemyCount: 7
     spawnRate: 1
     enemySpeedMultiplier: 1
     enemySizeMultiplier: 1
-    usePallette: 0
+    usePallette: 1
+    randomPallette: 1
     palletteIndex: 0
-    possibleEnemyTypes: 060000000000000003000000
+    possibleEnemyTypes: 06000000000000000300000002000000
   - maxEnemyCount: 10
     spawnRate: 0.5
     enemySpeedMultiplier: 1
     enemySizeMultiplier: 1
-    usePallette: 0
+    usePallette: 1
+    randomPallette: 1
     palletteIndex: 0
-    possibleEnemyTypes: 060000000000000003000000
+    possibleEnemyTypes: 06000000000000000300000002000000
+  - maxEnemyCount: 9
+    spawnRate: 0.5
+    enemySpeedMultiplier: 1
+    enemySizeMultiplier: 1
+    usePallette: 1
+    randomPallette: 1
+    palletteIndex: 0
+    possibleEnemyTypes: 0600000003000000
   - maxEnemyCount: 7
     spawnRate: 2
     enemySpeedMultiplier: 1
     enemySizeMultiplier: 1
-    usePallette: 0
+    usePallette: 1
+    randomPallette: 1
     palletteIndex: 0
-    possibleEnemyTypes: 06000000000000000300000001000000
+    possibleEnemyTypes: 0600000000000000030000000100000002000000
+  - maxEnemyCount: 7
+    spawnRate: 2
+    enemySpeedMultiplier: 1
+    enemySizeMultiplier: 1
+    usePallette: 1
+    randomPallette: 1
+    palletteIndex: 0
+    possibleEnemyTypes: 0500000004000000
   - maxEnemyCount: 7
     spawnRate: 1
     enemySpeedMultiplier: 1
     enemySizeMultiplier: 1
-    usePallette: 0
+    usePallette: 1
+    randomPallette: 1
     palletteIndex: 0
-    possibleEnemyTypes: 0600000000000000030000000500000001000000
+    possibleEnemyTypes: 060000000000000003000000050000000100000002000000
   - maxEnemyCount: 10
     spawnRate: 1
     enemySpeedMultiplier: 1
     enemySizeMultiplier: 1
-    usePallette: 0
+    usePallette: 1
+    randomPallette: 1
     palletteIndex: 0
     possibleEnemyTypes: 06000000000000000300000005000000010000000200000004000000
   - maxEnemyCount: 10
     spawnRate: 0.8
     enemySpeedMultiplier: 1
     enemySizeMultiplier: 1
-    usePallette: 0
+    usePallette: 1
+    randomPallette: 1
     palletteIndex: 0
     possibleEnemyTypes: 06000000000000000300000005000000010000000200000004000000
   _waveNumber: 0
@@ -17314,7 +17341,7 @@ MonoBehaviour:
   _behaviour: 0
   _movementPivot: {fileID: 0}
   MAX_SPEED: 7
-  _speed: 300
+  _speed: 200
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
   _timeToDie: 0.5
@@ -17439,7 +17466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 4
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843138, a: 1}
+  _color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   _colorType: 0
   _blendBlack: 0.9710444
   _hasShadow: 1
@@ -17663,7 +17690,7 @@ MonoBehaviour:
   _behaviour: 0
   _movementPivot: {fileID: 0}
   MAX_SPEED: 7
-  _speed: 300
+  _speed: 200
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
   _timeToDie: 0.5
@@ -17923,11 +17950,11 @@ MonoBehaviour:
   _type: 5
   _behaviour: 0
   _movementPivot: {fileID: 1199581948}
-  MAX_SPEED: 5
-  _speed: 6
+  MAX_SPEED: 6
+  _speed: 7
   _rotate: {fileID: 1199581951}
-  _timeToEnterArena: 0.2
-  _timeToDie: 0.2
+  _timeToEnterArena: 0.3
+  _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
   _enemyData: {fileID: 11400000, guid: bf1b8ef33b86d4ca6b6eff625e5545bb, type: 2}
@@ -18613,93 +18640,888 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shaderMaterial: {fileID: 2100000, guid: 8a6369e1da0254903a528b1510e62d23, type: 2}
   palettes:
-  - name: Green
+  - name: Palette1
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
     randomBackgroundColor: 0
-    backgroundColor: {r: 0.8479575, g: 1, b: 0.603, a: 1}
+    backgroundColor: {r: 0.96862745, g: 0.58431375, b: 0.2509804, a: 1}
     enemyPalettes:
-    - enemy: {fileID: 1032594079}
+    - enemyType: 0
       colorType: 0
       randomColor: 0
-      color: {r: 0, g: 1, b: 0.007477045, a: 1}
-    - enemy: {fileID: 691548494}
+      color: {r: 0.9882353, g: 0.30980393, b: 0, a: 0}
+    - enemyType: 1
       colorType: 0
       randomColor: 0
-      color: {r: 0.6627451, g: 1, b: 0.11764706, a: 1}
-    - enemy: {fileID: 1035930120}
+      color: {r: 0.9882353, g: 0.30980393, b: 0, a: 0}
+    - enemyType: 2
       colorType: 0
       randomColor: 0
-      color: {r: 0, g: 0, b: 0, a: 1}
-    - enemy: {fileID: 585672902}
+      color: {r: 0.9882353, g: 0.30980393, b: 0, a: 0}
+    - enemyType: 3
       colorType: 0
       randomColor: 0
-      color: {r: 0, g: 0, b: 0, a: 1}
-    - enemy: {fileID: 561129508}
+      color: {r: 0.9882353, g: 0.30980393, b: 0, a: 0}
+    - enemyType: 4
       colorType: 0
       randomColor: 0
-      color: {r: 0.6627451, g: 1, b: 0.11764706, a: 1}
-    - enemy: {fileID: 1470697468}
+      color: {r: 0.9882353, g: 0.30980393, b: 0, a: 0}
+    - enemyType: 5
       colorType: 0
       randomColor: 0
-      color: {r: 0.6627451, g: 1, b: 0.11764706, a: 1}
-    - enemy: {fileID: 1188157897}
+      color: {r: 0.9882353, g: 0.30980393, b: 0, a: 0}
+    - enemyType: 6
       colorType: 0
       randomColor: 0
-      color: {r: 0.6627451, g: 1, b: 0.11764706, a: 1}
-    - enemy: {fileID: 1656816604}
-      colorType: 0
-      randomColor: 0
-      color: {r: 0.6627451, g: 1, b: 0.11764706, a: 1}
-    - enemy: {fileID: 556813136}
-      colorType: 0
-      randomColor: 0
-      color: {r: 0.6627451, g: 1, b: 0.11764706, a: 1}
+      color: {r: 0.9882353, g: 0.30980393, b: 0, a: 0}
+    shapePalettes: []
     guardians:
     - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
     randomPlayerColor: 0
-    playerColor: {r: 1, g: 0.9214484, b: 0, a: 1}
-  - name: Default
+    playerColor: {r: 0.54509807, g: 0.09411765, b: 0.45490196, a: 1}
+  - name: Palette2
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
     randomBackgroundColor: 0
-    backgroundColor: {r: 1, g: 0.8235294, b: 0.5411765, a: 1}
+    backgroundColor: {r: 0.49411765, g: 0.78431374, b: 0.8901961, a: 1}
     enemyPalettes:
-    - enemy: {fileID: 1032594079}
+    - enemyType: 0
       colorType: 0
       randomColor: 0
-      color: {r: 0, g: 0.13333334, b: 1, a: 1}
-    - enemy: {fileID: 691548494}
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    - enemyType: 1
       colorType: 0
       randomColor: 0
-      color: {r: 0.6, g: 0, b: 1, a: 1}
-    - enemy: {fileID: 1035930120}
+      color: {r: 0, g: 0, b: 1, a: 0}
+    - enemyType: 2
       colorType: 0
       randomColor: 0
-      color: {r: 0, g: 0, b: 0, a: 1}
-    - enemy: {fileID: 585672902}
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    - enemyType: 3
       colorType: 0
       randomColor: 0
-      color: {r: 0, g: 0, b: 0, a: 1}
-    - enemy: {fileID: 561129508}
+      color: {r: 0, g: 0, b: 1, a: 0}
+    - enemyType: 4
       colorType: 0
       randomColor: 0
-      color: {r: 0.92156863, g: 1, b: 0, a: 1}
-    - enemy: {fileID: 1470697468}
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    - enemyType: 5
       colorType: 0
       randomColor: 0
-      color: {r: 0.02745098, g: 1, b: 0, a: 1}
-    - enemy: {fileID: 1188157897}
+      color: {r: 0, g: 0, b: 1, a: 0}
+    - enemyType: 6
       colorType: 0
       randomColor: 0
-      color: {r: 1, g: 0.6392157, b: 0, a: 1}
-    - enemy: {fileID: 1656816604}
-      colorType: 1
-      randomColor: 0
-      color: {r: 0.6627451, g: 1, b: 0.11764706, a: 1}
-    - enemy: {fileID: 556813136}
-      colorType: 1
-      randomColor: 0
-      color: {r: 0.6627451, g: 1, b: 0.11764706, a: 1}
-    guardians: []
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
     randomPlayerColor: 0
-    playerColor: {r: 1, g: 0, b: 0.9843137, a: 1}
+    playerColor: {r: 0.019607844, g: 0.039215688, b: 0.1882353, a: 1}
+  - name: Palette4
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 1, g: 0.2971698, b: 0.4967903, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.20784314, g: 0.19215687, b: 0.23137255, a: 0}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.27058825, g: 0.21568628, b: 0.27058825, a: 0}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.38039216, g: 0.23529412, b: 0.29803923, a: 0}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.20784314, g: 0.19215687, b: 0.23137255, a: 0}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.27058825, g: 0.21568628, b: 0.27058825, a: 0}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.38039216, g: 0.23529412, b: 0.29803923, a: 0}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.20784314, g: 0.19215687, b: 0.23137255, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
+  - name: Palette5
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.14117648, g: 0.7137255, b: 0.5803922, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8235294, g: 0.1254902, b: 0.25882354, a: 0}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.11372549, g: 0.07450981, b: 0.07450981, a: 0}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.1882353, g: 0.76862746, b: 0.7882353, a: 0}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8235294, g: 0.1254902, b: 0.25882354, a: 0}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.11372549, g: 0.07450981, b: 0.07450981, a: 0}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.1882353, g: 0.76862746, b: 0.7882353, a: 0}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8235294, g: 0.1254902, b: 0.25882354, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0.6392157, g: 0.72156864, b: 0.03137255, a: 1}
+  - name: Palette6
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.9254902, g: 0.972549, b: 0.49803922, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.5058824, g: 0.7137255, b: 0.13333334, a: 0}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.34901962, g: 0.59607846, b: 0.101960786, a: 0}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.5058824, g: 0.7137255, b: 0.13333334, a: 0}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.34901962, g: 0.59607846, b: 0.101960786, a: 0}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.5058824, g: 0.7137255, b: 0.13333334, a: 0}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.34901962, g: 0.59607846, b: 0.101960786, a: 0}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.5058824, g: 0.7137255, b: 0.13333334, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0.23921569, g: 0.33333334, b: 0.047058824, a: 1}
+  - name: Palette7
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.36862746, g: 0.32156864, b: 0.36078432, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.48235294, g: 0.43137255, b: 0.8392157, a: 0}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.07450981, g: 0.8039216, b: 0.2901961, a: 0}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8, g: 0.60784316, b: 0.14509805, a: 0}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.48235294, g: 0.43137255, b: 0.8392157, a: 0}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.07450981, g: 0.8039216, b: 0.2901961, a: 0}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8, g: 0.60784316, b: 0.14509805, a: 0}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.48235294, g: 0.43137255, b: 0.8392157, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0.9254902, g: 0.26666668, b: 0.003921569, a: 1}
+  - name: Palette8
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 1, g: 0.6666667, b: 0, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 1, g: 0, b: 0.6666667, a: 0}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.6666667, g: 1, b: 0, a: 0}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.6666667, g: 0, b: 1, a: 0}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 1, g: 0, b: 0.6666667, a: 0}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.6666667, g: 1, b: 0, a: 0}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.6666667, g: 0, b: 1, a: 0}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 1, g: 0, b: 0.6666667, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0, g: 0.6666667, b: 1, a: 1}
+  - name: Palette9
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.75, g: 0.9416667, b: 1, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.14117648, g: 0.7529412, b: 0.92156863, a: 0}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.36078432, g: 0.80784315, b: 0.93333334, a: 0}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.14117648, g: 0.7529412, b: 0.92156863, a: 0}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.36078432, g: 0.80784315, b: 0.93333334, a: 0}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.14117648, g: 0.7529412, b: 0.92156863, a: 0}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.36078432, g: 0.80784315, b: 0.93333334, a: 0}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.14117648, g: 0.7529412, b: 0.92156863, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0.7921569, g: 0.7921569, b: 0.7921569, a: 1}
+  - name: Palette10
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.5647059, g: 0.3764706, b: 0.5647059, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.1882353, g: 0.09411765, b: 0.3764706, a: 0}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.28235295, g: 0.1882353, b: 0.47058824, a: 0}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.1882353, g: 0.09411765, b: 0.3764706, a: 0}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.1882353, g: 0.09411765, b: 0.3764706, a: 0}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.28235295, g: 0.1882353, b: 0.47058824, a: 0}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.1882353, g: 0.09411765, b: 0.3764706, a: 0}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.1882353, g: 0.09411765, b: 0.3764706, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0, g: 0.09411765, b: 0.28235295, a: 1}
+  - name: Palette11
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.8627451, g: 0.93333334, b: 0.69411767, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.99607843, g: 0.9764706, b: 0.9647059, a: 0}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.99607843, g: 0.9764706, b: 0.9647059, a: 0}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.99607843, g: 0.9764706, b: 0.9647059, a: 0}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.99607843, g: 0.9764706, b: 0.9647059, a: 0}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.99607843, g: 0.9764706, b: 0.9647059, a: 0}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.99607843, g: 0.9764706, b: 0.9647059, a: 0}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.99607843, g: 0.9764706, b: 0.9647059, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0.79607844, g: 0.4862745, b: 0.63529414, a: 1}
+  - name: Palette12
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.85490197, g: 0.8039216, b: 0.6745098, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.05490196, g: 0.5647059, b: 0.5803922, a: 0}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.9529412, g: 0.5921569, b: 0.03137255, a: 0}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.972549, g: 0.34117648, b: 0.25490198, a: 0}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.05490196, g: 0.5647059, b: 0.5803922, a: 0}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.9529412, g: 0.5921569, b: 0.03137255, a: 0}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.972549, g: 0.34117648, b: 0.25490198, a: 0}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.05490196, g: 0.5647059, b: 0.5803922, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0.11764706, g: 0.09411765, b: 0.003921569, a: 1}
+  - name: Palette13
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.11372549, g: 0.59607846, b: 0.99607843, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 1
+      color: {r: 0.05490196, g: 0.5647059, b: 0.5803922, a: 0}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 1
+      color: {r: 0.9529412, g: 0.5921569, b: 0.03137255, a: 0}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 1
+      color: {r: 0.972549, g: 0.34117648, b: 0.25490198, a: 0}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 1
+      color: {r: 0.05490196, g: 0.5647059, b: 0.5803922, a: 0}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 1
+      color: {r: 0.9529412, g: 0.5921569, b: 0.03137255, a: 0}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 1
+      color: {r: 0.972549, g: 0.34117648, b: 0.25490198, a: 0}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 1
+      color: {r: 0.05490196, g: 0.5647059, b: 0.5803922, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0.9882353, g: 0.10980392, b: 0.011764706, a: 1}
+  - name: Palette14
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.8392157, g: 0.76862746, b: 0.5882353, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8392157, g: 0.18039216, b: 0.18039216, a: 0}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8392157, g: 0.18039216, b: 0.18039216, a: 0}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8392157, g: 0.18039216, b: 0.18039216, a: 0}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8392157, g: 0.18039216, b: 0.18039216, a: 0}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8392157, g: 0.18039216, b: 0.18039216, a: 0}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8392157, g: 0.18039216, b: 0.18039216, a: 0}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8392157, g: 0.18039216, b: 0.18039216, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0.28235295, g: 0.34509805, b: 0.43529412, a: 1}
+  - name: Palette16
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.8980392, g: 0.8980392, b: 0.8980392, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.94509804, g: 0.85882354, b: 0.85490197, a: 1}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.9882353, g: 0.8156863, b: 0.8117647, a: 1}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8117647, g: 0.7411765, b: 0.7490196, a: 1}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.94509804, g: 0.85882354, b: 0.85490197, a: 1}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.9882353, g: 0.8156863, b: 0.8117647, a: 1}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.8117647, g: 0.7411765, b: 0.7490196, a: 1}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.94509804, g: 0.85882354, b: 0.85490197, a: 1}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0.63529414, g: 0.6627451, b: 0.6862745, a: 1}
+  - name: Palette17
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.49411765, g: 0.047058824, b: 0.9490196, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.6627451, g: 0.003921569, b: 0.85882354, a: 1}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.23529412, g: 0.047058824, b: 0.9098039, a: 1}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.9490196, g: 0.047058824, b: 0.8862745, a: 1}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.6627451, g: 0.003921569, b: 0.85882354, a: 1}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.23529412, g: 0.047058824, b: 0.9098039, a: 1}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.9490196, g: 0.047058824, b: 0.8862745, a: 1}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.6627451, g: 0.003921569, b: 0.85882354, a: 1}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0.9098039, g: 0.047058824, b: 0.41568628, a: 1}
+  - name: Palette3
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.816, g: 0.816, b: 0.816, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    - enemyType: 1
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0, b: 1, a: 0}
+    - enemyType: 2
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    - enemyType: 3
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0, b: 1, a: 0}
+    - enemyType: 4
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    - enemyType: 5
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0, b: 1, a: 0}
+    - enemyType: 6
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0, g: 0, b: 0, a: 1}
+  - name: Palette3
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.816, g: 0.816, b: 0.816, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    - enemyType: 1
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0, b: 1, a: 0}
+    - enemyType: 2
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    - enemyType: 3
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0, b: 1, a: 0}
+    - enemyType: 4
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    - enemyType: 5
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0, b: 1, a: 0}
+    - enemyType: 6
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0, g: 0, b: 0, a: 1}
+  - name: Palette3
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.816, g: 0.816, b: 0.816, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    - enemyType: 1
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0, b: 1, a: 0}
+    - enemyType: 2
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    - enemyType: 3
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0, b: 1, a: 0}
+    - enemyType: 4
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    - enemyType: 5
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0, b: 1, a: 0}
+    - enemyType: 6
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0, g: 0, b: 0, a: 1}
+  - name: Palette3
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.816, g: 0.816, b: 0.816, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    - enemyType: 1
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0, b: 1, a: 0}
+    - enemyType: 2
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    - enemyType: 3
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0, b: 1, a: 0}
+    - enemyType: 4
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    - enemyType: 5
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0, b: 1, a: 0}
+    - enemyType: 6
+      colorType: 1
+      randomColor: 0
+      color: {r: 0, g: 0.047058824, b: 0.4, a: 0}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0, g: 0, b: 0, a: 1}
+  - name: Palette18
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.85882354, g: 0.7411765, b: 0.27450982, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.101960786, g: 0.85882354, b: 0.77254903, a: 1}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.09411765, g: 0.56078434, b: 0.5058824, a: 1}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.101960786, g: 0.85882354, b: 0.77254903, a: 1}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.09411765, g: 0.56078434, b: 0.5058824, a: 1}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.101960786, g: 0.85882354, b: 0.77254903, a: 1}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.09411765, g: 0.56078434, b: 0.5058824, a: 1}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.101960786, g: 0.85882354, b: 0.77254903, a: 1}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0.56078434, g: 0.06666667, b: 0.5254902, a: 1}
+  - name: Palette18
+    useHueShift: 0
+    randomHueShift: 1
+    hueShift: 0
+    randomBackgroundColor: 0
+    backgroundColor: {r: 0.85882354, g: 0.7411765, b: 0.27450982, a: 1}
+    enemyPalettes:
+    - enemyType: 0
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.101960786, g: 0.85882354, b: 0.77254903, a: 1}
+    - enemyType: 1
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.09411765, g: 0.56078434, b: 0.5058824, a: 1}
+    - enemyType: 2
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.101960786, g: 0.85882354, b: 0.77254903, a: 1}
+    - enemyType: 3
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.09411765, g: 0.56078434, b: 0.5058824, a: 1}
+    - enemyType: 4
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.101960786, g: 0.85882354, b: 0.77254903, a: 1}
+    - enemyType: 5
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.09411765, g: 0.56078434, b: 0.5058824, a: 1}
+    - enemyType: 6
+      colorType: 0
+      randomColor: 0
+      color: {r: 0.101960786, g: 0.85882354, b: 0.77254903, a: 1}
+    shapePalettes: []
+    guardians:
+    - {fileID: 1072079254}
+    - {fileID: 14968485}
+    - {fileID: 765764950}
+    randomPlayerColor: 0
+    playerColor: {r: 0.56078434, g: 0.06666667, b: 0.5254902, a: 1}
 --- !u!1 &1251801319
 GameObject:
   m_ObjectHideFlags: 0
@@ -19155,7 +19977,7 @@ MonoBehaviour:
   _behaviour: 0
   _movementPivot: {fileID: 0}
   MAX_SPEED: 7
-  _speed: 300
+  _speed: 200
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
   _timeToDie: 0.5
@@ -19280,7 +20102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 4
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843138, a: 1}
+  _color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   _colorType: 0
   _blendBlack: 0.9710444
   _hasShadow: 1
@@ -21472,11 +22294,11 @@ MonoBehaviour:
   _type: 5
   _behaviour: 0
   _movementPivot: {fileID: 1466494313}
-  MAX_SPEED: 5
-  _speed: 6
+  MAX_SPEED: 6
+  _speed: 7
   _rotate: {fileID: 1466494316}
-  _timeToEnterArena: 0.2
-  _timeToDie: 0.2
+  _timeToEnterArena: 0.3
+  _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
   _enemyData: {fileID: 11400000, guid: bf1b8ef33b86d4ca6b6eff625e5545bb, type: 2}
@@ -22072,7 +22894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 4
   _factor: 10
-  _color: {r: 0.02745098, g: 1, b: 0, a: 1}
+  _color: {r: 1, g: 1, b: 1, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
@@ -22233,11 +23055,11 @@ MonoBehaviour:
   _type: 5
   _behaviour: 0
   _movementPivot: {fileID: 1522328141}
-  MAX_SPEED: 5
-  _speed: 6
+  MAX_SPEED: 6
+  _speed: 7
   _rotate: {fileID: 1522328144}
-  _timeToEnterArena: 0.2
-  _timeToDie: 0.2
+  _timeToEnterArena: 0.3
+  _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
   _enemyData: {fileID: 11400000, guid: bf1b8ef33b86d4ca6b6eff625e5545bb, type: 2}
@@ -22978,7 +23800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 4
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843138, a: 1}
+  _color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   _colorType: 0
   _blendBlack: 0.9710444
   _hasShadow: 1
@@ -23086,7 +23908,7 @@ MonoBehaviour:
   _behaviour: 0
   _movementPivot: {fileID: 0}
   MAX_SPEED: 7
-  _speed: 300
+  _speed: 200
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
   _timeToDie: 0.5
@@ -23633,11 +24455,11 @@ MonoBehaviour:
   _type: 5
   _behaviour: 0
   _movementPivot: {fileID: 1613816572}
-  MAX_SPEED: 5
-  _speed: 6
+  MAX_SPEED: 6
+  _speed: 7
   _rotate: {fileID: 1613816575}
-  _timeToEnterArena: 0.2
-  _timeToDie: 0.2
+  _timeToEnterArena: 0.3
+  _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
   _enemyData: {fileID: 11400000, guid: bf1b8ef33b86d4ca6b6eff625e5545bb, type: 2}
@@ -24392,7 +25214,7 @@ Transform:
   m_GameObject: {fileID: 1650754040}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.33904985, y: 2.3212643, z: 4.244756}
+  m_LocalScale: {x: 0.33904982, y: 2.3212645, z: 4.244756}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1804063745}
@@ -24438,7 +25260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 4
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843138, a: 1}
+  _color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   _colorType: 0
   _blendBlack: 0.9710444
   _hasShadow: 1
@@ -24496,11 +25318,11 @@ MonoBehaviour:
   _type: 5
   _behaviour: 0
   _movementPivot: {fileID: 1656816603}
-  MAX_SPEED: 5
-  _speed: 6
+  MAX_SPEED: 6
+  _speed: 7
   _rotate: {fileID: 1656816605}
-  _timeToEnterArena: 0.2
-  _timeToDie: 0.2
+  _timeToEnterArena: 0.3
+  _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
   _enemyData: {fileID: 11400000, guid: bf1b8ef33b86d4ca6b6eff625e5545bb, type: 2}
@@ -25366,11 +26188,11 @@ MonoBehaviour:
   _type: 5
   _behaviour: 0
   _movementPivot: {fileID: 1691232803}
-  MAX_SPEED: 5
-  _speed: 6
+  MAX_SPEED: 6
+  _speed: 7
   _rotate: {fileID: 1691232806}
-  _timeToEnterArena: 0.2
-  _timeToDie: 0.2
+  _timeToEnterArena: 0.3
+  _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
   _enemyData: {fileID: 11400000, guid: bf1b8ef33b86d4ca6b6eff625e5545bb, type: 2}
@@ -26026,9 +26848,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717637791}
-  m_LocalRotation: {x: -0, y: -0, z: -0.258819, w: 0.9659259}
+  m_LocalRotation: {x: -0, y: -0, z: -0.25881904, w: 0.9659259}
   m_LocalPosition: {x: 0, y: 0, z: 0.67296}
-  m_LocalScale: {x: 0.88763505, y: 5.443953, z: 8.87635}
+  m_LocalScale: {x: 0.88763523, y: 5.443954, z: 8.87635}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1804063745}
@@ -26048,7 +26870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 5
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843138, a: 1}
+  _color: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 0
@@ -26368,7 +27190,7 @@ MonoBehaviour:
   _behaviour: 0
   _movementPivot: {fileID: 0}
   MAX_SPEED: 7
-  _speed: 300
+  _speed: 200
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
   _timeToDie: 0.5
@@ -27921,7 +28743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 4
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843138, a: 1}
+  _color: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
@@ -28486,7 +29308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 4
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843138, a: 1}
+  _color: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
@@ -28748,7 +29570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 5
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843138, a: 1}
+  _color: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 0
@@ -29644,7 +30466,7 @@ MonoBehaviour:
   _behaviour: 0
   _movementPivot: {fileID: 0}
   MAX_SPEED: 7
-  _speed: 300
+  _speed: 200
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
   _timeToDie: 0.5
@@ -29743,7 +30565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 5
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843138, a: 1}
+  _color: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 0
@@ -30400,11 +31222,11 @@ MonoBehaviour:
   _type: 5
   _behaviour: 0
   _movementPivot: {fileID: 1979271513}
-  MAX_SPEED: 5
-  _speed: 6
+  MAX_SPEED: 6
+  _speed: 7
   _rotate: {fileID: 1979271516}
-  _timeToEnterArena: 0.2
-  _timeToDie: 0.2
+  _timeToEnterArena: 0.3
+  _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
   _enemyData: {fileID: 11400000, guid: bf1b8ef33b86d4ca6b6eff625e5545bb, type: 2}
@@ -30875,7 +31697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sortOrder: 4
   _factor: 10
-  _color: {r: 1, g: 0, b: 0.9843138, a: 1}
+  _color: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
   _colorType: 0
   _blendBlack: 1
   _hasShadow: 1
@@ -31182,11 +32004,11 @@ MonoBehaviour:
   _type: 5
   _behaviour: 0
   _movementPivot: {fileID: 2054674568}
-  MAX_SPEED: 5
-  _speed: 6
+  MAX_SPEED: 6
+  _speed: 7
   _rotate: {fileID: 2054674571}
-  _timeToEnterArena: 0.2
-  _timeToDie: 0.2
+  _timeToEnterArena: 0.3
+  _timeToDie: 0.3
   _reportToManager: 1
   _needsToEnterArena: 1
   _enemyData: {fileID: 11400000, guid: bf1b8ef33b86d4ca6b6eff625e5545bb, type: 2}
@@ -32218,7 +33040,7 @@ MonoBehaviour:
   _behaviour: 0
   _movementPivot: {fileID: 0}
   MAX_SPEED: 7
-  _speed: 300
+  _speed: 200
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
   _timeToDie: 0.5
@@ -32584,7 +33406,7 @@ MonoBehaviour:
   _behaviour: 0
   _movementPivot: {fileID: 0}
   MAX_SPEED: 7
-  _speed: 300
+  _speed: 200
   _rotate: {fileID: 0}
   _timeToEnterArena: 0.5
   _timeToDie: 0.5

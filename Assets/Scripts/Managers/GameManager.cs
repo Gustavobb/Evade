@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         _shaderMaterial.SetFloat("_Wobble", 0f);
         _shaderMaterial.SetFloat("_OldTV", 0f);
         _shaderMaterial.SetFloat("_GreyScale", 0);
+        _shaderMaterial.SetFloat("_HueShift", 0);
     }
 
     private void LateUpdate()
