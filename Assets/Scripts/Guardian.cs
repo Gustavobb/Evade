@@ -93,6 +93,15 @@ public class Guardian : MonoBehaviour
         StartCoroutine(StopForSeconds());
     }
 
+    private void OnEnable()
+    {
+        foreach (Shape shape in _shapes)
+            shape.ResetAlpha();
+
+        _collider.enabled = true;
+        _rotate.enabled = true;
+    }
+
     private IEnumerator StopForSeconds()
     {
         _velocity = Vector2.zero;

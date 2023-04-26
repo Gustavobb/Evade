@@ -36,8 +36,8 @@ Material:
     - _FilmGrain: 0
     - _GrainStrength: 17
     - _GreyScale: 1
-    - _HueShift: 0.24426937
-    - _LensDistortion: 1.0105044
+    - _HueShift: 0.9179226
+    - _LensDistortion: 1.014208
     - _LensDistortionStrength: 1
     - _LensDistortionTightness: 0.44
     - _LensZoom: 1
